@@ -43,3 +43,9 @@
 .content-grid > .half > * {
   grid-column: content;
 }
+
+@media (max-width: 1281px) {
+  header {
+    padding-inline: 1.25rem;
+  }
+}
