@@ -4,9 +4,9 @@ const { current = '' } = Astro.props
 ---
 
 <header
-  class="fixed inset-x-0 z-50 mx-auto flex h-[3rem] w-full max-w-[1280px] justify-center bg-white py-8 dark:bg-black"
+  class="fixed inset-x-0 z-50 mx-auto flex h-[3rem] w-full justify-center py-8 transition-colors duration-300 ease-in-out"
 >
-  <nav class="z-20 flex w-full items-center justify-between font-bold">
+  <nav class="z-20 flex w-full max-w-[1280px] items-center justify-between font-bold">
     <ul class="flex gap-6 text-base sm:text-lg">
       <li>
         <a class={current === '' ? 'text-primary' : ''} href="/">Guimox</a>
@@ -21,3 +21,25 @@ const { current = '' } = Astro.props
     <ThemeIcon />
   </nav>
 </header>
+
+<!-- <script>
+  const header = document.getElementById('main-header')
+  const hero = document.querySelector('#hero')
+
+  function updateHeaderBackground() {
+    if (hero && header) {
+      const heroBottom = hero.getBoundingClientRect().bottom
+      if (heroBottom <= 0) {
+        header.classList.remove('bg-gray-200', 'dark:bg-gray-800')
+        header.classList.add('bg-white', 'dark:bg-black')
+      } else {
+        header.classList.remove('bg-white', 'dark:bg-black')
+        header.classList.add('bg-gray-200', 'dark:bg-gray-800')
+      }
+    }
+  }
+
+  window.addEventListener('scroll', updateHeaderBackground)
+  window.addEventListener('resize', updateHeaderBackground)
+  updateHeaderBackground() // Initial call to set the correct state on page load
+</script> -->

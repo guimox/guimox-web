@@ -19,7 +19,7 @@
 }
 
 .content-grid:not(header, nav) {
-  padding-top: 5rem;
+  padding-top: 4rem;
 }
 
 .content-grid > :not(.breakout, .full-width, .half),
@@ -45,7 +45,8 @@
 }
 
 @media (max-width: 1281px) {
-  header {
+  header,
+  footer {
     padding-inline: 1.25rem;
   }
 }
