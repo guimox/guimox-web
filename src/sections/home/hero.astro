@@ -1,19 +1,27 @@
 ---
+import Highlight from '../../components/misc/highlight.astro'
 import TextH1 from '../../components/text/text-h1.astro'
 import TextH3 from '../../components/text/text-h3.astro'
 import TextParagraph from '../../components/text/text-paragraph.astro'
 ---
 
-<section
-  id="hero"
-  class="full-width flex h-fit w-full flex-col justify-center gap-5 py-16 md:h-full md:gap-4 md:py-40"
->
-  <TextH1>Guilherme Lopes</TextH1>
-  <TextH3>Detail-driven & people-focused <b>software developer</b></TextH3>
-  <div class="max-w-2xl">
-    <TextParagraph>
-      Experienced software developer capable of working and exploring frontend and backend. Passionate about web
-      accessibility, design systems, and creating seamless user experiences.
-    </TextParagraph>
+<section id="hero" class="flex h-fit w-full items-center justify-between gap-5 py-16 md:h-full md:gap-4 md:py-36">
+  <div class="flex flex-col gap-3">
+    <TextH1>Guilherme Lopes</TextH1>
+    <TextH3>
+      Detail-driven & people-focused <b class="relative inline-block">
+        <Highlight>software developer</Highlight>
+      </b>
+    </TextH3>
+    <div class="max-w-2xl">
+      <TextParagraph>
+        Experienced software developer capable of working and exploring frontend and backend. Passionate about web
+        accessibility, design systems, and creating seamless user experiences
+      </TextParagraph>
+    </div>
+  </div>
+  <div
+    class="absolute right-0 -z-20 mx-20 h-40 w-40 rounded-full bg-color opacity-25 blur-3xl transition-all hover:bg-red-500 dark:bg-color-dark lg:relative"
+  >
   </div>
 </section>

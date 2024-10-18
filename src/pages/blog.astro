@@ -1,0 +1,15 @@
+---
+import TextH1 from '../components/text/text-h1.astro'
+import Layout from '../layouts/layout.astro'
+
+const title = 'Blog | Guilherme Lopes'
+const description = 'Read something that I wrote, feel free to explore'
+const canonical = 'https://guimox.dev/blog'
+const current = 'blog'
+---
+
+<Layout title={title} description={description} canonical={canonical} current={current}>
+  <section class="flex w-full flex-col justify-between py-5">
+    <TextH1>Blog</TextH1>
+  </section>
+</Layout>

@@ -4,9 +4,14 @@ import About from '../sections/home/about.astro'
 import Hero from '../sections/home/hero.astro'
 import LastestBlog from '../sections/home/lastest-blog.astro'
 import SummaryProjects from '../sections/home/summary-projects.astro'
+
+const title = 'Guilherme Lopes | Software Developer'
+const description = 'Homepage of my website, feel free to explore'
+const canonical = 'https://guimox.dev'
+const current = 'guimox'
 ---
 
-<Layout title="Guilherme Lopes - Software Developer">
+<Layout title={title} description={description} canonical={canonical} current={current}>
   <Hero />
   <About />
   <LastestBlog />

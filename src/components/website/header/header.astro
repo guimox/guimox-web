@@ -1,6 +1,6 @@
 ---
 import ThemeIcon from './theme-icon.astro'
-const { current = '' } = Astro.props
+const { current } = Astro.props
 ---
 
 <header
@@ -9,37 +9,18 @@ const { current = '' } = Astro.props
   <nav class="z-20 flex w-full max-w-[1280px] items-center justify-between font-bold">
     <ul class="flex gap-6 text-base sm:text-lg">
       <li>
-        <a class={current === '' ? 'text-primary' : ''} href="/">Guimox</a>
+        <a class={current === 'guimox' ? 'text-color dark' : ''} href="/">Guimox</a>
       </li>
       <li>
-        <a class={current === 'about' ? 'text-primary' : ''} href="/about">About</a>
+        <a class={current === 'about' ? 'text-color dark' : ''} href="/about">About</a>
       </li>
       <li>
-        <a class={current === 'blog' ? 'text-primary' : ''} href="/blog">Blog</a>
+        <a class={current === 'blog' ? 'text-color dark' : ''} href="/blog">Projects</a>
+      </li>
+      <li>
+        <a class={current === 'blog' ? 'text-color dark' : ''} href="/blog">Blog</a>
       </li>
     </ul>
     <ThemeIcon />
   </nav>
 </header>
-
-<!-- <script>
-  const header = document.getElementById('main-header')
-  const hero = document.querySelector('#hero')
-
-  function updateHeaderBackground() {
-    if (hero && header) {
-      const heroBottom = hero.getBoundingClientRect().bottom
-      if (heroBottom <= 0) {
-        header.classList.remove('bg-gray-200', 'dark:bg-gray-800')
-        header.classList.add('bg-white', 'dark:bg-black')
-      } else {
-        header.classList.remove('bg-white', 'dark:bg-black')
-        header.classList.add('bg-gray-200', 'dark:bg-gray-800')
-      }
-    }
-  }
-
-  window.addEventListener('scroll', updateHeaderBackground)
-  window.addEventListener('resize', updateHeaderBackground)
-  updateHeaderBackground() // Initial call to set the correct state on page load
-</script> -->

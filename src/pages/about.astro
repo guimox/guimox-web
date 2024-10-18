@@ -1,10 +1,15 @@
 ---
 import TextH1 from '../components/text/text-h1.astro'
 import Layout from '../layouts/layout.astro'
+
+const title = 'About | Guilherme Lopes'
+const description = 'Read more about me, feel free to explore'
+const canonical = 'https://guimox.dev/about'
+const current = 'about'
 ---
 
-<Layout title="About Guilherme Lopes - Software Developer">
-  <section class="flex w-full flex-col justify-between py-5">
+<Layout title={title} description={description} canonical={canonical} current={current}>
+  <section class="flex h-full w-full flex-col justify-between">
     <TextH1>About</TextH1>
   </section>
 </Layout>
