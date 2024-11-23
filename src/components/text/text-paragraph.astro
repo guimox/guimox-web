@@ -4,6 +4,6 @@ const { bold } = Astro.props
 const className = bold ? 'font-bold' : ''
 ---
 
-<p class={`leading-relaxed text-lg ${className}`}>
+<p class={`leading-relaxed text-md sm:text-lg ${className}`}>
   <slot />
 </p>
