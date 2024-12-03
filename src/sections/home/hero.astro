@@ -1,12 +1,16 @@
 ---
+import Duck from '../../components/duck/Duck.astro'
 import Highlight from '../../components/misc/highlight.astro'
 import TextH1 from '../../components/text/text-h1.astro'
 import TextH3 from '../../components/text/text-h3.astro'
 import TextParagraph from '../../components/text/text-paragraph.astro'
 ---
 
-<section id="hero" class="flex h-fit w-full items-center justify-between gap-5 py-16 md:h-full md:gap-4 md:py-36">
-  <div class="flex flex-col gap-3">
+<section
+  id="hero"
+  class="flex h-fit w-full flex-col-reverse items-center justify-between gap-5 py-16 md:h-full md:flex-row md:gap-4 md:py-36"
+>
+  <div class="flex w-full flex-col gap-3">
     <TextH1>Guilherme Lopes</TextH1>
     <TextH3>
       Detail-driven & people-focused <b class="relative inline-block">
@@ -20,8 +24,7 @@ import TextParagraph from '../../components/text/text-paragraph.astro'
       </TextParagraph>
     </div>
   </div>
-  <div
-    class="absolute right-0 -z-20 mx-20 h-60 w-60 animate-float rounded-full bg-color opacity-25 blur-3xl transition-all lg:relative"
-  >
+  <div class="relative h-full items-center justify-center sm:mb-0 md:grid md:w-[40%] md:grid-cols-1">
+    <Duck />
   </div>
 </section>
