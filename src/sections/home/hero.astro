@@ -8,23 +8,27 @@ import TextParagraph from '../../components/text/text-paragraph.astro'
 
 <section
   id="hero"
-  class="flex h-fit w-full flex-col-reverse items-center justify-between gap-5 py-16 md:h-full md:flex-row md:gap-4 md:py-36"
+  class="full-width mx-auto my-auto flex h-fit w-full max-w-[1800px] flex-col-reverse items-center justify-between gap-5 rounded-md bg-gray-100 md:flex-row md:gap-4 md:py-32"
 >
-  <div class="flex w-full flex-col gap-3">
-    <TextH1>Guilherme Lopes</TextH1>
-    <TextH3>
-      Detail-driven & people-focused <b class="relative inline-block">
-        <Highlight>software developer</Highlight>
-      </b>
-    </TextH3>
-    <div class="max-w-2xl">
-      <TextParagraph>
-        Experienced software developer capable of working and exploring frontend and backend. Passionate about web
-        accessibility, design systems, and creating seamless user experiences
-      </TextParagraph>
+  <div class="flex items-center justify-between gap-4">
+    <div class="flex w-full flex-col gap-3">
+      <TextH1>Guilherme Lopes</TextH1>
+      <TextH3>
+        Detail-driven & people-focused <b class="relative inline-block">
+          <Highlight>software developer</Highlight>
+        </b>
+      </TextH3>
+      <div class="max-w-2xl">
+        <TextParagraph>
+          Experienced software developer capable of working and exploring frontend and backend. Passionate about
+          web accessibility, design systems, and creating seamless user experiences
+        </TextParagraph>
+      </div>
     </div>
-  </div>
-  <div class="relative h-full w-[10rem] items-center justify-center sm:mb-0 md:grid md:w-[40%] md:grid-cols-1">
-    <Duck />
+    <div
+      class="relative mt-10 h-full w-[10rem] items-center justify-center sm:mb-0 md:grid md:w-[40%] md:grid-cols-1"
+    >
+      <Duck />
+    </div>
   </div>
 </section>
