@@ -38,7 +38,7 @@ const state = {
 
 // Shadow Group Setup
 shadowGroup = new THREE.Group()
-shadowGroup.position.y = -0.15
+shadowGroup.position.y = -0.12
 scene.add(shadowGroup)
 
 // Render Targets

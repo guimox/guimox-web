@@ -18,7 +18,7 @@
     minmax(var(--padding-inline), 1fr) [full-width-end];
 }
 
-.content-grid:not(header, nav) {
+.content-grid:not(header, nav, #bg) {
   padding-top: 4rem;
 }
 

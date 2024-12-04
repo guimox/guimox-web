@@ -44,11 +44,11 @@ header {
 }
 
 html.dark header {
-  background-color: rgb(32, 32, 32);
+  background-color: rgb(0, 0, 0);
   color: white;
 }
 
 html.dark body {
-  background-color: rgb(32, 32, 32);
+  background-color: rgb(0, 0, 0);
   color: white;
 }
