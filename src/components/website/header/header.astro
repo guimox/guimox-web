@@ -9,15 +9,22 @@ const { current } = Astro.props
   <nav class="z-20 flex w-full max-w-[1280px] items-center justify-between font-bold">
     <ul class="flex gap-6 text-base sm:text-lg">
       <li>
-        <a class={current === 'guimox' ? 'text-color dark' : ''} href="/">Guimox</a>
+        <a class={`hover:opacity-50 transition-all ${current === 'guimox' ? 'text-color dark' : ''}`} href="/">
+          Guimox</a
+        >
       </li>
       <li>
-        <a class={current === 'about' ? 'text-color dark' : ''} href="/about">About</a>
+        <a class={`hover:opacity-50 transition-all ${current === 'about' ? 'text-color dark' : ''}`} href="/about">
+          About</a
+        >
       </li>
       <li>
-        <a class={current === 'blog' ? 'text-color dark' : ''} href="/blog">Projects</a>
+        <a class={`hover:opacity-50 transition-all ${current === 'blog' ? 'text-color dark' : ''}`} href="/blog">
+          Projects</a
+        >
       </li>
     </ul>
+
     <ThemeIcon />
   </nav>
 </header>
