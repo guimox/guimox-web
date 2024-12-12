@@ -3,27 +3,81 @@ import ThemeIcon from './theme-icon.astro'
 const { current } = Astro.props
 ---
 
+<style>
+  header {
+    max-width: 1580px;
+    transition:
+      max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      margin 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  header nav {
+    width: 1580px;
+    max-width: 1580px;
+    margin: 0;
+    transition:
+      max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      margin 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  header.scrolled nav {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  header.no-transition,
+  header.no-transition nav {
+    transition: none !important;
+  }
+</style>
+
 <header
-  class="fixed inset-x-0 z-50 mx-auto flex h-[4.5rem] w-full animate-slide-down justify-center py-8 transition-colors duration-300 ease-in-out"
+  id="site-header"
+  class="no-transition fixed inset-x-0 z-50 mx-auto flex h-[4.5rem] w-full animate-slide-down justify-center py-8 transition-colors duration-300 ease-in-out"
 >
-  <nav class="z-20 flex w-full max-w-[1280px] items-center justify-between font-bold">
+  <nav class="z-20 flex w-full items-center justify-between font-bold">
     <ul class="flex gap-6 text-base sm:text-lg">
       <li>
         <a class={`hover:opacity-50 transition-all ${current === 'guimox' ? 'text-color dark' : ''}`} href="/">
-          Guimox</a
-        >
+          Guimox
+        </a>
       </li>
       <li>
         <a class={`hover:opacity-50 transition-all ${current === 'about' ? 'text-color dark' : ''}`} href="/about">
-          About</a
-        >
+          About
+        </a>
       </li>
       <li>
         <a class={`hover:opacity-50 transition-all ${current === 'blog' ? 'text-color dark' : ''}`} href="/blog">
-          Projects</a
-        >
+          Projects
+        </a>
       </li>
     </ul>
     <ThemeIcon />
   </nav>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.getElementById('site-header')
+    if (!header) return
+
+    requestAnimationFrame(() => {
+      header.classList.remove('no-transition')
+    })
+
+    const toggleScrolledClass = () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled')
+      } else {
+        header.classList.remove('scrolled')
+      }
+    }
+
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled')
+    }
+
+    window.addEventListener('scroll', toggleScrolledClass)
+  })
+</script>
