@@ -1,0 +1,13 @@
+<div class="full-width flex overflow-hidden">
+  <div class="animate-marquee flex">
+    {
+      [...Array(14)].map((_, index) => (
+        <div
+          class={`whitespace-nowrap px-4 text-2xl font-bold opacity-10 md:text-5xl ${index % 2 == 0 ? 'text-color' : undefined}`}
+        >
+          CREATE SOMETHING
+        </div>
+      ))
+    }
+  </div>
+</div>

@@ -4,7 +4,7 @@ const { current } = Astro.props
 ---
 
 <header
-  class="fixed inset-x-0 z-50 mx-auto flex h-[3rem] w-full justify-center py-8 transition-colors duration-300 ease-in-out"
+  class="animate-slide-down fixed inset-x-0 z-50 mx-auto flex h-[3rem] w-full justify-center py-8 transition-colors duration-300 ease-in-out"
 >
   <nav class="z-20 flex w-full max-w-[1280px] items-center justify-between font-bold">
     <ul class="flex gap-6 text-base sm:text-lg">
@@ -24,7 +24,6 @@ const { current } = Astro.props
         >
       </li>
     </ul>
-
     <ThemeIcon />
   </nav>
 </header>
