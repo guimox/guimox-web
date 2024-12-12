@@ -4,12 +4,12 @@ import Highlight from '../../components/misc/highlight.astro'
 import TextH1 from '../../components/text/text-h1.astro'
 import TextH3 from '../../components/text/text-h3.astro'
 import TextParagraph from '../../components/text/text-paragraph.astro'
-import Marque from './marque.astro'
+import Marquee from './marquee.astro'
 ---
 
 <div
   id="bg"
-  class="full-width content-grid motion-safe:animate-fade-in mx-auto flex min-h-[35rem] w-full max-w-[1500px] items-center bg-gray-100 py-6 opacity-0 dark:bg-[#6666] md:my-20 md:rounded-md md:py-20"
+  class="full-width content-grid mx-auto flex min-h-[35rem] w-full max-w-[1500px] items-center bg-gray-100 py-6 opacity-0 motion-safe:animate-fade-in dark:bg-[#6666] md:my-16 md:rounded-md md:py-20"
 >
   <section id="hero" class="flex flex-col-reverse items-center justify-between gap-5 md:flex-row md:gap-4">
     <div class="flex w-full flex-col-reverse items-center justify-center gap-4 sm:justify-between md:flex-row">
@@ -35,4 +35,4 @@ import Marque from './marque.astro'
     </div>
   </section>
 </div>
-<Marque />
+<Marquee />
