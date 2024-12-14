@@ -1,3 +1,12 @@
+name: Sync Blog Posts
+
+on:
+  repository_dispatch:
+    types: [sync-posts]
+  workflow_dispatch:
+  schedule:
+    - cron: '50 18 * * *'
+
 jobs:
   sync-posts:
     runs-on: ubuntu-latest
@@ -12,7 +21,11 @@ jobs:
 
           # Clone the guimox-posts repository and checkout the main branch
           git clone --depth 1 https://github.com/guimox/guimox-posts.git temp-repo
+
+          # Copy .md files from the cloned repository
           cp temp-repo/*.md .
+
+          # Clean up the cloned repository
           rm -rf temp-repo
 
       - name: Commit and Push Changes
