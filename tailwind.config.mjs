@@ -13,8 +13,8 @@ export default {
           '100%': { opacity: 1, transform: 'translateY(0)' },
         },
         marquee: {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(0%)' },
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
         },
         marquee2: {
           '0%': { transform: 'translateX(100%)' },
@@ -22,8 +22,8 @@ export default {
         },
       },
       animation: {
-        marquee: 'marquee 25s linear infinite',
-        marquee2: 'marquee2 25s linear infinite',
+        marquee: 'marquee 30s linear infinite',
+        marquee2: 'marquee2 30s linear infinite',
         'slide-down': 'slideDown 0.3s ease-in-out forwards',
         'fade-in': 'fadeIn 0.3s ease-in-out forwards',
       },
