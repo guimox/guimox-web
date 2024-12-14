@@ -9,6 +9,8 @@ on:
 
 jobs:
   sync-posts:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout guimox-web repository
@@ -19,9 +21,14 @@ jobs:
           mkdir -p src/content/posts
           cd src/content/posts
 
-          # Download all .md files from the guimox-posts repository
-          wget -r -np -nH -R "index.html*" -A "*.md" \
-              https://raw.githubusercontent.com/guimox/guimox-posts/main/
+          # Clone the guimox-posts repository and checkout the main branch
+          git clone --depth 1 https://github.com/guimox/guimox-posts.git temp-repo
+
+          # Copy .md files from the cloned repository
+          cp temp-repo/*.md .
+
+          # Clean up the cloned repository
+          rm -rf temp-repo
 
       - name: Commit and Push Changes
         run: |
@@ -29,4 +36,5 @@ jobs:
           git config --local user.email "actions@github.com"
           git add src/content/posts
           git commit -m "chore: update blog posts automatically"
-          git push
+          git pull origin main --rebase
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/guimox/guimox-web.git HEAD:main
