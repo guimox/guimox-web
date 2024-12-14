@@ -19,7 +19,7 @@ jobs:
           mkdir -p src/content/posts
           cd src/content/posts
           git clone --depth 1 --branch main https://github.com/guimox/guimox-posts.git temp_repo
-          cp temp_repo/*.md .
+          cp temp_repo/*.md . 
           rm -rf temp_repo
 
       - name: Commit and Push Changes
@@ -28,4 +28,4 @@ jobs:
           git config --local user.email "actions@github.com"
           git add src/content/posts
           git commit -m "chore: update blog posts automatically"
-          git push
+          git push https://guimox:${{ secrets.PAT_GITHUB }}@github.com/guimox/guimox-web.git
