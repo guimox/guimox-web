@@ -1,0 +1,48 @@
+name: Sync blog posts from another
+
+on:
+  repository_dispatch:
+    types: [sync-posts]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  sync-posts:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout guimox-web repository
+        uses: actions/checkout@v4
+
+      - name: Download blog posts
+        run: |
+          mkdir -p src/content/posts
+          cd src/content/posts
+          git clone --depth 1 https://github.com/guimox/guimox-posts.git temp-repo
+          cp temp-repo/*.md .
+          rm -rf temp-repo
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if [[ -n "$(git status --porcelain src/content/posts)" ]]; then
+            echo "changes_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes_exist=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changes_exist == 'true'
+        run: |
+          git config --local user.name "GitHub Actions Bot"
+          git config --local user.email "actions@github.com"
+          git add src/content/posts
+          git commit -m "chore: update blog posts automatically"
+          git pull origin main --rebase
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/guimox/guimox-web.git HEAD:main
+
+      - name: No Changes Detected
+        if: steps.check_changes.outputs.changes_exist == 'false'
+        run: echo "No new blog posts to sync"
