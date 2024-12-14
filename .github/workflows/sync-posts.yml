@@ -34,4 +34,4 @@ jobs:
           git config --local user.email "actions@github.com"
           git add src/content/posts
           git commit -m "chore: update blog posts automatically"
-          git push https://x-access-token:${{ secrets.PAT_GITHUB }}@github.com/guimox/guimox-web.git HEAD:main
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/guimox/guimox-web.git HEAD:main
