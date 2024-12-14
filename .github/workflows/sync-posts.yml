@@ -18,10 +18,9 @@ jobs:
         run: |
           mkdir -p src/content/posts
           cd src/content/posts
-
-          # Download all .md files from the guimox-posts repository
-          wget -r -np -nH -R "index.html*" -A "*.md" \
-              https://raw.githubusercontent.com/guimox/guimox-posts/main/
+          git clone --depth 1 --branch main https://github.com/guimox/guimox-posts.git temp_repo
+          cp temp_repo/*.md .
+          rm -rf temp_repo
 
       - name: Commit and Push Changes
         run: |
