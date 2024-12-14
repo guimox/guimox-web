@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content'
+import Layout from '../../layouts/layout.astro'
+import BlogPost from '../../components/BlogPost.astro'
+
+const posts = await getCollection('posts')
+// Sort posts by most recent date
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+const title = 'About | Guilherme Lopes'
+const description = 'Read more about me, feel free to explore'
+const canonical = 'https://guimox.dev/about'
+const current = 'about'
+---
+
+<Layout title={title} description={description} canonical={canonical} current={current}>
+  <section class="blog-list">
+    <h1>Blog Posts</h1>
+    {
+      sortedPosts.map((post) => (
+        <BlogPost
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          heroImage={post.data.heroImage}
+          url={`/blog/${post.slug}`}
+        />
+      ))
+    }
+  </section>
+</Layout>
