@@ -1,4 +1,0 @@
-# .gitmodules file
-[submodule "src/content/posts"]
-	path = src/content/posts
-	url = https://github.com/guimox/guimox-posts.git
