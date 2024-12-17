@@ -5,7 +5,7 @@ on:
     types: [sync-posts]
   workflow_dispatch:
   schedule:
-    - cron: '50 18 * * *'
+    - cron: '0 0 * * *'
 
 jobs:
   sync-posts:
@@ -20,14 +20,8 @@ jobs:
         run: |
           mkdir -p src/content/posts
           cd src/content/posts
-
-          # Clone the guimox-posts repository and checkout the main branch
           git clone --depth 1 https://github.com/guimox/guimox-posts.git temp-repo
-
-          # Copy .md files from the cloned repository
           cp temp-repo/*.md .
-
-          # Clean up the cloned repository
           rm -rf temp-repo
 
       - name: Commit and Push Changes
@@ -35,6 +29,11 @@ jobs:
           git config --local user.name "GitHub Actions Bot"
           git config --local user.email "actions@github.com"
           git add src/content/posts
-          git commit -m "chore: update blog posts automatically"
-          git pull origin main --rebase
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/guimox/guimox-web.git HEAD:main
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update blog posts automatically"
+            git pull origin main --rebase
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/guimox/guimox-web.git HEAD:main
+          fi
