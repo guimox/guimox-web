@@ -1,20 +1,10 @@
 <style>
   :root {
-    --color-text: navy;
-    --color-bg: papayawhip;
     --size: clamp(10rem, 1rem + 40vmin, 30rem);
     --gap: calc(var(--size) / 17);
     --duration: 60s;
     --scroll-start: 0;
     --scroll-end: calc(-100% - var(--gap));
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-text: papayawhip;
-      --color-bg: navy;
-      --color-bg-accent: #2626a0;
-    }
   }
 
   .marquee {
@@ -36,7 +26,6 @@
     align-items: center;
     justify-content: space-around;
     gap: var(--gap);
-    min-width: 100%;
     animation: scroll-x var(--duration) linear infinite;
   }
 
@@ -57,16 +46,21 @@
 
   .marquee-item {
     display: grid;
-    aspect-ratio: 16/9;
     font-size: 4rem;
     font-weight: bold;
     flex-wrap: nowrap;
     text-align: center;
     letter-spacing: -0.05em;
   }
+
+  @media (max-width: 768px) {
+    .marquee-item {
+      font-size: 2rem;
+    }
+  }
 </style>
 
-<div class="marquee full-width">
+<div class="marquee overflow-hidden">
   <div class="marquee__group">
     <div class="marquee-item text-color opacity-50">CREATE SOMETHING</div>
     <div class="marquee-item opacity-25 dark:text-[#666] dark:opacity-50">CREATE SOMETHING</div>
@@ -77,7 +71,6 @@
     <div class="marquee-item text-color opacity-50">CREATE SOMETHING</div>
     <div class="marquee-item opacity-25 dark:text-[#666] dark:opacity-50">CREATE SOMETHING</div>
   </div>
-
   <div aria-hidden="true" class="marquee__group flex flex-row-reverse">
     <div class="marquee-item opacity-25 dark:text-[#666] dark:opacity-50">CREATE SOMETHING</div>
     <div class="marquee-item text-color opacity-50">CREATE SOMETHING</div>

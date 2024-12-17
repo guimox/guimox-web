@@ -1,8 +1,8 @@
 ---
-const { bold, light } = Astro.props
+const { bold, light, classs } = Astro.props
 const fontWeightClass = bold ? 'font-bold' : null
 ---
 
-<h3 class={`scroll-m-20 text-2xl tracking-tight transition-colors first:mt-0 ${fontWeightClass}`}>
+<h3 class={`scroll-m-20 text-2xl tracking-tight transition-colors first:mt-0 ${fontWeightClass} ${classs} `}>
   <slot />
 </h3>

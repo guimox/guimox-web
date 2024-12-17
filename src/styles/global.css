@@ -27,10 +27,6 @@ body > * {
   margin-inline: auto;
 }
 
-body {
-  color: #3d3d3d;
-}
-
 main {
   min-height: calc(100vh - 9rem);
 }

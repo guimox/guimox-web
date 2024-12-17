@@ -1,3 +1,7 @@
-<h1 class="scroll-m-20 text-4xl font-bold tracking-tight lg:text-7xl">
+---
+const { classs } = Astro.props
+---
+
+<h1 class={`scroll-m-20 font-bold tracking-tight lg:text-7xl text-4xl ${classs}`}>
   <slot />
 </h1>
