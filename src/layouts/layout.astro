@@ -41,7 +41,7 @@ const { current, description, canonical, noHead } = Astro.props
   </head>
   <body class="subpixel-antialiased">
     {!noHead && <Header current={current} />}
-    <main class="max-w-[1600px] space-y-8 md:space-y-32">
+    <main class="w-full max-w-[1600px] space-y-8 md:space-y-32">
       <slot />
     </main>
     <Footer />

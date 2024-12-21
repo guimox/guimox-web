@@ -16,14 +16,14 @@ import TextParagraph from './text/text-paragraph.astro'
 </nav>
 
 <div
-  class="m-4 mx-auto my-auto flex h-[40rem] w-full flex-col gap-10 rounded-md bg-color p-8 md:my-10 md:flex-row md:items-end"
+  class="m-4 mx-auto my-auto flex h-[35rem] w-full flex-col gap-10 rounded-md bg-color p-4 sm:h-[40rem] md:my-10 md:flex-row md:items-end"
 >
   <div class="flex h-fit w-full flex-col justify-between lg:h-full lg:w-1/2">
-    <div>
-      <TextH1 classs="text-white">GUILHERME LOPES</TextH1>
+    <div class="space-y-2">
+      <TextH1 classs="text-white">GUILHERME <span class="hidden sm:inline-block">LOPES</span></TextH1>
       <TextH1 classs="text-color-dark">SOFTWARE DEVELOPER</TextH1>
     </div>
-    <div class="hidden lg:flex lg:w-full lg:justify-start">
+    <div class="hidden w-1/4 justify-start lg:flex">
       <Rotate />
     </div>
   </div>
@@ -32,13 +32,13 @@ import TextParagraph from './text/text-paragraph.astro'
       Experienced software developer capable of working and exploring frontend and backend. Passionate about web
       accessibility, design systems, and creating seamless user experiences.
     </TextH3>
-    <div class="mb-0 mr-0 flex h-fit w-full flex-row-reverse items-end justify-between bg-red-500">
+    <div class="mb-0 mr-0 flex w-full flex-row-reverse items-end justify-between">
       <div class="transform-origin-bottom-left flex -rotate-90 flex-col">
         <TextParagraph>2024</TextParagraph>
         <TextParagraph>Madrid</TextParagraph>
       </div>
-      <div class="relative h-fit w-1/4 bg-blue-500 lg:hidden">
-        <Rotate className="absolute bottom-0 left-0 bg-red-500" />
+      <div class="mb-0 h-full w-[40%] lg:hidden">
+        <Rotate />
       </div>
     </div>
   </div>
