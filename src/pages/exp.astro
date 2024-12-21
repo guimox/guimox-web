@@ -7,17 +7,20 @@ import TextH3 from '../components/text/text-h3.astro'
 import TextParagraph from '../components/text/text-paragraph.astro'
 import Layout from '../layouts/layout.astro'
 import Marquee from '../sections/home/marquee.astro'
+
 const title = 'Guilherme Lopes | Software Developer'
 const description = 'Homepage of my website, feel free to explore'
 const canonical = 'https://guimox.dev'
 const current = 'guimox'
 ---
 
-<div class="mx-4 py-4 md:mx-20">
-  <Exp1 />
+<Layout title={title} description={description} canonical={canonical} current={current} noHead>
+  <div class="mx-auto w-full px-4 md:px-8">
+    <Exp1 />
+  </div>
   <Exp2 />
   <Marquee />
-  <div class="mx-auto flex w-3/4">
+  <div class="mx-auto flex w-full">
     <TextH1>You can except this from me</TextH1>
     <div class="grid w-full grid-cols-3 gap-4 bg-gray-100">
       <div class="flex flex-col gap-4">
@@ -39,4 +42,4 @@ const current = 'guimox'
     <TextH3>You can find any kind of texts that you like</TextH3>
     <div class="h-[15rem] rounded-md bg-color text-white">You really need that JS of ours?</div>
   </div>
-</div>
+</Layout>

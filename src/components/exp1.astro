@@ -5,7 +5,7 @@ import TextH3 from './text/text-h3.astro'
 import TextParagraph from './text/text-paragraph.astro'
 ---
 
-<nav class="flex w-full items-center justify-between p-4">
+<nav class="my-8 flex w-full items-center justify-between">
   <p class="cursor-pointer font-medium underline underline-offset-4 transition-all hover:opacity-50">Simplify</p>
   <ul class="flex w-fit justify-end gap-4">
     <li class="cursor-pointer font-medium underline underline-offset-4 transition-all hover:opacity-50">Blog</li>
@@ -15,25 +15,30 @@ import TextParagraph from './text/text-paragraph.astro'
   </ul>
 </nav>
 
-<div class="m-4 my-auto flex h-[45rem] flex-col items-end gap-10 rounded-md bg-color p-8 md:my-10 md:flex-row">
-  <div class="flex h-full w-1/2 flex-col justify-between">
+<div
+  class="m-4 mx-auto my-auto flex h-[40rem] w-full flex-col gap-10 rounded-md bg-color p-8 md:my-10 md:flex-row md:items-end"
+>
+  <div class="flex h-fit w-full flex-col justify-between lg:h-full lg:w-1/2">
     <div>
       <TextH1 classs="text-white">GUILHERME LOPES</TextH1>
-      <TextH1 classs="text-color-dark">FULLSTACK DEVELOPER</TextH1>
+      <TextH1 classs="text-color-dark">SOFTWARE DEVELOPER</TextH1>
     </div>
-    <div class="flex w-full justify-start">
+    <div class="hidden lg:flex lg:w-full lg:justify-start">
       <Rotate />
     </div>
   </div>
-  <div class="mb-0 flex h-3/5 flex-col items-end justify-between md:w-1/2">
-    <TextH3 classs="md:text-right">
+  <div class="mb-0 flex h-full flex-col items-end justify-between lg:h-3/5 lg:w-1/2">
+    <TextH3 classs="lg:text-right">
       Experienced software developer capable of working and exploring frontend and backend. Passionate about web
       accessibility, design systems, and creating seamless user experiences.
     </TextH3>
-    <div class="mb-0 mr-0 flex items-end">
+    <div class="mb-0 mr-0 flex h-fit w-full flex-row-reverse items-end justify-between bg-red-500">
       <div class="transform-origin-bottom-left flex -rotate-90 flex-col">
         <TextParagraph>2024</TextParagraph>
         <TextParagraph>Madrid</TextParagraph>
+      </div>
+      <div class="relative h-fit w-1/4 bg-blue-500 lg:hidden">
+        <Rotate className="absolute bottom-0 left-0 bg-red-500" />
       </div>
     </div>
   </div>

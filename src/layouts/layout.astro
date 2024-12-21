@@ -12,9 +12,10 @@ export interface Props {
   description: string
   canonical?: string
   current: string
+  noHead?: boolean
 }
 
-const { current, description, canonical } = Astro.props
+const { current, description, canonical, noHead } = Astro.props
 ---
 
 <!doctype html>
@@ -39,8 +40,8 @@ const { current, description, canonical } = Astro.props
     <title>{title}</title>
   </head>
   <body class="subpixel-antialiased">
-    <Header current={current} />
-    <main class="content-grid space-y-8 md:space-y-32">
+    {!noHead && <Header current={current} />}
+    <main class="max-w-[1600px] space-y-8 md:space-y-32">
       <slot />
     </main>
     <Footer />
