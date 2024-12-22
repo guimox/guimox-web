@@ -1,4 +1,6 @@
 ---
+import Exp1 from '../components/exp1.astro'
+import Exp2 from '../components/exp2.astro'
 import Layout from '../layouts/layout.astro'
 import About from '../sections/home/about.astro'
 import Hero from '../sections/home/hero.astro'
@@ -11,8 +13,10 @@ const current = 'guimox'
 ---
 
 <Layout title={title} description={description} canonical={canonical} current={current}>
-  <Hero />
-  <About />
+  <Exp1 />
+  <Exp2 />
+  <!-- <Hero />
+  <About /> -->
   <!-- <LastestBlog /> -->
   <!-- <SummaryProjects /> -->
 </Layout>

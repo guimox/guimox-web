@@ -5,25 +5,15 @@ import TextH3 from './text/text-h3.astro'
 import TextParagraph from './text/text-paragraph.astro'
 ---
 
-<nav class="my-8 flex w-full items-center justify-between">
-  <p class="cursor-pointer font-medium underline underline-offset-4 transition-all hover:opacity-50">Simplify</p>
-  <ul class="flex w-fit justify-end gap-4">
-    <li class="cursor-pointer font-medium underline underline-offset-4 transition-all hover:opacity-50">Blog</li>
-    <li class="cursor-pointer font-medium underline underline-offset-4 transition-all hover:opacity-50">
-      Projects
-    </li>
-  </ul>
-</nav>
-
 <div
-  class="m-4 mx-auto my-auto flex h-[35rem] w-full flex-col gap-10 rounded-md bg-color p-4 sm:h-[40rem] md:my-10 md:flex-row md:items-end"
+  class="m-4 mx-auto my-auto flex h-[35rem] w-full flex-col gap-10 rounded-md bg-color p-4 sm:h-[40rem] md:my-10 md:items-end md:p-8 lg:flex-row"
 >
-  <div class="flex h-fit w-full flex-col justify-between lg:h-full lg:w-1/2">
+  <div class="flex h-fit w-full flex-col justify-between lg:h-full lg:w-full">
     <div class="space-y-2">
       <TextH1 classs="text-white">GUILHERME <span class="hidden sm:inline-block">LOPES</span></TextH1>
       <TextH1 classs="text-color-dark">SOFTWARE DEVELOPER</TextH1>
     </div>
-    <div class="hidden w-1/4 justify-start lg:flex">
+    <div class="hidden w-1/6 justify-start lg:flex">
       <Rotate />
     </div>
   </div>
@@ -37,7 +27,7 @@ import TextParagraph from './text/text-paragraph.astro'
         <TextParagraph>2024</TextParagraph>
         <TextParagraph>Madrid</TextParagraph>
       </div>
-      <div class="mb-0 h-full w-[40%] lg:hidden">
+      <div class="mb-0 h-full w-[20%] lg:hidden">
         <Rotate />
       </div>
     </div>

@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components'
 import ThemeIcon from './theme-icon.astro'
 const { current } = Astro.props
 ---
@@ -31,8 +32,7 @@ const { current } = Astro.props
 </style>
 
 <header
-  id="site-header"
-  class="no-transition fixed inset-x-0 z-50 mx-auto flex h-[4.5rem] w-full max-w-[1680px] animate-slide-down justify-center py-8 transition-colors duration-300 ease-in-out xl:px-8"
+  class="no-transition inset-x-0 z-50 mx-auto flex h-[4.5rem] w-full animate-slide-down justify-center py-8 transition-colors duration-300 ease-in-out xl:px-8"
 >
   <nav class="z-20 flex w-full items-center justify-between font-bold">
     <ul class="flex gap-6 text-base sm:text-lg">
@@ -52,31 +52,12 @@ const { current } = Astro.props
         </a>
       </li>
     </ul>
-    <ThemeIcon />
+    <div class="flex w-fit gap-4">
+      <Icon
+        name="mdi:web"
+        class="z-50 cursor-pointer text-2xl text-black transition duration-300 ease-in-out hover:opacity-50 focus:ring-2 dark:block dark:text-white"
+      />
+      <ThemeIcon />
+    </div>
   </nav>
 </header>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const header = document.getElementById('site-header')
-    if (!header) return
-
-    requestAnimationFrame(() => {
-      header.classList.remove('no-transition')
-    })
-
-    const toggleScrolledClass = () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled')
-      } else {
-        header.classList.remove('scrolled')
-      }
-    }
-
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled')
-    }
-
-    window.addEventListener('scroll', toggleScrolledClass)
-  })
-</script>

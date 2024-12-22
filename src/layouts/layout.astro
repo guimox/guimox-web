@@ -39,9 +39,9 @@ const { current, description, canonical, noHead } = Astro.props
     <link rel="canonical" href={canonical} />
     <title>{title}</title>
   </head>
-  <body class="subpixel-antialiased">
-    {!noHead && <Header current={current} />}
-    <main class="w-full max-w-[1600px] space-y-8 md:space-y-32">
+  <body class="mx-auto max-w-[1580px] subpixel-antialiased">
+    <Header current={current} />
+    <main class="space-y-8 px-2 sm:px-4 md:space-y-32">
       <slot />
     </main>
     <Footer />
