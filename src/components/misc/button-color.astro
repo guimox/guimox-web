@@ -1,0 +1,63 @@
+<button
+  id="color-cycle-btn"
+  class="h-5 w-5 cursor-pointer rounded-md transition-colors hover:opacity-50"
+  aria-label="Change theme color"
+>
+</button>
+
+<style>
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .animate-pulse {
+    animation: pulse 0.3s ease-in-out;
+  }
+</style>
+
+<script>
+  const colors = [
+    { name: 'blue', hex: '#1a75c9', light: '#cfe4fa', dark: '#0f447d' },
+    { name: 'red', hex: '#dc2626', light: '#fecaca', dark: '#991b1b' },
+    { name: 'green', hex: '#16a34a', light: '#bbf7d0', dark: '#166534' },
+  ]
+
+  let currentColorIndex = 0
+  const button = document.getElementById('color-cycle-btn')
+
+  function updateThemeColors(colorSet: { name?: string; hex: any; light: any; dark: any }) {
+    document.documentElement.style.setProperty('--theme-color', colorSet.hex)
+    document.documentElement.style.setProperty('--theme-color-light', colorSet.light)
+    document.documentElement.style.setProperty('--theme-color-dark', colorSet.dark)
+    button!.style.backgroundColor = colorSet.hex
+  }
+
+  function animateButton(btn: HTMLElement) {
+    btn.classList.add('animate-pulse')
+    btn.addEventListener(
+      'animationend',
+      () => {
+        btn.classList.remove('animate-pulse')
+      },
+      { once: true },
+    )
+  }
+
+  if (button) {
+    updateThemeColors(colors[0])
+
+    button.addEventListener('click', () => {
+      currentColorIndex = (currentColorIndex + 1) % colors.length
+      updateThemeColors(colors[currentColorIndex])
+      animateButton(button)
+    })
+  }
+</script>

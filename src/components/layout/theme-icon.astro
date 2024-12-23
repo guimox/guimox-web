@@ -27,25 +27,29 @@ import { Icon } from 'astro-icon/components'
     }
   }
 
-  const theme = (() => {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme')
-    }
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark'
-    }
-    return 'light'
-  })()
+  const initializeTheme = () => {
+    const theme = (() => {
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+        return localStorage.getItem('theme')
+      }
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark'
+      }
+      return 'light'
+    })()
 
-  if (theme === 'light') {
-    document.documentElement.classList.remove('dark')
-  } else {
-    document.documentElement.classList.add('dark')
+    if (theme === 'light') {
+      document.documentElement.classList.remove('dark')
+    } else {
+      document.documentElement.classList.add('dark')
+    }
+
+    setThemeColor()
+    window.localStorage.setItem('theme', theme)
   }
 
-  setThemeColor()
-
-  window.localStorage.setItem('theme', theme)
+  // Initialize theme on page load
+  initializeTheme()
 
   const handleToggleClick = () => {
     const element = document.documentElement
@@ -56,5 +60,12 @@ import { Icon } from 'astro-icon/components'
     setThemeColor()
   }
 
-  document.getElementById('theme-toggle').addEventListener('click', handleToggleClick)
+  // Add click event listener
+  document.getElementById('theme-toggle')?.addEventListener('click', handleToggleClick)
+
+  // Handle theme after view transitions
+  document.addEventListener('astro:after-swap', () => {
+    initializeTheme()
+    document.getElementById('theme-toggle')?.addEventListener('click', handleToggleClick)
+  })
 </script>

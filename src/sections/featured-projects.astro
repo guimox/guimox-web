@@ -1,0 +1,34 @@
+---
+import ProjectItem from '../components/misc/project-item.astro'
+import TextH3 from '../components/text/text-h3.astro'
+import TextParagraph from '../components/text/text-paragraph.astro'
+---
+
+<div class="flex flex-col gap-4">
+  <div class="flex flex-col gap-2">
+    <TextH3 bold>Projects</TextH3>
+    <TextParagraph>Always looking for improvement, I tend to create side projects</TextParagraph>
+  </div>
+  <div>
+    <div class="flex w-full flex-col gap-6 sm:w-4/5">
+      <ProjectItem
+        title="Gnose"
+        description="Project created for people to submit their quotes and share"
+        badges={['OpenAI', 'Springboot', 'Docker', 'VPS', 'NextJS']}
+        links={[
+          { type: 'github', url: 'https://github.com/your-repo' },
+          { type: 'web', url: 'https://yourwebsite.com' },
+        ]}
+      />
+      <ProjectItem
+        title="Another Project"
+        description="A brief description of another project"
+        badges={['React', 'Node.js', 'AWS']}
+        links={[
+          { type: 'github', url: 'https://github.com/another-repo' },
+          { type: 'web', url: 'https://anotherwebsite.com' },
+        ]}
+      />
+    </div>
+  </div>
+</div>

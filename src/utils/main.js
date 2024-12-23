@@ -18,8 +18,8 @@ let shadowGroup,
 let plane, blurPlane, fillPlane
 
 // Constants
-const PLANE_WIDTH = 0.5
-const PLANE_HEIGHT = 0.5
+const PLANE_WIDTH = 1
+const PLANE_HEIGHT = 1
 const CAMERA_HEIGHT = 0.3
 
 // State Configuration
@@ -38,13 +38,13 @@ const state = {
 
 // Shadow Group Setup
 shadowGroup = new THREE.Group()
-shadowGroup.position.y = -0.12
+shadowGroup.position.y = -0.18
 scene.add(shadowGroup)
 
 // Render Targets
-renderTarget = new THREE.WebGLRenderTarget(512, 512)
+renderTarget = new THREE.WebGLRenderTarget(20, 20)
 renderTarget.texture.generateMipmaps = false
-renderTargetBlur = new THREE.WebGLRenderTarget(512, 512)
+renderTargetBlur = new THREE.WebGLRenderTarget(20, 20)
 renderTargetBlur.texture.generateMipmaps = false
 
 // Plane Geometry and Material
@@ -168,7 +168,7 @@ loader.load(
     const box = new THREE.Box3().setFromObject(gltf.scene)
     const center = box.getCenter(new THREE.Vector3())
     gltf.scene.position.x += gltf.scene.position.x - center.x
-    gltf.scene.position.y += gltf.scene.position.y - center.y + 0.05
+    gltf.scene.position.y += gltf.scene.position.y - center.y - 0.01
     gltf.scene.position.z += gltf.scene.position.z - center.z
 
     // Camera Adjustments
@@ -177,7 +177,7 @@ loader.load(
     // Add Objects to Scene
     scene.add(duckModel)
     scene.add(new THREE.AmbientLight(0xffffff, 2))
-    duckModel.scale.set(1.25, 1.25, 1.25)
+    duckModel.scale.set(1.2, 1.2, 1.2)
 
     // Update Controls
     controls.update()

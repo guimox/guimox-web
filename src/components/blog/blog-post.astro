@@ -1,28 +1,21 @@
 ---
-// src/components/BlogPost.astro
-const { 
-  title, 
-  description, 
-  pubDate, 
-  heroImage, 
-  url 
-} = Astro.props;
+const { title, description, pubDate, heroImage, url } = Astro.props
 ---
 
 <article class="blog-post-preview">
-  {heroImage && (
-    <img src={heroImage} alt={title} class="post-hero-image" />
-  )}
+  {heroImage && <img src={heroImage} alt={title} class="post-hero-image" />}
   <div class="post-content">
     <h2>
       <a href={url}>{title}</a>
     </h2>
     <time datetime={pubDate.toISOString()}>
-      {pubDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      })}
+      {
+        pubDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })
+      }
     </time>
     <p>{description}</p>
   </div>

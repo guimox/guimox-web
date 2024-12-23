@@ -1,0 +1,39 @@
+---
+import { Icon } from 'astro-icon/components'
+import TextParagraph from '../text/text-paragraph.astro'
+import Badge from './badge.astro'
+
+interface Props {
+  title: string
+  description: string
+  badges: string[]
+  links: { type: string; url: string }[]
+}
+
+const { title, description, badges, links } = Astro.props
+---
+
+<div class="flex items-center justify-between">
+  <div class="my-4 flex w-4/5 flex-col gap-2">
+    <TextParagraph bold>{title}</TextParagraph>
+    <TextParagraph>{description}</TextParagraph>
+    <ul class="flex items-center gap-2 text-sm">
+      {badges.map((badge) => <Badge>{badge}</Badge>)}
+    </ul>
+  </div>
+  <div class="flex flex-col items-center gap-2">
+    {
+      links.map((link) =>
+        link.type === 'github' ? (
+          <a href={link.url} class="hover:opacity-50">
+            <Icon name="mdi:github" class="text-2xl text-color" />
+          </a>
+        ) : (
+          <a href={link.url} class="hover:opacity-50">
+            <Icon name="mdi:web" class="text-2xl text-color" />
+          </a>
+        ),
+      )
+    }
+  </div>
+</div>

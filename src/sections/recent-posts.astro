@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content'
+import TextH3 from '../components/text/text-h3.astro'
+import TextParagraph from '../components/text/text-paragraph.astro'
+import { getReadingTime } from '../utils/reading-time'
+import { Icon } from 'astro-icon/components'
+import { getDateFormatted } from '../utils/time-format'
+
+const posts = await getCollection('posts')
+const sortedAndSlicedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 2)
+---
+
+<div class="flex flex-col gap-5">
+  <div class="flex flex-col gap-2">
+    <TextH3 bold>Recent posts</TextH3>
+    <TextParagraph>
+      You can search up and read more about what I try to write. You can read all of it <a
+        href="/blog"
+        class="text-color underline underline-offset-2 hover:opacity-50">here</a
+      >.
+    </TextParagraph>
+  </div>
+
+  <div class="grid grid-rows-2 gap-4 sm:grid-cols-2 sm:grid-rows-1">
+    {
+      sortedAndSlicedPosts.map((article) => (
+        <div class="group flex flex-col gap-2 rounded-md bg-gray-100 p-4 hover:scale-105 hover:shadow-md dark:bg-[#6666]">
+          <TextParagraph>{article.data.title}</TextParagraph>
+          <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+            <div class="flex items-center gap-2">
+              <Icon name="mdi:calendar-blank-outline" class="text-sm" />
+              {getDateFormatted(article.data.pubDate)}
+            </div>
+            <div class="flex items-center gap-1">
+              <Icon name="mdi:stopwatch-outline" class="text-sm" />
+              {getReadingTime(article.body)}
+            </div>
+          </div>
+          <a href={`/blog/${article.slug}`} class="w-fit text-sm text-color underline hover:opacity-50">
+            Read more
+          </a>
+        </div>
+      ))
+    }
+  </div>
+</div>

@@ -1,11 +1,8 @@
 ---
-const { title } = Astro.props
-import '../styles/reset.css'
+import { ClientRouter } from 'astro:transitions'
+import Header from '../components/layout/header.astro'
 import '../styles/global.css'
-import '../styles/duck.css'
-import '../styles/content.css'
-import Footer from '../components/website/footer/footer.astro'
-import Header from '../components/website/header/header.astro'
+import '../styles/reset.css'
 
 export interface Props {
   title: string
@@ -15,7 +12,7 @@ export interface Props {
   noHead?: boolean
 }
 
-const { current, description, canonical, noHead } = Astro.props
+const { current, title, description, canonical } = Astro.props
 ---
 
 <!doctype html>
@@ -37,13 +34,13 @@ const { current, description, canonical, noHead } = Astro.props
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <ClientRouter />
     <title>{title}</title>
   </head>
-  <body class="mx-auto max-w-[1580px] subpixel-antialiased">
+  <body class="mx-auto w-full max-w-[1000px] space-y-8 px-4 py-4 tracking-tight subpixel-antialiased sm:px-6">
     <Header current={current} />
-    <main class="space-y-8 px-2 sm:px-4 md:space-y-32">
+    <main class="space-y-10 px-1 sm:space-y-20 sm:px-3">
       <slot />
     </main>
-    <Footer />
   </body>
 </html>
