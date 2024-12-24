@@ -5,8 +5,7 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import { HorizontalBlurShader } from 'three/addons/shaders/HorizontalBlurShader.js'
 import { VerticalBlurShader } from 'three/addons/shaders/VerticalBlurShader.js'
 
-// Scene and Render Targets
-let scene = new THREE.Scene()
+let scene, camera, renderer, controls, duckModel
 let shadowGroup,
   renderTarget,
   renderTargetBlur,
@@ -15,14 +14,12 @@ let shadowGroup,
   depthMaterial,
   horizontalBlurMaterial,
   verticalBlurMaterial
-let plane, blurPlane, fillPlane
+let plane, blurPlane, fillPlane, animationFrameId
 
-// Constants
 const PLANE_WIDTH = 1
 const PLANE_HEIGHT = 1
 const CAMERA_HEIGHT = 0.3
 
-// State Configuration
 const state = {
   shadow: {
     blur: 9,
@@ -36,194 +33,235 @@ const state = {
   showWireframe: false,
 }
 
-// Shadow Group Setup
-shadowGroup = new THREE.Group()
-shadowGroup.position.y = -0.18
-scene.add(shadowGroup)
+function initThreeJS() {
+  const duckContainer = document.querySelector('#duck')
+  if (!duckContainer) return
 
-// Render Targets
-renderTarget = new THREE.WebGLRenderTarget(20, 20)
-renderTarget.texture.generateMipmaps = false
-renderTargetBlur = new THREE.WebGLRenderTarget(20, 20)
-renderTargetBlur.texture.generateMipmaps = false
+  // Scene Setup
+  scene = new THREE.Scene()
 
-// Plane Geometry and Material
-const planeGeometry = new THREE.PlaneGeometry(PLANE_WIDTH, PLANE_HEIGHT).rotateX(Math.PI / 2)
-const planeMaterial = new THREE.MeshBasicMaterial({
-  map: renderTarget.texture,
-  opacity: state.shadow.opacity,
-  color: state.shadow.color,
-  transparent: true,
-  depthWrite: false,
-})
+  // Camera Setup
+  camera = new THREE.PerspectiveCamera(11, duckContainer.clientWidth / duckContainer.clientHeight, 1, 1000)
+  camera.position.set(0, 1, 3)
+  camera.lookAt(new THREE.Vector3(0, 0, 0))
 
-plane = new THREE.Mesh(planeGeometry, planeMaterial)
-plane.renderOrder = 1
-shadowGroup.add(plane)
-plane.scale.y = -1
+  // Renderer Setup
+  renderer = new THREE.WebGLRenderer({ canvas: duckContainer })
+  renderer.setPixelRatio(window.devicePixelRatio)
+  renderer.setSize(duckContainer.clientWidth, duckContainer.clientHeight)
+  renderer.setClearColor(0xffffff, 0)
 
-// Blur Plane
-blurPlane = new THREE.Mesh(planeGeometry)
-blurPlane.visible = false
-shadowGroup.add(blurPlane)
+  // Controls Setup
+  controls = new OrbitControls(camera, duckContainer)
+  controls.enableZoom = false
+  controls.enablePan = false
+  controls.enableDamping = true
+  controls.dampingFactor = 0.05
+  controls.autoRotate = true
 
-// Fill Plane Material
-const fillPlaneMaterial = new THREE.MeshBasicMaterial({
-  color: state.plane.color,
-  opacity: state.plane.opacity,
-  transparent: true,
-  depthWrite: false,
-})
+  // Shadow Group Setup
+  shadowGroup = new THREE.Group()
+  shadowGroup.position.y = -0.18
+  scene.add(shadowGroup)
 
-fillPlane = new THREE.Mesh(planeGeometry, fillPlaneMaterial)
-fillPlane.rotateX(Math.PI)
-shadowGroup.add(fillPlane)
+  // Render Targets
+  renderTarget = new THREE.WebGLRenderTarget(20, 20)
+  renderTarget.texture.generateMipmaps = false
+  renderTargetBlur = new THREE.WebGLRenderTarget(20, 20)
+  renderTargetBlur.texture.generateMipmaps = false
 
-// Shadow Camera
-shadowCamera = new THREE.OrthographicCamera(
-  -PLANE_WIDTH / 2,
-  PLANE_WIDTH / 2,
-  PLANE_HEIGHT / 2,
-  -PLANE_HEIGHT / 2,
-  0,
-  CAMERA_HEIGHT,
-)
-shadowCamera.rotation.x = Math.PI / 2
-shadowGroup.add(shadowCamera)
+  // Plane Setup
+  setupPlanes()
 
-// Camera Helper
-cameraHelper = new THREE.CameraHelper(shadowCamera)
+  // Shadow Camera Setup
+  setupShadowCamera()
 
-// Depth Material Configuration
-depthMaterial = new THREE.MeshDepthMaterial()
-depthMaterial.userData.darkness = { value: state.shadow.darkness }
-depthMaterial.onBeforeCompile = function (shader) {
-  shader.uniforms.darkness = depthMaterial.userData.darkness
-  shader.fragmentShader = `
-    uniform float darkness;
-    ${shader.fragmentShader.replace(
-      'gl_FragColor = vec4( vec3( 1.0 - fragCoordZ ), opacity );',
-      'gl_FragColor = vec4( vec3( 0.0 ), ( 1.0 - fragCoordZ ) * darkness );',
-    )}
-  `
+  // Materials Setup
+  setupMaterials()
+
+  // Load Duck Model
+  loadDuckModel()
+
+  // Event Listeners
+  window.addEventListener('resize', onWindowResize, false)
 }
-depthMaterial.depthTest = false
-depthMaterial.depthWrite = false
 
-// Blur Materials
-horizontalBlurMaterial = new THREE.ShaderMaterial(HorizontalBlurShader)
-horizontalBlurMaterial.depthTest = false
+function setupPlanes() {
+  const planeGeometry = new THREE.PlaneGeometry(PLANE_WIDTH, PLANE_HEIGHT).rotateX(Math.PI / 2)
 
-verticalBlurMaterial = new THREE.ShaderMaterial(VerticalBlurShader)
-verticalBlurMaterial.depthTest = false
+  // Main Shadow Plane
+  const planeMaterial = new THREE.MeshBasicMaterial({
+    map: renderTarget.texture,
+    opacity: state.shadow.opacity,
+    color: state.shadow.color,
+    transparent: true,
+    depthWrite: false,
+  })
+  plane = new THREE.Mesh(planeGeometry, planeMaterial)
+  plane.renderOrder = 1
+  plane.scale.y = -1
+  shadowGroup.add(plane)
 
-// Camera and Renderer Setup
-const duckContainer = document.querySelector('#duck')
-const camera = new THREE.PerspectiveCamera(11, duckContainer.clientWidth / duckContainer.clientHeight, 1, 1000)
-const renderer = new THREE.WebGLRenderer({ canvas: duckContainer })
-renderer.setPixelRatio(window.devicePixelRatio)
-renderer.setSize(duckContainer.clientWidth, duckContainer.clientHeight)
+  // Blur Plane
+  blurPlane = new THREE.Mesh(planeGeometry)
+  blurPlane.visible = false
+  shadowGroup.add(blurPlane)
 
-// Controls
-const controls = new OrbitControls(camera, duckContainer)
-controls.enableZoom = false
-controls.enablePan = false
-controls.enableDamping = true
-controls.dampingFactor = 0.05
-controls.autoRotate = true
+  // Fill Plane
+  const fillPlaneMaterial = new THREE.MeshBasicMaterial({
+    color: state.plane.color,
+    opacity: state.plane.opacity,
+    transparent: true,
+    depthWrite: false,
+  })
+  fillPlane = new THREE.Mesh(planeGeometry, fillPlaneMaterial)
+  fillPlane.rotateX(Math.PI)
+  shadowGroup.add(fillPlane)
+}
 
-// Draco Loader Setup
-const dracoLoader = new DRACOLoader()
-dracoLoader.setDecoderConfig({ type: 'js' })
-dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/')
+function setupShadowCamera() {
+  shadowCamera = new THREE.OrthographicCamera(
+    -PLANE_WIDTH / 2,
+    PLANE_WIDTH / 2,
+    PLANE_HEIGHT / 2,
+    -PLANE_HEIGHT / 2,
+    0,
+    CAMERA_HEIGHT,
+  )
+  shadowCamera.rotation.x = Math.PI / 2
+  shadowGroup.add(shadowCamera)
+  cameraHelper = new THREE.CameraHelper(shadowCamera)
+}
 
-// GLTF Loader Setup
-const loadingManager = new THREE.LoadingManager(() => {
-  const loadingScreen = document.getElementById('loader')
-  loadingScreen.classList.add('fade-out')
-})
+function setupMaterials() {
+  // Depth Material
+  depthMaterial = new THREE.MeshDepthMaterial()
+  depthMaterial.userData.darkness = { value: state.shadow.darkness }
+  depthMaterial.onBeforeCompile = function (shader) {
+    shader.uniforms.darkness = depthMaterial.userData.darkness
+    shader.fragmentShader = `
+      uniform float darkness;
+      ${shader.fragmentShader.replace(
+        'gl_FragColor = vec4( vec3( 1.0 - fragCoordZ ), opacity );',
+        'gl_FragColor = vec4( vec3( 0.0 ), ( 1.0 - fragCoordZ ) * darkness );',
+      )}
+    `
+  }
+  depthMaterial.depthTest = false
+  depthMaterial.depthWrite = false
 
-const loader = new GLTFLoader(loadingManager)
-loader.setDRACOLoader(dracoLoader)
+  // Blur Materials
+  horizontalBlurMaterial = new THREE.ShaderMaterial(HorizontalBlurShader)
+  horizontalBlurMaterial.depthTest = false
 
-// Duck Model
-let duckModel
+  verticalBlurMaterial = new THREE.ShaderMaterial(VerticalBlurShader)
+  verticalBlurMaterial.depthTest = false
+}
 
-loader.load(
-  '/duck.glb',
-  (gltf) => {
-    duckModel = gltf.scene
+function loadDuckModel() {
+  const dracoLoader = new DRACOLoader()
+  dracoLoader.setDecoderConfig({ type: 'js' })
+  dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/')
 
-    // Lighting
-    const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444)
-    hemiLight.position.set(0, 10, 0)
-    scene.add(hemiLight)
+  const loadingManager = new THREE.LoadingManager(() => {
+    const loadingScreen = document.getElementById('loader')
+    loadingScreen.classList.add('fade-out')
+  })
 
-    const dirLight = new THREE.DirectionalLight(0xffffff)
-    dirLight.castShadow = true
-    dirLight.position.set(75, 300, -75)
-    scene.add(dirLight)
+  const loader = new GLTFLoader(loadingManager)
+  loader.setDRACOLoader(dracoLoader)
 
-    // Center Duck Model
-    const box = new THREE.Box3().setFromObject(gltf.scene)
-    const center = box.getCenter(new THREE.Vector3())
-    gltf.scene.position.x += gltf.scene.position.x - center.x
-    gltf.scene.position.y += gltf.scene.position.y - center.y - 0.01
-    gltf.scene.position.z += gltf.scene.position.z - center.z
+  loader.load(
+    '/duck.glb',
+    (gltf) => {
+      duckModel = gltf.scene
 
-    // Camera Adjustments
-    camera.rotateY(Math.PI / 9)
+      const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444)
+      hemiLight.position.set(0, 10, 0)
+      scene.add(hemiLight)
 
-    // Add Objects to Scene
-    scene.add(duckModel)
-    scene.add(new THREE.AmbientLight(0xffffff, 2))
-    duckModel.scale.set(1.2, 1.2, 1.2)
+      const dirLight = new THREE.DirectionalLight(0xffffff)
+      dirLight.castShadow = true
+      dirLight.position.set(75, 300, -75)
+      scene.add(dirLight)
 
-    // Update Controls
+      // Center Duck Model
+      const box = new THREE.Box3().setFromObject(gltf.scene)
+      const center = box.getCenter(new THREE.Vector3())
+      gltf.scene.position.x += gltf.scene.position.x - center.x
+      gltf.scene.position.y += gltf.scene.position.y - center.y - 0.01
+      gltf.scene.position.z += gltf.scene.position.z - center.z
+
+      camera.rotateY(Math.PI / 9)
+
+      scene.add(duckModel)
+      scene.add(new THREE.AmbientLight(0xffffff, 2))
+      duckModel.scale.set(1.2, 1.2, 1.2)
+
+      controls.update()
+
+      // Setup shadow rendering
+      cameraHelper.visible = false
+      scene.overrideMaterial = depthMaterial
+      renderer.setRenderTarget(renderTarget)
+      renderer.render(scene, shadowCamera)
+
+      scene.overrideMaterial = null
+      cameraHelper.visible = true
+
+      blurShadow(state.shadow.blur)
+      blurShadow(state.shadow.blur * 0.4)
+
+      renderer.setRenderTarget(null)
+      renderer.render(scene, camera)
+    },
+    undefined,
+    (error) => {
+      console.error('Error loading GLB model:', error)
+    },
+  )
+}
+
+function cleanup() {
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId)
+  }
+
+  if (renderer) {
+    renderer.dispose()
+    renderer.forceContextLoss()
+  }
+
+  scene = null
+  camera = null
+  controls = null
+  renderer = null
+  duckModel = null
+}
+
+function animate() {
+  if (!renderer || !scene || !camera) return
+
+  if (controls) {
     controls.update()
+  }
 
-    // Depth Material & Rendering Setup
-    cameraHelper.visible = false
-    scene.overrideMaterial = depthMaterial
-    renderer.setRenderTarget(renderTarget)
-    renderer.render(scene, shadowCamera)
-
-    scene.overrideMaterial = null
-    cameraHelper.visible = true
-
-    // Apply Shadow Blur
-    blurShadow(state.shadow.blur)
-    blurShadow(state.shadow.blur * 0.4)
-
-    renderer.setRenderTarget(null)
-    renderer.render(scene, camera)
-  },
-  undefined,
-  (error) => {
-    console.error('Error loading GLB model:', error)
-  },
-)
-
-// Set clear color and camera position
-renderer.setClearColor(0xffffff, 0)
-camera.position.z = 3
-camera.position.set(0, 1, 3) // Set the camera slightly above and further back
-camera.lookAt(new THREE.Vector3(0, 0, 0))
-
-window.addEventListener('resize', onWindowResize, false)
+  renderer.render(scene, camera)
+  animationFrameId = requestAnimationFrame(animate)
+}
 
 function onWindowResize() {
-  renderer.setSize(duckContainer.clientWidth, duckContainer.clientHeight)
+  const duckContainer = document.querySelector('#duck')
+  renderer.setSize(duckContainer.clientWidth + 150, duckContainer.clientHeight)
   renderer.setPixelRatio(window.devicePixelRatio)
   camera.aspect = duckContainer.clientWidth / duckContainer.clientHeight
   camera.updateProjectionMatrix()
 }
 
-// Shadow Blurring Function
 function blurShadow(amount) {
   blurPlane.visible = true
 
-  // Horizontal Blur
+  // Horizontal blur
   blurPlane.material = horizontalBlurMaterial
   blurPlane.material.uniforms.tDiffuse.value = renderTarget.texture
   horizontalBlurMaterial.uniforms.h.value = (amount * 1) / 256
@@ -231,7 +269,7 @@ function blurShadow(amount) {
   renderer.setRenderTarget(renderTargetBlur)
   renderer.render(blurPlane, shadowCamera)
 
-  // Vertical Blur
+  // Vertical blur
   blurPlane.material = verticalBlurMaterial
   blurPlane.material.uniforms.tDiffuse.value = renderTargetBlur.texture
   verticalBlurMaterial.uniforms.v.value = (amount * 1) / 256
@@ -242,14 +280,11 @@ function blurShadow(amount) {
   blurPlane.visible = false
 }
 
-// Animation Loop
-function animate() {
-  if (duckModel) {
-    controls.update()
-  }
+document.addEventListener('astro:after-swap', cleanup)
 
-  renderer.render(scene, camera)
-  requestAnimationFrame(animate)
-}
-
-requestAnimationFrame(animate)
+document.addEventListener('astro:page-load', () => {
+  if (!document.querySelector('#duck')) return
+  cleanup()
+  initThreeJS()
+  animate()
+})

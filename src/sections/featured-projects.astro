@@ -13,17 +13,19 @@ import TextParagraph from '../components/text/text-paragraph.astro'
     <div class="flex w-full flex-col gap-6 sm:w-4/5">
       <ProjectItem
         title="Gnose"
-        description="Project created for people to submit their quotes and share"
-        badges={['OpenAI', 'Springboot', 'Docker', 'VPS', 'NextJS']}
+        type="fullstack"
+        description="Project created for people to submit their quotes and share. Content moderation, auth system and AI categorization."
+        badges={['Springboot', 'OpenAI', 'Docker', 'VPS', 'NextJS']}
         links={[
           { type: 'github', url: 'https://github.com/your-repo' },
           { type: 'web', url: 'https://yourwebsite.com' },
         ]}
       />
       <ProjectItem
-        title="Another Project"
-        description="A brief description of another project"
-        badges={['React', 'Node.js', 'AWS']}
+        title="RU Menu"
+        description="Two microsservices that delivers a formatted restaurant menu to over 500 people, simple but helpful."
+        badges={['TypeScript', 'Spring Cloud Function', 'AWS Lambda']}
+        type="backend"
         links={[
           { type: 'github', url: 'https://github.com/another-repo' },
           { type: 'web', url: 'https://anotherwebsite.com' },

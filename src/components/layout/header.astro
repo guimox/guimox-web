@@ -4,14 +4,13 @@ import ThemeIcon from './theme-icon.astro'
 
 const { current } = Astro.props
 
-const commonStyle =
-  'text-base sm:text-lg px-1 sm:px-3 py-2 transition-colors hover:bg-gray-100 dark:hover:bg-[#6666] rounded-[0.35rem] cursor-pointer'
+const commonStyle = 'text-base sm:text-lg py-2 transition-colors hover:opacity-50 rounded-[0.35rem] cursor-pointer'
 const activeCommon = 'text-color font-bold'
 ---
 
 <nav>
   <ul class="flex w-full items-center justify-between">
-    <div class="flex w-full">
+    <div class="flex w-full gap-3">
       <li class={`${commonStyle} ${current == 'home' ? activeCommon : 'text-inherit'}`}>
         <a href="/">Home</a>
       </li>
@@ -19,14 +18,14 @@ const activeCommon = 'text-color font-bold'
       <li class={`${commonStyle} ${current == 'about' ? activeCommon : 'text-inherit'}`}>
         <a href="/about">About</a>
       </li>
-
+      <!-- 
       <li class={`${commonStyle} ${current == 'blog' ? activeCommon : 'text-inherit'}`}>
         <a href="/blog">Blog</a>
       </li>
 
       <li class={`${commonStyle} ${current == 'projects' ? activeCommon : 'text-inherit'}`}>
         <a href="/projects">Projects</a>
-      </li>
+      </li> -->
     </div>
     <div class="flex items-center gap-3 pr-1 sm:pr-2">
       <ButtonColor />

@@ -1,0 +1,28 @@
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+#loader {
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: fit-content;
+  border-radius: 50%;
+  top: 42%;
+  position: absolute;
+  background:
+    radial-gradient(farthest-side, #ffffff 94%, #0000) top/8px 8px no-repeat,
+    conic-gradient(#0000 30%, #ffffff);
+  -webkit-mask: radial-gradient(farthest-side, #3256f900 calc(100% - 8px), #000 0);
+  animation: spinner 1s infinite linear;
+}
+
+@keyframes spinner {
+  100% {
+    transform: rotate(1turn);
+  }
+}

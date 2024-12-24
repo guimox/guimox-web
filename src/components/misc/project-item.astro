@@ -7,21 +7,24 @@ interface Props {
   title: string
   description: string
   badges: string[]
+  type: string
   links: { type: string; url: string }[]
 }
 
-const { title, description, badges, links } = Astro.props
+const { title, description, type, badges, links } = Astro.props
 ---
 
-<div class="flex items-center justify-between">
-  <div class="my-4 flex w-4/5 flex-col gap-2">
-    <TextParagraph bold>{title}</TextParagraph>
+<div class="flex flex-col justify-between sm:flex-row sm:items-center">
+  <div class="my-4 flex w-full flex-col gap-4 sm:w-4/5">
+    <TextParagraph bold>{title} <span class="text-color"> • {type}</span></TextParagraph>
     <TextParagraph>{description}</TextParagraph>
-    <ul class="flex items-center gap-2 text-sm">
-      {badges.map((badge) => <Badge>{badge}</Badge>)}
-    </ul>
+    <div class="relative max-w-full">
+      <ul class="scrollbar-thin scrollbar flex max-h-16 gap-2 overflow-x-auto text-sm">
+        {badges.map((badge) => <Badge>{badge}</Badge>)}
+      </ul>
+    </div>
   </div>
-  <div class="flex flex-col items-center gap-2">
+  <div class="flex items-center gap-2 sm:flex-col">
     {
       links.map((link) =>
         link.type === 'github' ? (
