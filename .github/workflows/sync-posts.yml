@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-name: Sync blog posts from another
-=======
 name: Sync blog posts from another repository
->>>>>>> 8eaa4e4 (feat: overall new website for simple)
 
 on:
   repository_dispatch:
