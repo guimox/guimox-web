@@ -17,7 +17,7 @@ export default {
         },
       }),
       colors: {
-        color: 'var(--theme-color, #474747)',
+        color: 'var(--theme-color, #3373c4)',
       },
     },
   },

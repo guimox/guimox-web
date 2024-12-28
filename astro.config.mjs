@@ -24,6 +24,7 @@ export default defineConfig({
     }),
     icon(),
     sitemap(),
+    pagefind(),
     tailwind(),
   ],
   markdown: {
