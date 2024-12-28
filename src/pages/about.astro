@@ -1,0 +1,56 @@
+---
+import { Icon } from 'astro-icon/components'
+import TextParagraph from '../components/text-paragraph.astro'
+import TextTitle from '../components/text-title.astro'
+import Layout from '../layout/layout.astro'
+const title = 'About | Guilherme Lopes'
+const description = 'A little section to detail who am I and what I really like'
+const canonical = 'https://guimox.dev/about'
+const current = 'about'
+---
+
+<Layout title={title} description={description} canonical={canonical} current={current}>
+  <section class="flex flex-col gap-3">
+    <TextTitle bold>A thing or two about me</TextTitle>
+    <TextParagraph>
+      I'm a software developer who loves experimenting and learning new things. Whether it's building frontend apps
+      with frameworks like React or Angular, managing backend systems with Springboot, or diving into side projects
+      with Golang (a personal favorite), I'm always looking for opportunities to create and improve. I enjoy trying
+      a bit of everything—designing user-friendly interfaces, optimizing backend logic, or even exploring how to
+      make infrastructure work better. One thing I really focus on is simplicity.
+    </TextParagraph>
+    <TextParagraph>
+      I like to lower the barriers to getting started and keeping things running smoothly, which is why I almost
+      always use Docker to containerize my projects and ensure they're easy to deploy and maintain. I've also
+      gained experience working with infrastructure, experimenting with CI/CD pipelines, GitHub Actions, and
+      setting up VPS environments to streamline workflows and deployments.
+    </TextParagraph>
+    <TextParagraph>
+      For me, it's all about turning ideas into something practical and sustainable while keeping the process fun.
+      I'm always up for learning, building, and seeing how a small experiment can grow into something great.
+    </TextParagraph>
+    <span class="flex items-center">
+      You can find me in
+      <a
+        href="https://github.com/guimox"
+        class="mx-1 flex gap-1 underline"
+        target="_blank"
+        aria-label="link to open my GitHub"
+      >
+        <Icon name="mdi:github" class="cursor-pointer text-2xl transition-all duration-300 hover:opacity-50" />
+        Github
+      </a>
+      or in
+      <a
+        href="https://www.linkedin.com/in/guimox"
+        class="ml-1 flex gap-1 underline"
+        target="_blank"
+        aria-label="link to open my LinkedIn"
+      >
+        <Icon name="mdi:linkedin" class="cursor-pointer text-2xl transition-all duration-300 hover:opacity-50" />
+        LinkedIn
+      </a>
+      .
+    </span>
+  </section>
+</Layout>

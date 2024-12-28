@@ -1,0 +1,31 @@
+---
+import { Icon } from 'astro-icon/components'
+import TextParagraph from '../components/text-paragraph.astro'
+import TextTitle from '../components/text-title.astro'
+import Layout from '../layout/layout.astro'
+
+const title = 'Guilherme Lopes | Software Developer'
+const description = 'Homepage of my website, feel free to explore'
+const canonical = 'https://guimox.dev'
+const current = 'home'
+---
+
+<Layout title={title} description={description} canonical={canonical} current={current}>
+  <section class="flex flex-col gap-3">
+    <TextTitle bold>Guilherme Lopes</TextTitle>
+    <TextParagraph>
+      Experienced <b>software developer</b> capable of working on the frontend and backend. Interested about anything
+      that is related to web (CI/CD, Docker, databases, frontend, backend and cool stuff). Passionate about improving
+      & trying things.
+    </TextParagraph>
+    <TextParagraph>You may find this website dull, but I've built other things.</TextParagraph>
+    <div class="flex gap-3">
+      <a href="https://github.com/guimox" target="_blank" aria-label="link to open my GitHub">
+        <Icon name="mdi:github" class="cursor-pointer text-2xl transition-all duration-300 hover:opacity-50" />
+      </a>
+      <a href="https://www.linkedin.com/in/guimox" target="_blank" aria-label="link to open my LinkedIn">
+        <Icon name="mdi:linkedin" class="cursor-pointer text-2xl transition-all duration-300 hover:opacity-50" />
+      </a>
+    </div>
+  </section>
+</Layout>
