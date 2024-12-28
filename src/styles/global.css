@@ -15,7 +15,7 @@
 html {
   font-family: 'Geist';
   color: #474747;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 html.dark header,

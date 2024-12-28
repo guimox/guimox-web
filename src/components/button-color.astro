@@ -1,0 +1,85 @@
+<button
+  id="color-cycle-btn"
+  class="h-5 w-5 cursor-pointer rounded-md transition-colors hover:opacity-50"
+  aria-label="Change theme color"
+  data-theme-switcher
+>
+</button>
+
+<script>
+  const colors = [
+    { name: 'blue', hex: '#1a75c9', light: '#cfe4fa', dark: '#0f447d' },
+    { name: 'red', hex: '#dc2626', light: '#fecaca', dark: '#991b1b' },
+    { name: 'green', hex: '#16a34a', light: '#bbf7d0', dark: '#166534' },
+  ] as const
+
+  function updateThemeColors(button: HTMLElement, colorSet: (typeof colors)[number]) {
+    document.documentElement.style.setProperty('--theme-color', colorSet.hex)
+    button.style.backgroundColor = colorSet.hex
+    localStorage.setItem('theme-color', colorSet.name)
+  }
+
+  function animateButton(button: HTMLElement) {
+    button.classList.add('animate-pulse')
+    button.addEventListener(
+      'animationend',
+      () => {
+        button.classList.remove('animate-pulse')
+      },
+      { once: true },
+    )
+  }
+
+  function setupThemeSwitcher(button: HTMLElement) {
+    if (button.hasAttribute('data-initialized')) return
+
+    let currentColorIndex = 0
+
+    const savedColor = localStorage.getItem('theme-color')
+    if (savedColor) {
+      const colorSet = colors.find((color) => color.name === savedColor)
+      if (colorSet) {
+        currentColorIndex = colors.indexOf(colorSet)
+        updateThemeColors(button, colorSet)
+      }
+    } else {
+      updateThemeColors(button, colors[0])
+    }
+
+    button.addEventListener('click', () => {
+      currentColorIndex = (currentColorIndex + 1) % colors.length
+      updateThemeColors(button, colors[currentColorIndex])
+      animateButton(button)
+    })
+
+    button.setAttribute('data-initialized', 'true')
+  }
+
+  function initThemeSwitchers() {
+    const buttons = document.querySelectorAll<HTMLElement>('[data-theme-switcher]')
+    buttons.forEach(setupThemeSwitcher)
+  }
+
+  initThemeSwitchers()
+
+  document.addEventListener('astro:page-load', initThemeSwitchers)
+  document.addEventListener('astro:after-swap', initThemeSwitchers)
+</script>
+
+<style>
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .animate-pulse {
+    animation: pulse 0.3s ease-in-out;
+  }
+</style>

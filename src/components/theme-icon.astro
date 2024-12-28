@@ -2,7 +2,12 @@
 import { Icon } from 'astro-icon/components'
 ---
 
-<button id="theme-toggle" aria-label="light/dark toggle for the website" class="flex items-center">
+<button
+  id="theme-toggle"
+  aria-label="light/dark toggle for the website"
+  class="flex items-center"
+  data-theme-toggle
+>
   <Icon
     name="mdi:brightness-2"
     class="moon z-50 -rotate-[45deg] scale-x-[-1] cursor-pointer text-2xl ease-in-out hover:opacity-50 focus:ring-2 dark:hidden"
@@ -21,27 +26,50 @@ import { Icon } from 'astro-icon/components'
     if (metaThemeColor) {
       const isDark = document.documentElement.classList.contains('dark')
       metaThemeColor.setAttribute('content', isDark ? 'black' : 'white')
+      localStorage.setItem('theme', isDark ? 'dark' : 'light')
     }
   }
 
   const initializeTheme = () => {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else if (savedTheme === 'light') {
+      document.documentElement.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.classList.add('dark')
     }
     setThemeColor()
   }
-
-  initializeTheme()
 
   const handleToggleClick = () => {
     document.documentElement.classList.toggle('dark')
     setThemeColor()
   }
 
-  document.getElementById('theme-toggle')?.addEventListener('click', handleToggleClick)
+  function setupThemeToggle() {
+    const toggle = document.getElementById('theme-toggle')
+    if (toggle && !toggle.hasAttribute('data-initialized')) {
+      toggle.addEventListener('click', handleToggleClick)
+      toggle.setAttribute('data-initialized', 'true')
+    }
+  }
+
+  initializeTheme()
+  setupThemeToggle()
+
+  document.addEventListener('astro:page-load', () => {
+    initializeTheme()
+    setupThemeToggle()
+  })
 
   document.addEventListener('astro:after-swap', () => {
-    initializeTheme()
-    document.getElementById('theme-toggle')?.addEventListener('click', handleToggleClick)
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+    setThemeColor()
   })
 </script>

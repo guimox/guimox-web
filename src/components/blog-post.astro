@@ -18,13 +18,13 @@ const { title, description, pubDate, url, body, tags } = Astro.props
     </div>
   </div>
   <div class="flex gap-3">
-    <Button><a href={url}>Read more</a></Button>
+    <a href={url}><Button>Read more</Button></a>
     <div class="flex items-center gap-2">
-      <Icon name="mdi:calendar-blank-outline" class="text-color text-sm" />
+      <Icon name="mdi:calendar-blank-outline" class="text-sm text-color" />
       {getDateFormatted(pubDate)}
     </div>
     <div class="flex items-center gap-1">
-      <Icon name="mdi:stopwatch-outline" class="text-color text-sm" />
+      <Icon name="mdi:stopwatch-outline" class="text-sm text-color" />
       {getReadingTime(body)}
     </div>
   </div>

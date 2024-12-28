@@ -1,8 +1,9 @@
 ---
+import ButtonColor from './button-color.astro'
 import ThemeIcon from './theme-icon.astro'
 
 const { current } = Astro.props
-const styleActive = 'font-bold'
+const styleActive = 'font-bold text-color'
 ---
 
 <nav class="flex justify-between">
@@ -20,7 +21,8 @@ const styleActive = 'font-bold'
       <a href="/blog">Blog</a>
     </li>
   </ul>
-  <div class="flex gap-3">
+  <div class="flex items-center gap-3">
     <ThemeIcon />
+    <ButtonColor />
   </div>
 </nav>
