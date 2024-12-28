@@ -1,0 +1,47 @@
+---
+import { Icon } from 'astro-icon/components'
+---
+
+<button id="theme-toggle" aria-label="light/dark toggle for the website" class="flex items-center">
+  <Icon
+    name="mdi:brightness-2"
+    class="moon z-50 -rotate-[45deg] scale-x-[-1] cursor-pointer text-2xl transition duration-300 ease-in-out hover:opacity-50 focus:ring-2 dark:hidden"
+    id="moon"
+  />
+  <Icon
+    name="mdi:white-balance-sunny"
+    class="sun z-50 hidden cursor-pointer text-2xl text-white transition duration-300 ease-in-out hover:opacity-50 focus:ring-2 dark:block"
+    id="sun"
+  />
+</button>
+
+<script is:inline>
+  const setThemeColor = () => {
+    const metaThemeColor = document.querySelector('meta[name=theme-color]')
+    if (metaThemeColor) {
+      const isDark = document.documentElement.classList.contains('dark')
+      metaThemeColor.setAttribute('content', isDark ? 'black' : 'white')
+    }
+  }
+
+  const initializeTheme = () => {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark')
+    }
+    setThemeColor()
+  }
+
+  initializeTheme()
+
+  const handleToggleClick = () => {
+    document.documentElement.classList.toggle('dark')
+    setThemeColor()
+  }
+
+  document.getElementById('theme-toggle')?.addEventListener('click', handleToggleClick)
+
+  document.addEventListener('astro:after-swap', () => {
+    initializeTheme()
+    document.getElementById('theme-toggle')?.addEventListener('click', handleToggleClick)
+  })
+</script>

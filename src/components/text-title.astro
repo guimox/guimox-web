@@ -1,0 +1,5 @@
+---
+const { bold } = Astro.props
+---
+
+<h1 class={`tracking-tight text-4xl ${bold ? 'font-bold' : ''}`}><slot /></h1>

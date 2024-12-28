@@ -1,0 +1,26 @@
+---
+import ThemeIcon from './theme-icon.astro'
+
+const { current } = Astro.props
+const styleActive = 'font-bold'
+---
+
+<nav class="flex justify-between">
+  <ul class="flex gap-4 mb-4 text-lg">
+    <li class={`${current == 'home' ? styleActive : 'text-inherit'}`}>
+      <a href="/"> Home </a>
+    </li>
+    <li class={`${current == 'about' ? styleActive : 'text-inherit'}`}>
+      <a href="/about">About</a>
+    </li>
+    <!-- <li class={`${current == 'projects' ? styleActive : 'text-inherit'}`}>
+      <a href="/projects">Projects</a>
+    </li> -->
+    <li class={`${current == 'blog' ? styleActive : 'text-inherit'}`}>
+      <a href="/blog">Blog</a>
+    </li>
+  </ul>
+  <div class="flex gap-3">
+    <ThemeIcon />
+  </div>
+</nav>

@@ -1,0 +1,52 @@
+---
+import { Icon } from 'astro-icon/components'
+import { getCollection } from 'astro:content'
+import { getReadingTime } from '../../utils/reading-time'
+import { getDateFormatted } from '../../utils/time-format'
+import CopyCode from '../../components/copy-code.astro'
+import Prose from '../../components/prose.astro'
+import Layout from '../../layouts/layout.astro'
+import TextParagraph from '../../components/text-paragraph.astro'
+import TextTitle from '../../components/text-title.astro'
+
+const { post } = Astro.props
+const { title, description, pubDate } = post.data
+const { Content } = await post.render()
+const canonical = 'https://guimox.dev/blog' + post.slug
+const current = 'blog'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts')
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }))
+}
+---
+
+<Layout title={title} description={description} canonical={canonical} current={current}>
+  <article>
+    <div class="mb-6 flex flex-col items-start gap-4 text-base md:mb-10">
+      <div class="full flex flex-col gap-3">
+        <TextTitle bold>{title}</TextTitle>
+        <p class="text-base">{description}</p>
+        <div class="flex gap-3">
+          <div class="flex items-center gap-2">
+            <Icon name="mdi:calendar-blank-outline" class="text-color text-sm" />
+            {getDateFormatted(pubDate)}
+          </div>
+          <div class="flex items-center gap-1">
+            <Icon name="mdi:stopwatch-outline" class="text-color text-sm" />
+            {getReadingTime(post.body)}
+          </div>
+        </div>
+        <div class="my-2 h-2 w-1/2 rounded-sm bg-gray-100 dark:bg-[#6666]"></div>
+      </div>
+      <div class="bg-color h-[0.5rem] w-10 rounded-sm"></div>
+    </div>
+    <Prose>
+      <Content />
+      <CopyCode />
+    </Prose>
+  </article>
+</Layout>

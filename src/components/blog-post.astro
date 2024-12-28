@@ -1,0 +1,31 @@
+---
+import { Icon } from 'astro-icon/components'
+import TextParagraph from './text-paragraph.astro'
+import { getReadingTime } from '../utils/reading-time'
+import { getDateFormatted } from '../utils/time-format'
+import Badge from './badge.astro'
+import TextTitle from './text-title.astro'
+import Button from './button.astro'
+const { title, description, pubDate, url, body, tags } = Astro.props
+---
+
+<article class="flex flex-col gap-4 rounded-md">
+  <TextTitle bold>{title}</TextTitle>
+  <TextParagraph>{description}</TextParagraph>
+  <div class="flex items-center gap-3">
+    <div>
+      <div class="flex items-center gap-2">{tags.map((tag: string) => <Badge>{tag}</Badge>)}</div>
+    </div>
+  </div>
+  <div class="flex gap-3">
+    <Button><a href={url}>Read more</a></Button>
+    <div class="flex items-center gap-2">
+      <Icon name="mdi:calendar-blank-outline" class="text-color text-sm" />
+      {getDateFormatted(pubDate)}
+    </div>
+    <div class="flex items-center gap-1">
+      <Icon name="mdi:stopwatch-outline" class="text-color text-sm" />
+      {getReadingTime(body)}
+    </div>
+  </div>
+</article>
