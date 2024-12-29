@@ -3,6 +3,7 @@ import { ClientRouter } from 'astro:transitions'
 import Header from '../components/header.astro'
 
 import '../styles/global.css'
+import '../styles/code.css'
 import '../styles/reset.css'
 
 export interface Props {
@@ -27,7 +28,6 @@ const { current, title, description, canonical } = Astro.props
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
     <link rel="preload" href="/fonts/geist-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="/fonts/geist-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <meta name="generator" content={Astro.generator} />

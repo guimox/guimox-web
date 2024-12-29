@@ -5,7 +5,6 @@
 - Astro
 - Tailwind
 - JavaScript/TypeScript
-- ThreeJS
 - Markdown
 - Github Actions
 
@@ -13,6 +12,10 @@
 
 The posts are fetched from a separate repository called guimox-posts. The posts are fetched using Github Actions everyday at 00:00. I know, it's a little bit of overenginnering.
 
-### Aim to be simple, but it can be simplier
+### Aim to be simple
 
-As the posts are fetched from another repository, I also create a simpler version of the same website for users that like simplicity.
+The overall website is aimed to be simple and fast. I tried to make a stylish website but I failed.
+
+### Tried to be perfect
+
+As a developer that really likes the frontend, I tried to make a stylish frontend but I was always refactoring and adding details. So then, tired of code-moving, I decided to simplicify everything.
