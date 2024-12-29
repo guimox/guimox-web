@@ -1,13 +1,12 @@
 ---
 import { Icon } from 'astro-icon/components'
 import { getCollection } from 'astro:content'
-import { getReadingTime } from '../../utils/reading-time'
-import { getDateFormatted } from '../../utils/time-format'
 import CopyCode from '../../components/copy-code.astro'
 import Prose from '../../components/prose.astro'
-import TextParagraph from '../../components/text-paragraph.astro'
 import TextTitle from '../../components/text-title.astro'
 import Layout from '../../layout/layout.astro'
+import { getReadingTime } from '../../utils/reading-time'
+import { getDateFormatted } from '../../utils/time-format'
 
 const { post } = Astro.props
 const { title, description, pubDate } = post.data
