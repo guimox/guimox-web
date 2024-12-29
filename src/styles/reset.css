@@ -14,17 +14,6 @@ svg {
   max-width: 100%;
 }
 
-li {
-  list-style: none;
-}
-
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
 p,
 h1,
 h2,
@@ -33,4 +22,29 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+a {
+  text-decoration: underline;
+}
+
+a:link {
+  color: #0000ee;
+}
+:visited {
+  color: #551a8b;
+}
+:link:active,
+:visited:active {
+  color: #ff0000;
+}
+
+nav a,
+.prose a {
+  text-decoration: none;
+  color: black !important;
 }

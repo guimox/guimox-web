@@ -16,9 +16,6 @@ export default {
           },
         },
       }),
-      colors: {
-        color: 'var(--theme-color, #3373c4)',
-      },
     },
   },
   plugins: [

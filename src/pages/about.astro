@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components'
 import TextParagraph from '../components/text-paragraph.astro'
 import TextTitle from '../components/text-title.astro'
 import Layout from '../layout/layout.astro'
@@ -33,35 +32,12 @@ const current = 'about'
       <b>I'm always up for learning</b>, building, and seeing how a small experiment can grow into something great.
     </TextParagraph>
     <TextParagraph>
-      <span class="flex items-center">
-        You can find me in
-        <a
-          href="https://github.com/guimox"
-          class="mx-1 flex gap-1 text-color underline"
-          target="_blank"
-          aria-label="link to open my GitHub"
-        >
-          <Icon
-            name="mdi:github"
-            class="cursor-pointer text-2xl font-bold transition-all duration-300 hover:opacity-50"
-          />
-          Github
-        </a>
-        or in
-        <a
-          href="https://www.linkedin.com/in/guimox"
-          class="ml-1 flex gap-1 text-color underline"
-          target="_blank"
-          aria-label="link to open my LinkedIn"
-        >
-          <Icon
-            name="mdi:linkedin"
-            class="cursor-pointer text-2xl font-bold transition-all duration-300 hover:opacity-50"
-          />
-          LinkedIn
-        </a>
-        .
-      </span>
+      You can find me on
+      <a href="https://github.com/guimox" target="_blank" aria-label="Link to open my GitHub"> GitHub</a>
+      or on
+      <a href="https://www.linkedin.com/in/guimox" target="_blank" aria-label="Link to open my LinkedIn">
+        LinkedIn
+      </a>
     </TextParagraph>
   </section>
 </Layout>

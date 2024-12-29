@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components'
 import TextParagraph from './text-paragraph.astro'
 import { getReadingTime } from '../utils/reading-time'
 import { getDateFormatted } from '../utils/time-format'
@@ -20,11 +19,9 @@ const { title, description, pubDate, url, body, tags } = Astro.props
   <div class="flex gap-3">
     <a href={url}><Button>Read more</Button></a>
     <div class="flex items-center gap-2">
-      <Icon name="mdi:calendar-blank-outline" class="text-lg font-bold text-color" />
       {getDateFormatted(pubDate)}
     </div>
     <div class="flex items-center gap-1">
-      <Icon name="mdi:stopwatch-outline" class="text-lg font-bold text-color" />
       {getReadingTime(body)}
     </div>
   </div>

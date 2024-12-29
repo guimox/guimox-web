@@ -1,5 +1,4 @@
 import tailwind from '@astrojs/tailwind'
-import icon from 'astro-icon'
 import robotsTxt from 'astro-robots-txt'
 import { defineConfig } from 'astro/config'
 import rehypeExternalLinks from 'rehype-external-links'
@@ -22,7 +21,6 @@ export default defineConfig({
     robotsTxt({
       sitemap: ['https://guimox.dev/sitemap-index.xml'],
     }),
-    icon(),
     sitemap(),
     tailwind(),
   ],

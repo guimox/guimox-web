@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components'
 import { getCollection } from 'astro:content'
 import CopyCode from '../../components/copy-code.astro'
 import Prose from '../../components/prose.astro'
@@ -31,11 +30,9 @@ export async function getStaticPaths() {
         <p class="text-base">{description}</p>
         <div class="flex gap-3">
           <div class="flex items-center gap-2">
-            <Icon name="mdi:calendar-blank-outline" class="text-sm text-color" />
             {getDateFormatted(pubDate)}
           </div>
           <div class="flex items-center gap-1">
-            <Icon name="mdi:stopwatch-outline" class="text-sm text-color" />
             {getReadingTime(post.body)}
           </div>
         </div>

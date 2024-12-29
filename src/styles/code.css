@@ -2,7 +2,7 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background-color: theme('colors.color');
+  background-color: black;
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
   line-height: 1rem;
@@ -11,7 +11,7 @@
 }
 
 .copy-code:hover {
-  background-color: theme('colors.color');
+  opacity: 75%;
 }
 
 @media (prefers-color-scheme: dark) {
