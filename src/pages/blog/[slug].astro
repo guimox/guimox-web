@@ -24,20 +24,20 @@ export async function getStaticPaths() {
 
 <Layout title={title} description={description} canonical={canonical} current={current}>
   <article>
-    <div class="mb-6 flex flex-col items-start gap-4 text-base md:mb-10">
+    <div class="flex flex-col items-start gap-4 text-base">
       <div class="full flex flex-col gap-3">
         <TextTitle bold>{title}</TextTitle>
         <p class="text-base">{description}</p>
         <div class="flex gap-3">
-          <div class="flex items-center gap-2">
-            {getDateFormatted(pubDate)}
-          </div>
+          <time class="flex items-center gap-2">
+            • {getDateFormatted(pubDate)}
+          </time>
           <div class="flex items-center gap-1">
-            {getReadingTime(post.body)}
+            • {getReadingTime(post.body)}
           </div>
         </div>
       </div>
-      <div class="h-[0.5rem] w-10 rounded-sm bg-color"></div>
+      <div class="bg-color h-[0.5rem] w-10 rounded-sm"></div>
     </div>
     <Prose>
       <Content />

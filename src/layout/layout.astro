@@ -34,9 +34,9 @@ const { current, title, description, canonical } = Astro.props
     <ClientRouter />
     <title>{title}</title>
   </head>
-  <body class="mx-auto my-4 flex max-w-[875px] flex-col gap-4 px-4 antialiased">
+  <body class="mx-auto my-4 flex max-w-[800px] flex-col gap-4 px-4 antialiased">
     <Header current={current} />
-    <main>
+    <main class="mb-4 transition-all duration-300">
       <slot />
     </main>
   </body>

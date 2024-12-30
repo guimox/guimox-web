@@ -5,16 +5,16 @@ const styleActive = 'font-bold text-color'
 
 <nav class="flex justify-between">
   <ul class="mb-4 flex gap-4 text-base">
-    <li class={`${current == 'home' ? styleActive : ''}`}>
+    <li class={`hover:opacity-75 ${current == 'home' ? styleActive : ''}`}>
       <a href="/"> Home</a>
     </li>
-    <li class={`${current == 'about' ? styleActive : ''}`}>
+    <li class={`hover:opacity-75 ${current == 'about' ? styleActive : ''}`}>
       <a href="/about">About</a>
     </li>
     <!-- <li class={`${current == 'projects' ? styleActive : ''}`}>
       <a href="/projects">Projects</a>
     </li> -->
-    <li class={`${current == 'blog' ? styleActive : ''}`}>
+    <li class={`hover:opacity-75 ${current == 'blog' ? styleActive : ''}`}>
       <a href="/blog">Blog</a>
     </li>
   </ul>
