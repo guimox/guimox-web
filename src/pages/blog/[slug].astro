@@ -6,6 +6,7 @@ import TextTitle from '../../components/text-title.astro'
 import Layout from '../../layout/layout.astro'
 import { getReadingTime } from '../../utils/reading-time'
 import { getDateFormatted } from '../../utils/time-format'
+import { Icon } from 'astro-icon/components'
 
 const { post } = Astro.props
 const { title, description, pubDate } = post.data
@@ -30,10 +31,12 @@ export async function getStaticPaths() {
         <p class="text-base">{description}</p>
         <div class="flex gap-3">
           <time class="flex items-center gap-2">
-            • {getDateFormatted(pubDate)}
+            <Icon name="mdi:calendar-outline" class="text-color text-base" />
+            {getDateFormatted(pubDate)}
           </time>
           <div class="flex items-center gap-1">
-            • {getReadingTime(post.body)}
+            <Icon name="mdi:clock-outline" class="text-color text-base" />
+            {getReadingTime(post.body)}
           </div>
         </div>
       </div>

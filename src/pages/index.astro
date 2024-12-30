@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components'
 import TextParagraph from '../components/text-paragraph.astro'
 import TextTitle from '../components/text-title.astro'
 import Layout from '../layout/layout.astro'
@@ -19,8 +20,22 @@ const current = 'home'
     </TextParagraph>
     <TextParagraph>You may find this website dull, but I've built other things.</TextParagraph>
     <div class="flex gap-4">
-      <a href="https://github.com/guimox" target="_blank" aria-label="link to open my GitHub"> Github</a>
-      <a href="https://www.linkedin.com/in/guimox" target="_blank" aria-label="link to open my LinkedIn">
+      <a
+        href="https://github.com/guimox"
+        target="_blank"
+        aria-label="link to open my GitHub"
+        class="inline-flex items-center gap-1"
+      >
+        <Icon name="mdi:github" class="text-color text-base" />
+        Github</a
+      >
+      <a
+        href="https://www.linkedin.com/in/guimox"
+        target="_blank"
+        aria-label="link to open my LinkedIn"
+        class="inline-flex items-center gap-1"
+      >
+        <Icon name="mdi:linkedin" class="text-color text-base" />
         LinkedIn
       </a>
     </div>

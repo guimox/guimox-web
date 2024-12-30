@@ -13,6 +13,7 @@
     "@astrojs/sitemap": "^3.1.4",
     "@astrojs/tailwind": "^5.1.4",
     "astro": "^5.1.1",
+    "astro-icon": "^1.1.5",
     "astro-robots-txt": "^1.0.0",
     "mdast-util-to-string": "^4.0.0",
     "reading-time": "^1.5.0",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
     "prettier": "^3.4.2",
+    "@iconify-json/mdi": "^1.1.68",
     "prettier-plugin-astro": "^0.12.3",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "tm-themes": "^1.4.1",

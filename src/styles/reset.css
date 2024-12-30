@@ -30,21 +30,14 @@ html {
 
 a {
   text-decoration: underline;
+  color: #0a78df;
 }
 
 a:link {
-  color: #0000ee;
-}
-:visited {
-  color: #551a8b;
-}
-:link:active,
-:visited:active {
-  color: #ff0000;
+  color: #0a78df;
 }
 
-nav a,
-.prose a {
+nav a {
   text-decoration: none;
   color: black !important;
 }

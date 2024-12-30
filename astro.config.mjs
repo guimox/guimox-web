@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm'
 import remarkSmartypants from 'remark-smartypants'
 import githubLightTheme from 'tm-themes/themes/github-light.json'
 import sitemap from '@astrojs/sitemap'
+import icon from 'astro-icon'
 
 const theme = {
   ...githubLightTheme,
@@ -22,6 +23,7 @@ export default defineConfig({
       sitemap: ['https://guimox.dev/sitemap-index.xml'],
     }),
     sitemap(),
+    icon(),
     tailwind(),
   ],
   markdown: {
