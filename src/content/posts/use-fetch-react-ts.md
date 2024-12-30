@@ -2,17 +2,14 @@
 title: "Hook for fetching data using only React"
 description: "Using React hooks for fetching and controlling the state of data. Data, loading and error handling."
 pubDate: 2024-12-25
-heroImage: "/path/to/optional/hero-image.jpg"
 tags: ["webdev", "react", "frontend"]
 ---
 
 # Simplifying data fetching in React with a custom hook
 
-Fetching data in React can sometimes feel repetitive, especially if you're juggling multiple states for data, loading, and error handling. To streamline this, let me introduce a custom hook that makes data fetching clean, reusable, and easy to manage. 
+Fetching data in React can sometimes feel repetitive, especially if you're juggling multiple states for data, loading, and error handling. To streamline this, let me introduce a custom hook that makes data fetching clean, reusable, and easy to manage.
 
 Here’s how it works, step-by-step:
-
----
 
 ### The idea behind the hook
 
@@ -24,8 +21,6 @@ With `useFetch`, you get:
 2. **loading state**: To indicate the request’s progress.
 3. **error state**: For handling errors when things don’t go smoothly.
 4. **refetch functionality**: Fetch fresh data whenever you need it.
-
----
 
 ### The code: `useFetch`
 
@@ -86,13 +81,13 @@ export function useFetch<T>(url: string, options: FetchOptions = {}): UseFetchRe
 }
 ```
 
----
 ### How it works
 
-1. **states**:  
-   - `data` stores the fetched data.  
-   - `loading` indicates whether a request is in progress.  
-   - `error` captures error messages if the fetch fails.  
+1. **states**:
+
+   - `data` stores the fetched data.
+   - `loading` indicates whether a request is in progress.
+   - `error` captures error messages if the fetch fails.
    - `reload` triggers re-fetching when `refetch` is called.
 
 2. **`refetch` function**:  
@@ -100,8 +95,6 @@ export function useFetch<T>(url: string, options: FetchOptions = {}): UseFetchRe
 
 3. **cleanup with `isMounted`**:  
    To avoid updating state after the component unmounts (and prevent those annoying React warnings), we track whether the component is still mounted.
-
----
 
 ### How to use it
 
@@ -111,7 +104,9 @@ This hook is flexible and can be used in any functional component:
 import { useFetch } from "./useFetch";
 
 function App() {
-  const { data, error, loading, refetch } = useFetch("https://api.example.com/data");
+  const { data, error, loading, refetch } = useFetch(
+    "https://api.example.com/data"
+  );
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
