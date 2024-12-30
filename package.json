@@ -30,5 +30,8 @@
     "prettier-plugin-tailwindcss": "^0.6.9",
     "tm-themes": "^1.4.1",
     "typescript": "^5.5.4"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.9.5"
   }
 }
