@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon/components'
 import TextParagraph from '../components/text-paragraph.astro'
 import TextTitle from '../components/text-title.astro'
 import Layout from '../layout/layout.astro'
+import myImage from '../assets/bg-meta.jpg'
 
 const title = 'About | Guilherme Lopes'
 const description = 'A little section to detail who am I and what I really like'
@@ -10,7 +11,7 @@ const canonical = 'https://guimox.dev/about'
 const current = 'about'
 ---
 
-<Layout title={title} description={description} canonical={canonical} current={current}>
+<Layout title={title} description={description} canonical={canonical} current={current} image={myImage}>
   <section class="flex flex-col gap-3">
     <TextTitle bold>A thing or two about me</TextTitle>
     <TextParagraph>

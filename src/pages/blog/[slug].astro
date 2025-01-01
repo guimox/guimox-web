@@ -8,6 +8,7 @@ import TextTitle from '../../components/text-title.astro'
 import Layout from '../../layout/layout.astro'
 import { getReadingTime } from '../../utils/reading-time'
 import { getDateFormatted } from '../../utils/time-format'
+import myImage from '../assets/bg-meta.jpg'
 
 const { post } = Astro.props
 const { title, description, pubDate } = post.data
@@ -24,7 +25,7 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout title={title} description={description} canonical={canonical} current={current}>
+<Layout title={title} description={description} canonical={canonical} current={current} image={myImage}>
   <article>
     <div class="flex flex-col items-start gap-4 text-base">
       <div class="full flex flex-col gap-3">

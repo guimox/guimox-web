@@ -4,18 +4,17 @@ import TextParagraph from '../components/text-paragraph.astro'
 import TextTitle from '../components/text-title.astro'
 import Layout from '../layout/layout.astro'
 import { Image } from 'astro:assets'
+import myImage from '../assets/bg-meta.jpg'
 
 const title = 'Guilherme Lopes | Software Developer'
 const description = 'Homepage of my website, feel free to explore'
 const canonical = 'https://guimox.dev'
 const current = 'home'
-
-import myImage from '../assets/bg-meta.jpg'
 ---
 
-<Layout title={title} description={description} canonical={canonical} current={current}>
+<Layout title={title} description={description} canonical={canonical} current={current} image={myImage}>
   <section class="flex flex-col gap-4">
-    <Image src={myImage} alt={description} class="max-h-36 rounded-sm object-cover" />
+    <Image src={myImage} alt={'image of my homepage'} class="max-h-36 rounded-sm object-cover" />
     <TextTitle bold>Guilherme Lopes</TextTitle>
     <TextParagraph>
       Experienced <b>software developer</b> capable of working on the frontend and backend. Interested about anything
