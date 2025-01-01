@@ -11,10 +11,9 @@ export interface Props {
   description: string
   canonical?: string
   current: string
-  ogImage: string
 }
 
-const { current, title, description, canonical, ogImage = '/default-og.png' } = Astro.props
+const { current, title, description, canonical } = Astro.props
 ---
 
 <!doctype html>
@@ -34,15 +33,15 @@ const { current, title, description, canonical, ogImage = '/default-og.png' } = 
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content="Guilherme Lopes website" />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={'https://guimox.dev/src/assets/bg-meta.jpg'} />
     <meta property="og:url" content="https://guimox.dev" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Guimox" />
 
-    <meta name="twitter:card" content={ogImage} />
+    <meta name="twitter:card" content={'https://guimox.dev/src/assets/bg-meta.jpg'} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={'https://guimox.dev/src/assets/bg-meta.jpg'} />
 
     <meta name="title" content={title} />
     <meta name="description" content={description} />
