@@ -4,39 +4,55 @@ import Header from '../components/header.astro'
 
 import '../styles/code.css'
 import '../styles/reset.css'
+import '../styles/theme.css'
 
 export interface Props {
   title: string
   description: string
   canonical?: string
   current: string
-  noHead?: boolean
+  ogImage: string
 }
 
-const { current, title, description, canonical } = Astro.props
+const { current, title, description, canonical, ogImage = '/default-og.png' } = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0000" media="(prefers-color-scheme: dark)" />
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
+
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="Guilherme Lopes website" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content="https://guimox.dev" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Guimox" />
+
+    <meta name="twitter:card" content={ogImage} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+
     <ClientRouter />
     <title>{title}</title>
   </head>
   <body class="mx-auto my-4 flex max-w-[800px] flex-col gap-4 px-4 antialiased">
     <Header current={current} />
-    <main class="mb-4 transition-all duration-300">
+    <main class="mb-4">
       <slot />
     </main>
   </body>

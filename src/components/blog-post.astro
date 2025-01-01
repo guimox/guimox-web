@@ -7,26 +7,32 @@ import Button from './button.astro'
 import TextParagraph from './text-paragraph.astro'
 import TextSubtitle from './text-subtitle.astro'
 
-const { title, description, pubDate, url, body, tags } = Astro.props
+const { title, description, pubDate, url, body, tags, index } = Astro.props
 ---
 
-<article class="flex max-w-[80%] flex-col gap-3 rounded-md">
-  <TextSubtitle bold>{title}</TextSubtitle>
-  <TextParagraph>{description}</TextParagraph>
-  <div class="flex items-center gap-3">
-    <div>
-      <div class="flex items-center gap-2">{tags.map((tag: string) => <Badge>{tag}</Badge>)}</div>
+<article class={`flex gap-4 group rounded-md`}>
+  <div class="flex w-full flex-col gap-3">
+    <div class="flex gap-3">
+      <div class="flex w-full flex-col gap-3">
+        <TextSubtitle bold>{title}</TextSubtitle>
+        <TextParagraph>{description}</TextParagraph>
+      </div>
     </div>
-  </div>
-  <div class="flex gap-3">
-    <a href={url}><Button>Read</Button></a>
-    <div class="flex items-center gap-2 text-sm">
-      <Icon name="mdi:calendar-outline" class="text-color text-base" />
-      <time>{getDateFormatted(pubDate)}</time>
+    <div class="flex items-center gap-3">
+      <div>
+        <div class="flex items-center gap-2">{tags.map((tag: string) => <Badge>{tag}</Badge>)}</div>
+      </div>
     </div>
-    <div class="flex items-center gap-1 text-sm">
-      <Icon name="mdi:clock-outline" class="text-color text-base" />
-      {getReadingTime(body)}
+    <div class="flex gap-3">
+      <a href={url}><Button>Read</Button></a>
+      <div class="flex items-center gap-2 text-sm">
+        <Icon name="mdi:calendar-outline" class="text-base text-black dark:text-white" />
+        <time>{getDateFormatted(pubDate)}</time>
+      </div>
+      <div class="flex items-center gap-1 text-sm">
+        <Icon name="mdi:clock-outline" class="text-base text-black dark:text-white" />
+        {getReadingTime(body)}
+      </div>
     </div>
   </div>
 </article>
