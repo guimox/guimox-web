@@ -33,11 +33,11 @@ export async function getStaticPaths() {
         <TextParagraph class="text-base">{description}</TextParagraph>
         <div class="flex gap-3">
           <time class="flex items-center gap-2 tracking-tight">
-            <Icon name="mdi:calendar-outline" class="text-color mt-0.5 text-base" />
+            <Icon name="mdi:calendar-outline" class="text-color text-base" />
             {getDateFormatted(pubDate)}
           </time>
           <div class="flex items-center gap-2 tracking-tight">
-            <Icon name="mdi:clock-outline" class="text-color mt-0.5 text-base" />
+            <Icon name="mdi:clock-outline" class="text-color text-base" />
             {getReadingTime(post.body)}
           </div>
         </div>
