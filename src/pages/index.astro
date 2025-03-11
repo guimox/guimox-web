@@ -1,9 +1,12 @@
 ---
 import { Icon } from 'astro-icon/components'
 import myImage from '../assets/bg-meta.jpg'
-import TextParagraph from '../components/text-paragraph.astro'
-import TextTitle from '../components/text-title.astro'
 import Layout from '../layout/layout.astro'
+import Subtitle from '../components/typo/subtitle.astro'
+import Paragraph from '../components/typo/paragraph.astro'
+import Title from '../components/typo/title.astro'
+import Small from '../components/typo/small.astro'
+import Link from '../components/typo/link.astro'
 
 const title = 'Guilherme Lopes | Software Developer'
 const description = 'Homepage of my website, feel free to explore'
@@ -13,32 +16,41 @@ const current = 'home'
 
 <Layout title={title} description={description} canonical={canonical} current={current} image={myImage}>
   <section class="flex flex-col gap-4">
-    <TextTitle bold>Guilherme Lopes</TextTitle>
-    <TextParagraph>
+    <Title>Guilherme Lopes</Title>
+    <Paragraph>
       Experienced <b>software developer</b> capable of working on the frontend and backend. Interested about anything
-      that is related to web (CI/CD, Docker, databases, frontend, backend and cool stuff). Passionate about improving
-      & trying things.
-    </TextParagraph>
-    <TextParagraph>You may find this website dull, but I've built other things.</TextParagraph>
+      that is related to web (CI/CD, Docker, databases, frontend, backend and cool stuff). Passionate about the world
+      web wide and its aspects.
+    </Paragraph>
     <div class="flex gap-4">
-      <a
-        href="https://github.com/guimox"
-        target="_blank"
-        aria-label="link to open my GitHub"
-        class="inline-flex items-center gap-1"
-      >
-        <Icon name="mdi:github" class="text-color text-base" />
-        <TextParagraph>Github</TextParagraph></a
-      >
-      <a
-        href="https://www.linkedin.com/in/guimox"
-        target="_blank"
-        aria-label="link to open my LinkedIn"
-        class="inline-flex items-center gap-1"
-      >
-        <Icon name="mdi:linkedin" class="text-color text-base" />
-        <TextParagraph>LinkedIn</TextParagraph>
-      </a>
+      <Link href="https://github.com/guimox" target="_blank" aria-label="link to open my GitHub">
+        <Icon name="mdi:github" class="text-color text-lg" />
+        <Paragraph>Github</Paragraph>
+      </Link>
+      <Link href="https://www.linkedin.com/in/guimox" target="_blank" aria-label="link to open my LinkedIn">
+        <Icon name="mdi:linkedin" class="text-color text-lg" />
+        <Paragraph>LinkedIn</Paragraph>
+      </Link>
     </div>
   </section>
+  <!-- <section class="flex flex-col gap-3">
+    <Subtitle>Projects</Subtitle>
+    <div class="flex flex-col gap-1">
+      <Paragraph bold>RU Menu</Paragraph>
+      <Paragraph>
+        Serverless app that works together with a team of kitchen woman to delivery the delicious food menu of a
+        college restaurant
+      </Paragraph>
+      <div class="flex gap-3">
+        <Small>• DAU 1200</Small>
+        <Small>• AWS</Small>
+        <Small>• TypeScript</Small>
+        <Small>• Java</Small>
+      </div>
+    </div>
+    <div class="flex flex-col gap-1">
+      <Paragraph bold>Gnose</Paragraph>
+      <Paragraph>Project created to people share and spread their quotes around the world</Paragraph>
+    </div>
+  </section> -->
 </Layout>

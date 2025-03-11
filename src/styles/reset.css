@@ -27,21 +27,3 @@ h6 {
 html {
   overflow-y: scroll;
 }
-
-a {
-  text-decoration: underline;
-  color: #0a78df;
-}
-
-a:link {
-  color: #0a78df;
-}
-
-nav a {
-  text-decoration: none;
-  color: black !important;
-}
-
-.dark nav a {
-  color: white !important;
-}

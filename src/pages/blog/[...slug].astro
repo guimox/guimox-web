@@ -1,14 +1,14 @@
 ---
 import { Icon } from 'astro-icon/components'
 import { getCollection } from 'astro:content'
-import CopyCode from '../../components/copy-code.astro'
-import Prose from '../../components/prose.astro'
-import TextParagraph from '../../components/text-paragraph.astro'
-import TextTitle from '../../components/text-title.astro'
 import Layout from '../../layout/layout.astro'
 import { getReadingTime } from '../../utils/reading-time'
 import { getDateFormatted } from '../../utils/time-format'
 import myImage from '../../assets/bg-meta.jpg'
+import Title from '../../components/typo/title.astro'
+import Paragraph from '../../components/typo/paragraph.astro'
+import Prose from '../../components/typo/prose.astro'
+import CopyCode from '../../components/ui/copy-code.astro'
 
 const { post } = Astro.props
 const { title, description, pubDate } = post.data
@@ -26,19 +26,20 @@ export async function getStaticPaths() {
 ---
 
 <Layout title={title} description={description} canonical={canonical} current={current} image={myImage}>
+  <div id="scroll-progress" class="fixed left-0 top-0 z-50 h-1 w-0 bg-black"></div>
   <article>
     <div class="flex flex-col items-start gap-4 text-base">
-      <div class="full flex flex-col gap-3">
-        <TextTitle bold>{title}</TextTitle>
-        <TextParagraph class="text-base">{description}</TextParagraph>
+      <div class="full flex flex-col gap-4">
+        <Title>{title}</Title>
+        <Paragraph>{description}</Paragraph>
         <div class="flex gap-3">
           <time class="flex items-center gap-2 tracking-tight">
-            <Icon name="mdi:calendar-outline" class="text-color text-base" />
-            {getDateFormatted(pubDate)}
+            <Icon name="mdi:calendar-outline" class="text-color text-lg" />
+            <span>{getDateFormatted(pubDate)}</span>
           </time>
           <div class="flex items-center gap-2 tracking-tight">
-            <Icon name="mdi:clock-outline" class="text-color text-base" />
-            {getReadingTime(post.body)}
+            <Icon name="mdi:clock-outline" class="text-color text-lg" />
+            <span>{getReadingTime(post.body)}</span>
           </div>
         </div>
       </div>
@@ -85,4 +86,15 @@ export async function getStaticPaths() {
       button.innerText = copyButtonLabel
     }, 700)
   }
+
+  window.addEventListener('scroll', function () {
+    const scrollProgress = document.getElementById('scroll-progress')
+    if (scrollProgress) {
+      const scrollTop = window.scrollY
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
+      const scrollPercentage = (scrollTop / scrollHeight) * 100
+
+      scrollProgress.style.width = scrollPercentage + '%'
+    }
+  })
 </script>

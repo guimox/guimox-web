@@ -4,6 +4,7 @@ import Paragraph from '../components/typo/paragraph.astro'
 import Title from '../components/typo/title.astro'
 import Layout from '../layout/layout.astro'
 import myImage from '../assets/bg-meta.jpg'
+import Link from '../components/typo/link.astro'
 
 const title = 'About | Guilherme Lopes'
 const description = 'A little section to detail who I am and what I really like'
@@ -12,8 +13,8 @@ const current = 'about'
 ---
 
 <Layout title={title} description={description} canonical={canonical} current={current} image={myImage}>
-  <section class="flex flex-col gap-3">
-    <Title bold>A thing or two about me</Title>
+  <section class="flex flex-col gap-4">
+    <Title>A thing or two about me</Title>
     <Paragraph>
       I'm a software developer who loves <b>experimenting and learning new things</b>. Whether it's building
       frontend apps with frameworks like Next.js or Astro, managing backend systems with Springboot or diving into
@@ -27,9 +28,9 @@ const current = 'about'
     </Paragraph>
     <Paragraph>
       I like to lower the barriers to getting started and keeping things running smoothly. If it's trying out PoCs,
-      designing on Figma or making architectural changes on an Excalidraw board, I find joy in the process.
-      Additionally, working with CI/CD pipelines, GitHub Actions and setting up VPS environments has become much
-      easier thanks to our beloved Docker.
+      designing on Figma or making architectural changes on an Excalidraw board, you can count me in. Also, working
+      with CI/CD pipelines, GitHub Actions and setting up VPS environments has become much easier thanks to our
+      beloved Docker.
     </Paragraph>
     <Paragraph>
       For me, it's all about turning ideas into something practical and sustainable while keeping the process fun.
@@ -38,27 +39,15 @@ const current = 'about'
     <Paragraph>
       <b>I'm always up for learning</b>, building and seeing code come to life.
     </Paragraph>
-    <Paragraph>
-      You can find me on
-      <a
-        href="https://github.com/guimox"
-        target="_blank"
-        aria-label="Link to open my GitHub"
-        class="inline-flex items-center gap-1 underline"
-      >
-        <Icon name="mdi:github" class="text-color text-base" />
-        GitHub
-      </a>
-      or on
-      <a
-        href="https://www.linkedin.com/in/guimox"
-        target="_blank"
-        aria-label="Link to open my LinkedIn"
-        class="inline-flex items-center gap-1 underline"
-      >
-        <Icon name="mdi:linkedin" class="text-color text-base" />
-        LinkedIn
-      </a>.
-    </Paragraph>
+    <div class="flex gap-4">
+      <Link href="https://github.com/guimox" target="_blank" aria-label="link to open my GitHub">
+        <Icon name="mdi:github" class="text-color text-lg" />
+        <Paragraph>Github</Paragraph>
+      </Link>
+      <Link href="https://www.linkedin.com/in/guimox" target="_blank" aria-label="link to open my LinkedIn">
+        <Icon name="mdi:linkedin" class="text-color text-lg" />
+        <Paragraph>LinkedIn</Paragraph>
+      </Link>
+    </div>
   </section>
 </Layout>

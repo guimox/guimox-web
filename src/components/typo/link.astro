@@ -1,0 +1,10 @@
+---
+const { aria, target, href } = Astro.props
+---
+
+<a
+  aria-label={aria}
+  target={target}
+  href={href}
+  class="inline-flex items-center gap-1 text-base hover:underline hover:opacity-75"><slot /></a
+>
