@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content'
+import Layout from '../../layout/layout.astro'
+import myImage from '../../assets/bg-meta.jpg'
+import Title from '../../components/typo/title.astro'
+import BlogPost from '../../components/section/blog-post.astro'
+import Prose from '../../components/typo/prose.astro'
+
+const posts = await getCollection('links')
+
+const title = 'Vault | Guilherme Lopes'
+const description = 'Blog about my interests and such, some cool stuff can be found here'
+const canonical = 'https://guimox.dev/vault'
+const current = 'vault'
+---
+
+<Layout title={title} description={description} canonical={canonical} current={current} image={myImage}>
+  <section class="flex flex-col gap-8">
+    <Title>Links and resources</Title>
+    <div class="flex flex-col gap-10">
+      {
+        posts.map(async (post) => {
+          const { Content } = await post.render()
+          return (
+            <Prose>
+              <Content />
+            </Prose>
+          )
+        })
+      }
+    </div>
+  </section>
+</Layout>
