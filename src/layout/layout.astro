@@ -50,7 +50,7 @@ const { current, title, description, canonical, image } = Astro.props
     <ClientRouter />
     <title>{title}</title>
   </head>
-  <body class="mx-auto my-4 flex max-w-[800px] flex-col gap-5 px-4 antialiased">
+  <body class="mx-auto my-4 flex max-w-[800px] flex-col gap-5 px-4 text-zinc-700 antialiased">
     <Header current={current} />
     <main>
       <slot />
