@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content'
 import Layout from '../../layout/layout.astro'
-import myImage from '../../assets/bg-meta.jpg'
 import Title from '../../components/typo/title.astro'
 import BlogPost from '../../components/section/blog-post.astro'
+import Paragraph from '../../components/typo/paragraph.astro'
 
 const posts = await getCollection('posts')
 const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -14,9 +14,8 @@ const canonical = 'https://guimox.dev/blog'
 const current = 'blog'
 ---
 
-<Layout title={title} description={description} canonical={canonical} current={current} image={myImage}>
+<Layout title={title} description={description} canonical={canonical} current={current}>
   <section class="flex flex-col gap-8">
-    <Title>Sometimes I share what's on my mind</Title>
     <div class="flex flex-col gap-10">
       {
         sortedPosts.map((post) => {

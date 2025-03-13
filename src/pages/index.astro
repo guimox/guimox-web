@@ -1,12 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components'
-import myImage from '../assets/bg-meta.jpg'
-import Layout from '../layout/layout.astro'
-import Subtitle from '../components/typo/subtitle.astro'
+import Link from '../components/typo/link.astro'
 import Paragraph from '../components/typo/paragraph.astro'
 import Title from '../components/typo/title.astro'
-import Small from '../components/typo/small.astro'
-import Link from '../components/typo/link.astro'
+import Layout from '../layout/layout.astro'
 
 const title = 'Guilherme Lopes | Software Developer'
 const description = 'Homepage of my website, feel free to explore'
@@ -14,7 +11,7 @@ const canonical = 'https://guimox.dev'
 const current = 'home'
 ---
 
-<Layout title={title} description={description} canonical={canonical} current={current} image={myImage}>
+<Layout title={title} description={description} canonical={canonical} current={current}>
   <section class="flex flex-col gap-4">
     <Title>Guilherme Lopes</Title>
     <Paragraph>

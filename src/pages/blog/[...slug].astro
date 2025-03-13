@@ -4,7 +4,6 @@ import { getCollection } from 'astro:content'
 import Layout from '../../layout/layout.astro'
 import { getReadingTime } from '../../utils/reading-time'
 import { getDateFormatted } from '../../utils/time-format'
-import myImage from '../../assets/bg-meta.jpg'
 import Title from '../../components/typo/title.astro'
 import Paragraph from '../../components/typo/paragraph.astro'
 import Prose from '../../components/typo/prose.astro'
@@ -25,7 +24,7 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout title={title} description={description} canonical={canonical} current={current} image={myImage}>
+<Layout title={title} description={description} canonical={canonical} current={current}>
   <div id="scroll-progress" class="fixed left-0 top-0 z-50 h-1 w-0 bg-zinc-700"></div>
   <article>
     <div class="flex flex-col items-start gap-4 text-base">

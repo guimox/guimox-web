@@ -12,7 +12,7 @@ const theme = {
   ...githubLightTheme,
   colors: {
     ...githubLightTheme.colors,
-    'editor.background': '#F4F4F5',
+    'editor.background': '#fff0000',
   },
 }
 
@@ -31,7 +31,6 @@ export default defineConfig({
       wrap: true,
       themes: {
         light: theme,
-        dark: 'github-dark',
       },
     },
     remarkPlugins: [remarkGfm, remarkSmartypants],

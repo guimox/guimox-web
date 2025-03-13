@@ -3,8 +3,8 @@ const { current } = Astro.props
 const styleActive = 'font-bold text-color'
 ---
 
-<nav class="flex justify-between">
-  <ul class="mb-4 flex gap-4 text-base">
+<nav class="flex justify-between pt-5">
+  <ul class="flex gap-4 text-base">
     <li class={`hover:opacity-75 ${current == 'home' ? styleActive : ''}`}>
       <a href="/"> Home</a>
     </li>
