@@ -1,0 +1,19 @@
+---
+import { Icon } from 'astro-icon/components'
+import Link from '../typo/link.astro'
+import Paragraph from '../typo/paragraph.astro'
+---
+
+<footer class="flex items-center justify-between gap-3 py-5">
+  <div class="w-3/4">
+    <Paragraph><b>Guilherme Lopes</b></Paragraph>
+  </div>
+  <div class="flex w-1/2 justify-end gap-4">
+    <Link href="https://github.com/guimox" target="_blank" aria-label="link to open my GitHub">
+      <Icon name="mdi:github" class="text-lg text-zinc-700" />
+    </Link>
+    <Link href="https://www.linkedin.com/in/guimox" target="_blank" aria-label="link to open my LinkedIn">
+      <Icon name="mdi:linkedin" class="text-lg text-zinc-700" />
+    </Link>
+  </div>
+</footer>

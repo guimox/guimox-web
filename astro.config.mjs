@@ -12,7 +12,7 @@ const theme = {
   ...githubLightTheme,
   colors: {
     ...githubLightTheme.colors,
-    'editor.background': '#fff0000',
+    'editor.background': '#f3f4f6',
   },
 }
 

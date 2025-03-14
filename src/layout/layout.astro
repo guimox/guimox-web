@@ -3,6 +3,7 @@ import { ClientRouter } from 'astro:transitions'
 import Header from '../components/section/header.astro'
 import '../styles/code.css'
 import '../styles/reset.css'
+import Footer from '../components/section/footer.astro'
 
 export interface Props {
   title: string
@@ -44,11 +45,12 @@ const { current, title, description, canonical } = Astro.props
     <title>{title}</title>
   </head>
   <body
-    class="mx-auto mb-10 flex max-w-[800px] flex-col gap-5 px-4 text-zinc-700 antialiased transition-all duration-300"
+    class="mx-auto flex min-h-screen max-w-[800px] flex-col px-4 text-zinc-700 antialiased transition-all duration-300"
   >
     <Header current={current} />
-    <main>
+    <main class="flex flex-grow items-start justify-center py-6">
       <slot />
     </main>
+    {canonical && canonical.includes('/blog') && <Footer />}
   </body>
 </html>
