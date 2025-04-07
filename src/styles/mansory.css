@@ -1,0 +1,137 @@
+a {
+  cursor: pointer;
+  position: relative;
+}
+a::before {
+  content: '';
+  position: absolute;
+  bottom: -0.2rem;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: right;
+  background-color: currentcolor;
+  transition: transform 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.masonry-grid {
+  margin-top: 2rem;
+  column-count: 3;
+  width: 100%;
+  max-width: 1700px !important;
+  gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .masonry-grid {
+    column-count: 3;
+    gap: 2.5vw;
+  }
+}
+@media (max-width: 768px) {
+  .masonry-grid {
+    column-count: 2;
+  }
+}
+.masonry-grid::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.masonry-grid figure {
+  margin: 0;
+  display: block;
+  height: auto;
+  break-inside: avoid;
+  position: relative;
+}
+section figure:not(:first-child) {
+  margin-top: 1rem;
+}
+@media (max-width: 1024px) {
+  section figure:not(:first-child) {
+    margin-top: 2.5vw;
+  }
+}
+
+section figure::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  transition: 0.3s;
+}
+section figure::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  transform: translate(-50%, -50%) scale(0);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M22,12a11.6,11.6,0,0,1-10,6A11.6,11.6,0,0,1,2,12,11.6,11.6,0,0,1,12,6,11.6,11.6,0,0,1,22,12Z' fill='none' stroke='%23fff' stroke-width='1'%3E%3C/path%3E%3Ccircle cx='12' cy='12' r='3' fill='none' stroke='%23fff' stroke-width='1'%3E%3C/circle%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  z-index: 2;
+  transition: 0.3s;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  z-index: 2;
+  margin: -20px 0 0 -20px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid rgb(255, 0, 0);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: none; /* Hide by default */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+img {
+  height: 100%;
+  object-fit: cover;
+  max-width: 100%;
+  display: block;
+  margin: auto;
+  object-position: 50% 50%;
+}
+
+dialog:modal {
+  background-color: black;
+  width: 75%;
+}
+
+@media (max-width: 1024px) {
+  dialog:modal {
+    width: 100%;
+  }
+}
+
+dialog img {
+  max-height: 75vh;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+}

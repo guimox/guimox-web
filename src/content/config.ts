@@ -13,7 +13,18 @@ const postsCollection = defineCollection({
 
 const linksCollection = defineCollection({})
 
+const albumsCollection = defineCollection({
+  type: 'data',
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string().optional(),
+      cover: image(),
+    }),
+})
+
 export const collections = {
   posts: postsCollection,
   links: linksCollection,
+  albums: albumsCollection,
 }

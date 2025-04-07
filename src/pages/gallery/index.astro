@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content'
+import { Image } from 'astro:assets'
+import Layout from '../../layout/layout.astro'
+
+const albums = await getCollection('albums')
+const title = 'Guilherme Lopes | Software Developer'
+const description = 'Homepage of my website, feel free to explore'
+const canonical = 'https://guimox.dev'
+const current = 'home'
+---
+
+<Layout title={title} description={description} canonical={canonical} current={current}>
+  <div class="container mx-auto grid max-w-screen-sm grid-cols-2 gap-8">
+    {
+      albums.map((item) => (
+        <a href={`/gallery/${item.id}`} class="group mb-4 block transition-all">
+          <Image
+            src={item.data.cover}
+            alt={item.data.title}
+            format="avif"
+            width={720}
+            quality="mid"
+            class:list={['rounded-lg transition-all', 'group-hover:opacity-90 group-hover:shadow-lg']}
+          />
+          <div class="mt-4 text-center text-neutral-800">
+            <strong class="font-normal">{item.data.title}</strong>
+            <p class="text-xs">{item.data.description}</p>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</Layout>

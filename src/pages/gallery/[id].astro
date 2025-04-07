@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content'
+import { Image } from 'astro:assets'
+import Layout from '../../layout/layout.astro'
+import { getAlbumImages } from '../../utils/albums'
+
+export async function getStaticPaths() {
+  const albums = await getCollection('albums')
+  const paths = Object.values(albums).map((album) => {
+    return {
+      params: {
+        id: album.id,
+      },
+      props: {
+        album,
+      },
+    }
+  })
+  return paths
+}
+const { album } = Astro.props
+const images = await getAlbumImages(album.id)
+
+const title = 'Guilherme Lopes | Software Developer'
+const description = 'Homepage of my website, feel free to explore'
+const canonical = 'https://guimox.dev'
+const current = 'gallery'
+---
+
+<Layout title={title} description={description} canonical={canonical} current={current}>
+  <section class="masonry-grid">
+    {
+      images.map((image, index) => (
+        <figure class="masonry-item" data-index={index} data-original-src={image.src}>
+          <Image
+            src={image}
+            loading="lazy"
+            widths={[180, 360, 540]}
+            sizes={`(max-width: 360px) 180px, (max-width: 720px) 360px, (max-width: 1600px) 540px`}
+            decoding="async"
+            alt={'image'}
+            class="rounded-sm transition-opacity"
+          />
+        </figure>
+      ))
+    }
+  </section>
+</Layout>

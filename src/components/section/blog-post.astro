@@ -4,35 +4,35 @@ import { getReadingTime } from '../../utils/reading-time'
 import { getDateFormatted } from '../../utils/time-format'
 import Paragraph from '../typo/paragraph.astro'
 import Subtitle from '../typo/subtitle.astro'
-import Badge from '../ui/badge.astro'
-import Button from '../ui/button.astro'
 
 const { title, description, pubDate, url, body, tags } = Astro.props
 ---
 
 <article class={`flex gap-4 group rounded-md`}>
-  <div class="flex w-full flex-col gap-3">
-    <div class="flex gap-3">
-      <div class="flex w-full flex-col gap-3">
-        <Subtitle>{title}</Subtitle>
-        <Paragraph>{description}</Paragraph>
+  <a href={url} class="flex w-full flex-col gap-3 hover:opacity-75">
+    <div class="flex w-full flex-col gap-3">
+      <div class="flex gap-3">
+        <div class="flex w-full flex-col gap-3">
+          <Subtitle>{title}</Subtitle>
+          <Paragraph>{description}</Paragraph>
+        </div>
       </div>
-    </div>
-    <div class="flex items-center gap-3">
+      <!-- <div class="flex items-center gap-3">
       <div>
         <div class="flex items-center gap-2">{tags.map((tag: string) => <Badge>{tag}</Badge>)}</div>
       </div>
-    </div>
-    <div class="flex gap-3">
-      <a href={url}><Button>Read</Button></a>
-      <div class="gap- flex items-center gap-1 text-sm">
-        <Icon name="mdi:calendar-outline" class="text-lg text-zinc-700" />
-        <time>{getDateFormatted(pubDate)}</time>
+    </div> -->
+      <div class="flex gap-3">
+        <!-- <a href={url}><Button>Read</Button></a> -->
+        <div class="gap- flex items-center gap-1 text-sm">
+          <Icon name="mdi:calendar-outline" class="text-xl text-zinc-700" />
+          <time>{getDateFormatted(pubDate)}</time>
+        </div>
+        <div class="flex items-center gap-1 text-sm">
+          <Icon name="mdi:clock-outline" class="text-xl text-zinc-700" />
+          <span>{getReadingTime(body)}</span>
+        </div>
       </div>
-      <div class="flex items-center gap-1 text-sm">
-        <Icon name="mdi:clock-outline" class="text-lg text-zinc-700" />
-        <span>{getReadingTime(body)}</span>
-      </div>
     </div>
-  </div>
+  </a>
 </article>
