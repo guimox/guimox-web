@@ -1,15 +1,15 @@
-import { getCollection } from "astro:content";
+import { getCollection } from 'astro:content'
 
-const collection = "posts";
+const collection = 'posts'
 
 export default async () => {
-    const posts = await getCollection(collection);
+  const posts = await getCollection(collection)
 
-    return posts.map((post) => ({
-        ...post,
-        data: {
-            ...post.data,
-            ogImage: `guimox.dev/og/${collection}/${post.slug}.png`,
-        },
-    }));
-};
+  return posts.map((post) => ({
+    ...post,
+    data: {
+      ...post.data,
+      ogImage: `https://guimox-web.guilhermxlopes.workers.dev/og/${collection}/${post.slug}.png`,
+    },
+  }))
+}

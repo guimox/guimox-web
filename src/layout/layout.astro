@@ -15,7 +15,8 @@ export interface Props {
 }
 
 const { current, title, ogImage, description, canonical } = Astro.props
-const showFooter = (canonical && canonical.includes('/blog')) || (canonical && canonical.includes('/about'))
+const isHome = current == 'home'
+const isError = current == '404'
 ---
 
 <!doctype html>
@@ -51,10 +52,10 @@ const showFooter = (canonical && canonical.includes('/blog')) || (canonical && c
   <body
     class="mx-auto flex min-h-screen max-w-[800px] flex-col px-4 text-zinc-700 antialiased transition-all duration-300"
   >
-    <Header current={current} />
+    {!isError && <Header current={current} />}
     <main class="flex flex-grow items-start justify-center py-6">
       <slot />
     </main>
-    {showFooter && <Footer />}
+    {!isHome && <Footer />}
   </body>
 </html>
