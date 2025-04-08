@@ -11,9 +11,10 @@ export interface Props {
   description: string
   canonical?: string
   current: string
+  ogImage?: string
 }
 
-const { current, title, description, canonical } = Astro.props
+const { current, title, ogImage, description, canonical } = Astro.props
 const showFooter = (canonical && canonical.includes('/blog')) || (canonical && canonical.includes('/about'))
 ---
 
@@ -36,6 +37,7 @@ const showFooter = (canonical && canonical.includes('/blog')) || (canonical && c
     <meta property="og:url" content="https://guimox.dev" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Guimox" />
+    <meta property="og:image" content={ogImage} />
 
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />

@@ -5,34 +5,50 @@ import { getDateFormatted } from '../../utils/time-format'
 import Paragraph from '../typo/paragraph.astro'
 import Subtitle from '../typo/subtitle.astro'
 
-const { title, description, pubDate, url, body, tags } = Astro.props
+interface Props {
+  title: string
+  description: string
+  pubDate: Date
+  url: string
+  body: string
+  tags: string[]
+  activeTag?: string
+}
+
+const { title, description, pubDate, url, body, tags, activeTag } = Astro.props as Props
 ---
 
-<article class={`flex gap-4 group rounded-md`}>
-  <a href={url} class="flex w-full flex-col gap-3 hover:opacity-75">
-    <div class="flex w-full flex-col gap-3">
-      <div class="flex gap-3">
-        <div class="flex w-full flex-col gap-3">
-          <Subtitle>{title}</Subtitle>
-          <Paragraph>{description}</Paragraph>
-        </div>
+<article class={`flex gap-4 group`}>
+  <div class="flex w-full flex-col gap-4">
+    <a href={url} class="flex w-full flex-col gap-2 hover:opacity-75">
+      <Subtitle>{title}</Subtitle>
+      <Paragraph>{description}</Paragraph>
+    </a>
+    <div class="flex flex-wrap items-center gap-2">
+      {
+        tags?.map((tag: string) => {
+          const isActive = tag === activeTag
+          const baseClasses = 'rounded-sm px-2 py-1 text-sm transition-colors duration-150 ease-in-out'
+          const activeClasses = 'bg-zinc-700 text-white hover:opacity-75'
+          const inactiveClasses = 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+
+          return (
+            <a href={`/tags/${tag}`} class={`${baseClasses} ${isActive ? activeClasses : inactiveClasses}`}>
+              {tag}
+            </a>
+          )
+        })
+      }
+    </div>
+    <div class="flex items-center gap-3 text-sm text-gray-600">
+      <div class="flex items-center gap-1">
+        <Icon name="mdi:calendar-outline" class="text-lg text-zinc-700" />
+        <time>{getDateFormatted(pubDate)}</time>
       </div>
-      <!-- <div class="flex items-center gap-3">
-      <div>
-        <div class="flex items-center gap-2">{tags.map((tag: string) => <Badge>{tag}</Badge>)}</div>
-      </div>
-    </div> -->
-      <div class="flex gap-3">
-        <!-- <a href={url}><Button>Read</Button></a> -->
-        <div class="gap- flex items-center gap-1 text-sm">
-          <Icon name="mdi:calendar-outline" class="text-xl text-zinc-700" />
-          <time>{getDateFormatted(pubDate)}</time>
-        </div>
-        <div class="flex items-center gap-1 text-sm">
-          <Icon name="mdi:clock-outline" class="text-xl text-zinc-700" />
-          <span>{getReadingTime(body)}</span>
-        </div>
+      <div class="flex items-center gap-1">
+        <Icon name="mdi:clock-outline" class="text-lg text-zinc-700" />
+        <span>{getReadingTime(body)}</span>
       </div>
     </div>
-  </a>
+  </div>
 </article>

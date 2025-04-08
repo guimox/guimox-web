@@ -1,8 +1,8 @@
-a {
+.mansory-grid a {
   cursor: pointer;
   position: relative;
 }
-a::before {
+.mansory-grid a::before {
   content: '';
   position: absolute;
   bottom: -0.2rem;

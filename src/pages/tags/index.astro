@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content'
+import Layout from '../../layout/layout.astro'
+
+const allPosts = await getCollection('posts')
+
+const tagCounts = allPosts
+  .flatMap((post) => post.data.tags || [])
+  .reduce((acc: Record<string, number>, tag) => {
+    acc[tag] = (acc[tag] || 0) + 1
+    return acc
+  }, {})
+
+const sortedTags = Object.entries(tagCounts).sort(([, countA], [, countB]) => countB - countA)
+const title = 'Guilherme Lopes | Software Developer'
+const description = 'Page of tags to explore the blog posts'
+const canonical = 'https://guimox.dev'
+const current = 'tags'
+---
+
+<Layout title={title} description={description} canonical={canonical} current={current}>
+  <div class="container mx-auto py-8">
+    <div class="flex flex-wrap gap-4">
+      {
+        sortedTags.map(([tag, count]) => (
+          <a
+            href={`/tags/${tag}`}
+            class="flex items-center gap-2 rounded-sm bg-gray-100 px-2 py-1 text-sm hover:opacity-75"
+          >
+            <span>{tag}</span>
+            <span class="rounded-full bg-gray-200 px-2 py-0.5 text-xs">{count}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

@@ -27,9 +27,10 @@ const styleActive = 'font-bold text-zinc-700'
       <a href="/blog">Blog</a>
     </li>
   </ul>
-  <div class="relative">
-    <button id="dropdownBtn">
+  <div class="relative z-20">
+    <button id="dropdownBtn" class="flex items-center justify-center">
       <Icon
+        id="icon-header"
         name="mdi:dots-hexagon"
         class={`rounded-full ${current == 'gallery' ? 'bg-zinc-700' : 'bg-gray-100'} p-1 text-2xl md:text-3xl ${current === 'gallery' ? 'text-white' : 'text-zinc-700'}`}
       />
@@ -41,33 +42,37 @@ const styleActive = 'font-bold text-zinc-700'
 </nav>
 
 <script>
-  function initDropdown() {
-    const btn = document.getElementById('dropdownBtn')
+  function toggleDropdown(menu: HTMLElement) {
+    menu.classList.toggle('show')
+  }
+
+  function closeDropdown(menu: HTMLElement) {
+    menu.classList.remove('show')
+  }
+
+  function setupDropdown() {
     const menu = document.getElementById('dropdownMenu')
-    if (!btn || !menu || !btn.parentNode) return
+    const btn = document.getElementById('dropdownBtn')
+
+    if (!menu || !btn || !btn.parentNode) return
 
     const newBtn = btn.cloneNode(true)
     btn.parentNode.replaceChild(newBtn, btn)
 
     newBtn.addEventListener('click', (e) => {
       e.stopPropagation()
-      menu.classList.toggle('show')
+      toggleDropdown(menu)
     })
 
     menu.addEventListener('click', (e) => {
       e.stopPropagation()
     })
+
+    document.addEventListener('click', () => {
+      closeDropdown(menu)
+    })
   }
 
-  document.addEventListener('DOMContentLoaded', initDropdown)
-  document.addEventListener('astro:page-load', initDropdown)
-
-  document.addEventListener(
-    'click',
-    () => {
-      const menu = document.getElementById('dropdownMenu')
-      if (menu) menu.classList.remove('show')
-    },
-    { capture: true },
-  )
+  document.addEventListener('DOMContentLoaded', setupDropdown)
+  document.addEventListener('astro:page-load', setupDropdown)
 </script>
