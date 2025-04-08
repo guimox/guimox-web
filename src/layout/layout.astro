@@ -52,6 +52,6 @@ const { current, title, description, canonical } = Astro.props
     <main class="flex flex-grow items-start justify-center py-6">
       <slot />
     </main>
-    {canonical && canonical.includes('/blog') && <Footer />}
+    {(canonical && canonical.includes('/blog')) || (canonical && canonical.includes('/about') && <Footer />)}
   </body>
 </html>
