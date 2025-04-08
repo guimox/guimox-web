@@ -14,6 +14,7 @@ export interface Props {
 }
 
 const { current, title, description, canonical } = Astro.props
+const showFooter = (canonical && canonical.includes('/blog')) || (canonical && canonical.includes('/about'))
 ---
 
 <!doctype html>
@@ -52,6 +53,6 @@ const { current, title, description, canonical } = Astro.props
     <main class="flex flex-grow items-start justify-center py-6">
       <slot />
     </main>
-    {(canonical && canonical.includes('/blog')) || (canonical && canonical.includes('/about') && <Footer />)}
+    {showFooter && <Footer />}
   </body>
 </html>
