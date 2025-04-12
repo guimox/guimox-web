@@ -41,15 +41,14 @@ console.log('post.data.ogImage', post.data.ogImage)
         <Paragraph>{description}</Paragraph>
         <div class="flex gap-3">
           <time class="flex items-center gap-2 tracking-tight">
-            <Icon name="mdi:calendar-outline" class="text-xl text-zinc-700" />
+            <Icon name="mdi:calendar-outline" class="rounded-full bg-gray-100 p-1 text-3xl text-zinc-700" />
             <span>{getDateFormatted(pubDate)}</span>
           </time>
           <div class="flex items-center gap-2 tracking-tight">
-            <Icon name="mdi:clock-outline" class="text-xl text-zinc-700" />
+            <Icon name="mdi:clock-outline" class="rounded-full bg-gray-100 p-1 text-3xl text-zinc-700" />
             <span>{getReadingTime(post.body)}</span>
           </div>
         </div>
-        <div class="h-2 w-40 rounded-sm bg-gray-100"></div>
       </div>
       <div class="bg-color h-[0.5rem] w-10 rounded-sm"></div>
     </div>

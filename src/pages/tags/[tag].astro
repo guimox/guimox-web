@@ -25,7 +25,7 @@ const description = `Explore all posts tagged with ${currentTag}.`
 const canonical = Astro.url.toString()
 ---
 
-<Layout title={title} description={description} canonical={canonical} current={'1bc'}>
+<Layout title={title} description={description} canonical={canonical} current={'blog'}>
   <div class="container mx-auto">
     {
       posts.length === 0 ? (
