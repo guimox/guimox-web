@@ -1,8 +1,8 @@
 ---
-title: "Hook for fetching data using only React"
-description: "Using React hooks for fetching and controlling the state of data. Data, loading and error handling."
+title: 'Hook for fetching data using only React'
+description: 'Using React hooks for fetching and controlling the state of data. Data, loading and error handling.'
 pubDate: 2024-12-25
-tags: ["webdev", "react", "frontend"]
+tags: ['webdev', 'react', 'frontend']
 ---
 
 ### Simplifying data fetching in React with a custom hook
@@ -101,15 +101,13 @@ export function useFetch<T>(url: string, options: FetchOptions = {}): UseFetchRe
 This hook is flexible and can be used in any functional component:
 
 ```javascript
-import { useFetch } from "./useFetch";
+import { useFetch } from './useFetch'
 
 function App() {
-  const { data, error, loading, refetch } = useFetch(
-    "https://api.example.com/data"
-  );
+  const { data, error, loading, refetch } = useFetch('https://api.example.com/data')
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error: {error}</p>
 
   return (
     <div>
@@ -117,6 +115,6 @@ function App() {
       <pre>{JSON.stringify(data, null, 2)}</pre>
       <button onClick={refetch}>Refetch</button>
     </div>
-  );
+  )
 }
 ```

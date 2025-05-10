@@ -27,8 +27,8 @@
   "devDependencies": {
     "@iconify-json/mdi": "^1.1.68",
     "@tailwindcss/typography": "^0.5.15",
-    "prettier": "^3.4.2",
-    "prettier-plugin-astro": "^0.12.3",
+    "prettier": "3.5.3",
+    "prettier-plugin-astro": "0.12.3",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "tm-themes": "^1.4.1",
     "typescript": "^5.5.4"

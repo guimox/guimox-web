@@ -27,3 +27,14 @@ h6 {
 html {
   overflow-y: scroll;
 }
+
+@font-face {
+  font-family: 'geist';
+  src: url('/fonts/geist.ttf') format('truetype');
+}
+
+* {
+  font-family:
+    'geist', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+}

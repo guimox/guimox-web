@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentColorIndex = 0
 
   document.documentElement.style.setProperty('--main-color', colors[currentColorIndex])
-  if (!colorButton) return;
+  if (!colorButton) return
 
   colorButton.addEventListener('click', () => {
     currentColorIndex = (currentColorIndex + 1) % colors.length

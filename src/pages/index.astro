@@ -4,6 +4,8 @@ import Link from '../components/typo/link.astro'
 import Paragraph from '../components/typo/paragraph.astro'
 import Title from '../components/typo/title.astro'
 import Layout from '../layout/layout.astro'
+import Small from '../components/typo/small.astro'
+import Subtitle from '../components/typo/subtitle.astro'
 
 const title = 'Guilherme Lopes | Software Developer'
 const description = 'Homepage of my website, feel free to explore'
@@ -36,24 +38,43 @@ const current = 'home'
       </Link>
     </div>
   </section>
-  <!-- <section class="flex flex-col gap-3">
+  <!-- <section class="flex flex-col gap-5">
     <Subtitle>Projects</Subtitle>
-    <div class="flex flex-col gap-1">
+    <div class="flex flex-col gap-2">
       <Paragraph bold>RU Menu</Paragraph>
       <Paragraph>
-        Serverless app that works together with a team of kitchen woman to delivery the delicious food menu of a
-        college restaurant
+        Serverless app that sends the formatted menu everyday to multiple students in a public university
       </Paragraph>
       <div class="flex gap-3">
-        <Small>• DAU 1200</Small>
-        <Small>• AWS</Small>
-        <Small>• TypeScript</Small>
-        <Small>• Java</Small>
+        <div class="rounded-sm px-2 py-1 text-sm transition-colors duration-150 ease-in-out">
+          <Small>DAU 3000</Small>
+        </div>
+        <div class="rounded-sm px-2 py-1 text-sm transition-colors duration-150 ease-in-out">
+          <Small>AWS</Small>
+        </div>
+        <div class="rounded-sm px-2 py-1 text-sm transition-colors duration-150 ease-in-out">
+          <Small>TypeScript</Small>
+        </div>
+        <div class="rounded-sm px-2 py-1 text-sm transition-colors duration-150 ease-in-out">
+          <Small>Java</Small>
+        </div>
       </div>
     </div>
-    <div class="flex flex-col gap-1">
-      <Paragraph bold>Gnose</Paragraph>
-      <Paragraph>Project created to people share and spread their quotes around the world</Paragraph>
-    </div>
-  </section> -->
+    <div class="flex flex-col gap-2">
+      <Paragraph bold>Espoti</Paragraph>
+      <Paragraph>Project created to people share their favorite songs one to another person</Paragraph>
+      <div class="flex gap-3">
+        <div class="rounded-sm px-2 py-1 text-sm transition-colors duration-150 ease-in-out">
+          <Small>NextJS</Small>
+        </div>
+        <div class="rounded-sm px-2 py-1 text-sm transition-colors duration-150 ease-in-out">
+          <Small>Supabase</Small>
+        </div>
+        <div class="rounded-sm px-2 py-1 text-sm transition-colors duration-150 ease-in-out">
+          <Small>TypeScript</Small>
+        </div>
+        <div class="rounded-sm px-2 py-1 text-sm transition-colors duration-150 ease-in-out">
+          <Small>Java</Small>
+        </div>
+      </div></div> -->
 </Layout>

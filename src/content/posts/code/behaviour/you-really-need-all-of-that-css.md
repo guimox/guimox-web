@@ -1,8 +1,8 @@
 ---
-title: "CSS sometimes can make decision making really hard"
-description: "Thinking about styles, spacing, fonts, overall CSS configs can be overwhelming and even stop you from getting things done."
+title: 'CSS sometimes can make decision making really hard'
+description: 'Thinking about styles, spacing, fonts, overall CSS configs can be overwhelming and even stop you from getting things done.'
 pubDate: 2024-12-29
-tags: ["webdev", "frontend", "css"]
+tags: ['webdev', 'frontend', 'css']
 ---
 
 ### Decision making

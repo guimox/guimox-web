@@ -1,10 +1,9 @@
 export const getDateFormatted = (date: Date): string | undefined => {
-    if (!date) return undefined;
+  if (!date) return undefined
 
-    return date.toLocaleDateString('pt-BR', {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-    })
-
-};
+  return date.toLocaleDateString('pt-BR', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  })
+}
