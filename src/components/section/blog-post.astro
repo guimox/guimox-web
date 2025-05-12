@@ -4,6 +4,7 @@ import { getReadingTime } from '../../utils/reading-time'
 import { getDateFormatted } from '../../utils/time-format'
 import Paragraph from '../typo/paragraph.astro'
 import Subtitle from '../typo/subtitle.astro'
+import Badge from '../ui/badge.astro'
 
 interface Props {
   title: string
@@ -13,31 +14,25 @@ interface Props {
   body: string
   tags: string[]
   activeTag?: string
+  inRow: boolean
 }
 
-const { title, description, pubDate, url, body, tags, activeTag } = Astro.props as Props
+const { title, description, pubDate, url, body, inRow, tags, activeTag } = Astro.props as Props
 ---
 
 <article class={`flex gap-4 group`}>
   <div class="flex w-full flex-col gap-4">
     <a href={url} class="flex w-full flex-col gap-2 hover:opacity-75">
-      <Subtitle>{title}</Subtitle>
+      {inRow ? <Paragraph bold>{title}</Paragraph> : <Subtitle>{title}</Subtitle>}
       <Paragraph>{description}</Paragraph>
     </a>
     <div class="flex flex-wrap items-center gap-2">
       {
-        tags?.map((tag: string) => {
-          const isActive = tag === activeTag
-          const baseClasses = 'rounded-sm px-2 py-1 text-sm transition-colors duration-150 ease-in-out'
-          const activeClasses = 'bg-zinc-700 text-white hover:opacity-75'
-          const inactiveClasses = 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-
-          return (
-            <a href={`/tags/${tag}`} class={`${baseClasses} ${isActive ? activeClasses : inactiveClasses}`}>
-              {tag}
-            </a>
-          )
-        })
+        tags?.map((tag: string) => (
+          <Badge href={`/tags/${tag}`} active={tag === activeTag}>
+            {tag}
+          </Badge>
+        ))
       }
     </div>
     <div class="flex items-center gap-3 text-sm text-gray-600">

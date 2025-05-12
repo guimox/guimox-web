@@ -1,3 +1,25 @@
-<a class="rounded border p-1 px-3 text-sm">
-  <slot />
-</a>
+---
+interface Props {
+  href?: string
+  active?: boolean
+}
+
+const { href, active = false } = Astro.props
+
+const baseClasses = 'rounded-sm px-2 py-1 text-sm transition-colors duration-150 ease-in-out'
+const activeClasses = 'bg-zinc-700 text-white hover:opacity-75'
+const inactiveClasses = 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+const classes = `${baseClasses} ${active ? activeClasses : inactiveClasses}`
+---
+
+{
+  href ? (
+    <a href={href} class={classes}>
+      <slot />
+    </a>
+  ) : (
+    <div class={classes}>
+      <slot />
+    </div>
+  )
+}

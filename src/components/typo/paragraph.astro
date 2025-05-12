@@ -1,5 +1,14 @@
 ---
-const { bold } = Astro.props
+interface Props {
+  bold?: boolean
+  white?: boolean
+}
+
+const { bold = false, white = false } = Astro.props
 ---
 
-<p class={`tracking-tight text-justify text-lg ${bold ? 'font-bold' : ''}`}><slot /></p>
+<p
+  class={`tracking-tight text-justify text-lg  ${bold ? 'font-bold' : ''} ${white ? 'text-white' : 'text-zinc-700'}`}
+>
+  <slot />
+</p>
