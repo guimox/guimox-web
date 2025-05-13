@@ -23,8 +23,20 @@ const albumsCollection = defineCollection({
     }),
 })
 
+const projectsCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    badges: z.array(z.string()),
+    github: z.string().optional(),
+    live: z.string().optional(),
+    featured: z.boolean().default(false),
+  }),
+})
+
 export const collections = {
   posts: postsCollection,
   links: linksCollection,
+  projects: projectsCollection,
   albums: albumsCollection,
 }
