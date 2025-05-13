@@ -1,9 +1,6 @@
 ---
-import { Icon } from 'astro-icon/components'
-
 const { current } = Astro.props
 const styleActive = 'font-bold text-zinc-700'
-const isAltLink = current == 'gallery' || current == 'tags'
 ---
 
 <style>
@@ -26,6 +23,9 @@ const isAltLink = current == 'gallery' || current == 'tags'
     </li>
     <li class={`hover:opacity-75 ${current == 'blog' ? styleActive : ''}`}>
       <a href="/blog">Blog</a>
+    </li>
+    <li class={`hover:opacity-75 ${current == 'projects' ? styleActive : ''}`}>
+      <a href="/projects">Projects</a>
     </li>
   </ul>
   <!-- <div class="relative z-20">

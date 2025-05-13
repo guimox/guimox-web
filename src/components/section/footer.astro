@@ -2,18 +2,49 @@
 import { Icon } from 'astro-icon/components'
 import Link from '../typo/link.astro'
 import Paragraph from '../typo/paragraph.astro'
+import Small from '../typo/small.astro'
+
+const currentYear = new Date().getFullYear()
 ---
 
-<footer class="mt-10 flex items-center justify-between gap-3 py-8 md:mt-10">
-  <div class="w-3/4">
-    <Paragraph bold>Guilherme Lopes</Paragraph>
-  </div>
-  <div class="flex w-1/2 justify-end gap-3">
-    <Link href="https://github.com/guimox" target="_blank" aria-label="link to open my GitHub">
-      <Icon name="mdi:github" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
-    </Link>
-    <Link href="https://www.linkedin.com/in/guimox" target="_blank" aria-label="link to open my LinkedIn">
-      <Icon name="mdi:linkedin" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
-    </Link>
+<footer class="mt-10 flex flex-col gap-4 py-8 md:mt-10">
+  <div class="flex items-center justify-between">
+    <div class="flex flex-col">
+      <Paragraph bold>Guilherme Lopes</Paragraph>
+      <Small>Software Developer</Small>
+    </div>
+    <div class="flex flex-col gap-2">
+      <div class="flex justify-end gap-2">
+        <Link href="https://github.com/guimox" target="_blank" aria-label="link to open my GitHub">
+          <Icon name="mdi:github" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
+        </Link>
+        <Link href="https://www.linkedin.com/in/guimox" target="_blank" aria-label="link to open my LinkedIn">
+          <Icon name="mdi:linkedin" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
+        </Link>
+      </div>
+      <div class="flex items-center gap-1">
+        <span class="text-xs text-zinc-700 sm:text-sm" id="current-time"></span>
+        <Small>• {currentYear}</Small>
+      </div>
+    </div>
   </div>
 </footer>
+
+<script is:inline>
+  function updateTime() {
+    const timeElement = document.getElementById('current-time')
+    if (timeElement) {
+      const now = new Date()
+      const timeString = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      })
+      timeElement.textContent = timeString
+    }
+  }
+
+  updateTime()
+  setInterval(updateTime, 1000)
+</script>

@@ -18,6 +18,9 @@ const description = 'Homepage of my website, feel free to explore'
 const canonical = 'https://guimox.dev'
 const current = 'home'
 
+const projects = await getCollection('projects')
+const featuredProjects = projects.filter((project) => project.data.featured)
+
 const posts = await getCollection('posts')
 const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 ---
@@ -39,13 +42,13 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
     <div class="flex gap-4">
       <Link href="https://github.com/guimox" target="_blank" aria-label="link to open my LinkedIn">
         <Button>
-          <Icon name="mdi:github" />
+          <Icon name="mdi:github" class="text-lg" />
           <Small>Github</Small>
         </Button>
       </Link>
       <Link href="https://www.linkedin.com/in/guimox" target="_blank" aria-label="link to open my LinkedIn">
         <Button>
-          <Icon name="mdi:linkedin" />
+          <Icon name="mdi:linkedin" class="text-lg" />
           <Small>LinkedIn</Small>
         </Button>
       </Link>
@@ -54,11 +57,6 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
   <Content>
     <div class="flex items-center justify-between">
       <Subtitle>Blog</Subtitle>
-      <Link href="/blog" aria-label="See all blog posts">
-        <Button>
-          <Small>See more →</Small>
-        </Button>
-      </Link>
     </div>
     <div class="flex flex-col gap-8">
       {
@@ -77,25 +75,35 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
         })
       }
     </div>
+    <Link href="/blog" aria-label="See all blog posts">
+      <Button>
+        <Icon name="mdi:post-it-note-text-outline" class="text-lg" />
+        <Small>See more posts</Small>
+      </Button>
+    </Link>
   </Content>
   <Content>
     <div class="flex items-center justify-between">
       <Subtitle>Projects</Subtitle>
     </div>
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-      <CardProject
-        title="RU Menu"
-        description="A serverless app that sends the formatted menu every day to multiple students at a public university"
-        badges={['DAU 3000', 'AWS', 'TypeScript', 'Java']}
-        github="https://github.com/guimox/ru-menu"
-      />
-      <CardProject
-        title="Espoti"
-        description="A project created for people to share their favorite songs with each other in random way"
-        badges={['NextJS', 'Supabase', 'TypeScript']}
-        github="https://github.com/guimox/espoti"
-        live="https://espoti.com/"
-      />
+      {
+        featuredProjects.map((project) => (
+          <CardProject
+            title={project.data.title}
+            description={project.data.description}
+            badges={project.data.badges}
+            github={project.data.github}
+            live={project.data.live}
+          />
+        ))
+      }
     </div>
+    <Link href="/projects" aria-label="See all projects">
+      <Button>
+        <Icon name="mdi:code" class="text-lg" />
+        <Small>Explore projects</Small>
+      </Button>
+    </Link>
   </Content>
 </Layout>

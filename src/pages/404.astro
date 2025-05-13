@@ -4,6 +4,8 @@ import Link from '../components/typo/link.astro'
 import Paragraph from '../components/typo/paragraph.astro'
 import Title from '../components/typo/title.astro'
 import Layout from '../layout/layout.astro'
+import Button from '../components/ui/button.astro'
+import Small from '../components/typo/small.astro'
 
 const title = 'Page Not Found | Guilherme Lopes'
 const description = 'Oops! The page you were looking for does not exist.'
@@ -11,31 +13,32 @@ const canonical = 'https://guimox.dev/404'
 const current = '404'
 ---
 
-<Layout
-  title={title}
-  description={description}
-  canonical={canonical}
-  current={current}
-  ogImage="https://guimox.dev/og/404.png"
->
+<Layout title={title} description={description} canonical={canonical} current={current}>
   <section class="flex w-full flex-col items-start gap-6 py-12 text-center">
-    <div class="rounded-sm bg-gray-100 p-3 text-8xl font-bold text-zinc-700">404</div>
+    <div class="rounded text-3xl font-bold text-zinc-700 md:text-7xl">404</div>
     <Title>Page Not Found</Title>
     <Paragraph>Oops! It seems like you've ventured into uncharted territory.</Paragraph>
     <Paragraph>The page you're looking for doesn't exist or may have been moved.</Paragraph>
     <div class="mt-4 flex gap-6">
       <Link href="/">
-        <Icon name="mdi:home" class="h-5 w-5" />
-        Home
+        <Button>
+          <Icon name="mdi:home" />
+          <Small>Home</Small>
+        </Button>
       </Link>
-
-      <button
-        class="inline-flex cursor-pointer items-center gap-1.5 text-base hover:underline hover:opacity-75"
-        onclick="history.back()"
-      >
-        <Icon name="mdi:arrow-left" class="h-5 w-5" />
-        Go back
-      </button>
+      <div id="back-button">
+        <Button>
+          <Icon name="mdi:arrow-left" />
+          <Small>Go back</Small>
+        </Button>
+      </div>
     </div>
   </section>
 </Layout>
+
+<script>
+  const backButton = document.querySelector('#back-button')
+  backButton?.addEventListener('click', () => {
+    window.history.back()
+  })
+</script>

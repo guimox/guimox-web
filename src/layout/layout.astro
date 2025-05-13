@@ -15,7 +15,6 @@ export interface Props {
 }
 
 const { current, title, ogImage, description, canonical } = Astro.props
-const isHome = current == 'home'
 const isError = current == '404'
 ---
 
@@ -56,6 +55,6 @@ const isError = current == '404'
     <main class="flex flex-grow flex-col items-start justify-start gap-12 py-6">
       <slot />
     </main>
-    <Footer />
+    {!isError && <Footer />}
   </body>
 </html>
