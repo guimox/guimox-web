@@ -6,9 +6,9 @@ interface Props {
 
 const { href, active = false } = Astro.props
 
-const baseClasses = 'rounded-sm px-2 py-1 text-sm transition-colors duration-150 ease-in-out'
+const baseClasses = 'rounded-sm bg-gray-100 px-2 text-xs sm:text-sm transition-colors duration-150 ease-in-out'
 const activeClasses = 'bg-zinc-700 text-white hover:opacity-75'
-const inactiveClasses = 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+const inactiveClasses = 'border text-gray-700 hover:bg-gray-200'
 const classes = `${baseClasses} ${active ? activeClasses : inactiveClasses}`
 ---
 

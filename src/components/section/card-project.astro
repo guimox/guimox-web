@@ -1,0 +1,43 @@
+---
+import Badge from '../ui/badge.astro'
+import Link from '../typo/link.astro'
+import Paragraph from '../typo/paragraph.astro'
+import Small from '../typo/small.astro'
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  title: string
+  description: string
+  badges: string[]
+  github?: string
+  live?: string
+}
+
+const { title, description, badges, github, live } = Astro.props
+---
+
+<div class="grid h-full w-full grid-rows-[auto_1fr_auto_auto] gap-4 rounded border p-4">
+  <Paragraph bold>{title}</Paragraph>
+  <Paragraph>{description}</Paragraph>
+  <div class="flex flex-wrap gap-2">
+    {badges.map((badge) => <Badge>{badge}</Badge>)}
+  </div>
+  <div class="flex gap-3">
+    {
+      github && (
+        <Link href={github} target="_blank" aria-label="link to open GitHub repository">
+          <Icon name="mdi:github" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
+          <Small>Github</Small>
+        </Link>
+      )
+    }
+    {
+      live && (
+        <Link href={live} target="_blank" aria-label="link to open live website">
+          <Icon name="mdi:web" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
+          <Small>Live</Small>
+        </Link>
+      )
+    }
+  </div>
+</div>

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,astro,json,yml,yaml,css,scss}\"",
     "preview": "astro preview",
     "astro": "astro"
   },

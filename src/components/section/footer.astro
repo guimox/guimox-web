@@ -4,16 +4,16 @@ import Link from '../typo/link.astro'
 import Paragraph from '../typo/paragraph.astro'
 ---
 
-<footer class="flex mt-10 md:mt-10 items-center justify-between gap-3 py-5">
+<footer class="mt-10 flex items-center justify-between gap-3 py-8 md:mt-10">
   <div class="w-3/4">
-    <Paragraph><b>Guilherme Lopes</b></Paragraph>
+    <Paragraph bold>Guilherme Lopes</Paragraph>
   </div>
-  <div class="flex w-1/2 justify-end gap-2">
+  <div class="flex w-1/2 justify-end gap-3">
     <Link href="https://github.com/guimox" target="_blank" aria-label="link to open my GitHub">
-      <Icon name="mdi:github" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700 md:text-3xl" />
+      <Icon name="mdi:github" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
     </Link>
     <Link href="https://www.linkedin.com/in/guimox" target="_blank" aria-label="link to open my LinkedIn">
-      <Icon name="mdi:linkedin" class="md: rounded-full bg-gray-100 p-1 text-2xl text-zinc-700 md:text-3xl" />
+      <Icon name="mdi:linkedin" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
     </Link>
   </div>
 </footer>

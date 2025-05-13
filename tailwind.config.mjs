@@ -6,6 +6,11 @@ export default {
       typography: (theme) => ({
         DEFAULT: {
           css: {
+            blockquote: {
+              borderLeftWidth: '1px',
+              borderLeftColor: theme('colors.gray.100'),
+              fontStyle: 'normal',
+            },
             maxWidth: '1000px',
             'code::before': {
               content: '""',
@@ -13,6 +18,12 @@ export default {
             'code::after': {
               content: '""',
             },
+          },
+        },
+        quoteless: {
+          css: {
+            'blockquote p:first-of-type::before': { content: 'none' },
+            'blockquote p:first-of-type::after': { content: 'none' },
           },
         },
       }),

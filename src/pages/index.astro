@@ -9,6 +9,9 @@ import Title from '../components/typo/title.astro'
 import Badge from '../components/ui/badge.astro'
 import Layout from '../layout/layout.astro'
 import Small from '../components/typo/small.astro'
+import Content from '../components/section/content.astro'
+import Button from '../components/ui/button.astro'
+import CardProject from '../components/section/card-project.astro'
 
 const title = 'Guilherme Lopes | Software Developer'
 const description = 'Homepage of my website, feel free to explore'
@@ -26,42 +29,35 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
   current={current}
   ogImage="https://guimox.dev/og/index.png"
 >
-  <section class="flex flex-col gap-4">
+  <Content>
     <Title>Guilherme Lopes</Title>
     <Paragraph>
-      Experienced <b>software developer</b> capable of working on the frontend and backend. Interested about anything
-      that is related to web (CI/CD, Docker, databases, frontend, backend and cool stuff). Passionate about the world
-      web wide and its aspects.
+      <b>Software developer</b> capable of working on the frontend && backend. Interested about anything that is related
+      to web (CI/CD, Docker, databases, frontend, backend and cool stuff). Passionate about the world web wide and its
+      aspects.
     </Paragraph>
     <div class="flex gap-4">
-      <Link href="https://github.com/guimox" target="_blank" aria-label="link to open my GitHub">
-        <Icon name="mdi:github" class="rounded-full bg-gray-100 p-1 text-3xl text-zinc-700" />
-        <Small>Github</Small>
+      <Link href="https://github.com/guimox" target="_blank" aria-label="link to open my LinkedIn">
+        <Button>
+          <Icon name="mdi:github" />
+          <Small>Github</Small>
+        </Button>
       </Link>
       <Link href="https://www.linkedin.com/in/guimox" target="_blank" aria-label="link to open my LinkedIn">
-        <Icon name="mdi:linkedin" class="rounded-full bg-gray-100 p-1 text-3xl text-zinc-700" />
-        <Small>LinkedIn</Small>
+        <Button>
+          <Icon name="mdi:linkedin" />
+          <Small>LinkedIn</Small>
+        </Button>
       </Link>
     </div>
-  </section>
-  <!-- </section>
-  <section class="flex flex-col gap-5">
-    <Subtitle>About</Subtitle>
-    <div class="flex flex-col gap-2">
-      <Paragraph>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, eum, consectetur ullam doloremque,
-        sapiente numquam amet tempore cumque aperiam voluptates fuga minus fugiat! Ab consequatur sit assumenda
-        nemo fugiat maxime. Suscipit assumenda sint voluptate in placeat? Voluptatem eos veniam quisquam reiciendis
-        alias facilis vitae repellat illum dignissimos! Quod perferendis perspiciatis recusandae alias ullam
-        cumque. Molestiae temporibus ut a quia culpa!
-      </Paragraph>
-    </div>
-  </section> -->
-  <section class="flex flex-col gap-5">
+  </Content>
+  <Content>
     <div class="flex items-center justify-between">
-      <Subtitle>Ideas</Subtitle>
+      <Subtitle>Blog</Subtitle>
       <Link href="/blog" aria-label="See all blog posts">
-        <Small>See more →</Small>
+        <Button>
+          <Small>See more →</Small>
+        </Button>
       </Link>
     </div>
     <div class="flex flex-col gap-8">
@@ -81,50 +77,25 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
         })
       }
     </div>
-  </section>
-  <section class="flex flex-col gap-5">
+  </Content>
+  <Content>
     <div class="flex items-center justify-between">
       <Subtitle>Projects</Subtitle>
-      <!-- <Link href="/projects" aria-label="See all blog posts">
-        <Small>See more →</Small>
-      </Link> -->
     </div>
-    <div class="flex flex-col gap-3">
-      <Paragraph bold>RU Menu</Paragraph>
-      <Paragraph>
-        A serverless app that sends the formatted menu every day to multiple students at a public university
-      </Paragraph>
-      <div class="flex gap-3">
-        <Badge>DAU 3000</Badge>
-        <Badge>AWS</Badge>
-        <Badge>TypeScript</Badge>
-        <Badge>Java</Badge>
-      </div>
-      <div class="flex gap-3">
-        <Link href="https://github.com/guimox/ru-menu" target="_blank" aria-label="link to open my GitHub">
-          <Icon name="mdi:github" class="rounded-full bg-gray-100 p-1 text-3xl text-zinc-700" />
-          <Small>Github</Small>
-        </Link>
-      </div>
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <CardProject
+        title="RU Menu"
+        description="A serverless app that sends the formatted menu every day to multiple students at a public university"
+        badges={['DAU 3000', 'AWS', 'TypeScript', 'Java']}
+        github="https://github.com/guimox/ru-menu"
+      />
+      <CardProject
+        title="Espoti"
+        description="A project created for people to share their favorite songs with each other in random way"
+        badges={['NextJS', 'Supabase', 'TypeScript']}
+        github="https://github.com/guimox/espoti"
+        live="https://espoti.com/"
+      />
     </div>
-    <div class="flex flex-col gap-3">
-      <Paragraph bold>Espoti</Paragraph>
-      <Paragraph>A project created for people to share their favorite songs with each other</Paragraph>
-      <div class="flex gap-3">
-        <Badge>NextJS</Badge>
-        <Badge>Supabase</Badge>
-        <Badge>TypeScript</Badge>
-      </div>
-      <div class="flex gap-3">
-        <Link href="https://github.com/guimox/espoti" target="_blank" aria-label="link to open my GitHub">
-          <Icon name="mdi:github" class="rounded-full bg-gray-100 p-1 text-3xl text-zinc-700" />
-          <Small>Github</Small>
-        </Link>
-        <Link href="https://espoti.com/" target="_blank" aria-label="link to open my GitHub">
-          <Icon name="mdi:web" class="rounded-full bg-gray-100 p-1 text-3xl text-zinc-700" />
-          <Small>Live</Small>
-        </Link>
-      </div>
-    </div>
-  </section>
+  </Content>
 </Layout>
