@@ -23,28 +23,8 @@ const currentYear = new Date().getFullYear()
         </Link>
       </div>
       <div class="flex items-center gap-1">
-        <span class="text-xs text-zinc-700 sm:text-sm" id="current-time"></span>
-        <Small>• {currentYear}</Small>
+        <Small>Fueled by creative thoughts • {currentYear}</Small>
       </div>
     </div>
   </div>
 </footer>
-
-<script is:inline>
-  function updateTime() {
-    const timeElement = document.getElementById('current-time')
-    if (timeElement) {
-      const now = new Date()
-      const timeString = now.toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-      })
-      timeElement.textContent = timeString
-    }
-  }
-
-  updateTime()
-  setInterval(updateTime, 1000)
-</script>
