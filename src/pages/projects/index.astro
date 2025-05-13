@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content'
+import Layout from '../../layout/layout.astro'
+import CardProject from '../../components/section/card-project.astro'
+import Title from '../../components/typo/title.astro'
+import Content from '../../components/section/content.astro'
+
+const projects = await getCollection('projects')
+const sortedProjects = projects.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1
+  if (!a.data.featured && b.data.featured) return 1
+  return 0
+})
+
+const title = 'Projects | Guilherme Lopes'
+const description = 'Collection of my featured and personal projects'
+const canonical = 'https://guimox.dev/projects'
+const current = 'projects'
+---
+
+<Layout title={title} description={description} canonical={canonical} current={current}>
+  <Content>
+    <div class="flex flex-col gap-8">
+      <Title>Always learning</Title>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {
+          sortedProjects.map((project) => (
+            <CardProject
+              title={project.data.title}
+              description={project.data.description}
+              badges={project.data.badges}
+              github={project.data.github}
+              live={project.data.live}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </Content>
+</Layout>

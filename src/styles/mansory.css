@@ -2,6 +2,7 @@
   cursor: pointer;
   position: relative;
 }
+
 .mansory-grid a::before {
   content: '';
   position: absolute;
