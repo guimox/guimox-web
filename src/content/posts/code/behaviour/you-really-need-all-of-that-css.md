@@ -1,8 +1,8 @@
 ---
-title: 'CSS sometimes can make decision making really hard'
-description: 'Thinking about styles, spacing, fonts, overall CSS configs can be overwhelming and even stop you from getting things done.'
+title: "CSS sometimes can make decision making really hard"
+description: "Thinking about styles, spacing, fonts, overall CSS configs can be overwhelming and even stop you from getting things done."
 pubDate: 2024-12-29
-tags: ['webdev', 'frontend', 'css']
+tags: ["webdev", "frontend", "css"]
 ---
 
 ### Decision making
@@ -11,9 +11,7 @@ In web development, making decisions is part of the job. We deal with databases,
 
 ### The perfectionism trap
 
-As developers, we are like the Leonardo da Vincis of our time. We create amazing things, and ensuring they’re of good quality is a top priority.
-
-> However, striving for perfection can be counterproductive. It can slow us down when we need to deliver features or complete projects. Of course, following best practices is important, but even these can become obstacles if we let them get in the way of finishing and sharing our work.
+As developers, we are like the Leonardo da Vincis of our time. We create amazing things, and ensuring they’re of good quality is a top priority. However, striving for perfection can be counterproductive. It can slow us down when we need to deliver features or complete projects. Of course, following best practices is important, but even these can become obstacles if we let them get in the way of finishing and sharing our work.
 
 ### When CSS gets in the way
 
