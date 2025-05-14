@@ -10,6 +10,7 @@ export default {
               borderLeftWidth: '1px',
               borderLeftColor: theme('colors.gray.100'),
               fontStyle: 'normal',
+              fontWeight: 'normal',
             },
             maxWidth: '1000px',
             'code::before': {

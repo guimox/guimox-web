@@ -23,10 +23,28 @@ const { title, description, pubDate, url, body, inRow, tags, activeTag } = Astro
 
 <article class={`flex gap-4 group`}>
   <div class="flex w-full flex-col gap-4 rounded border p-4">
-    <a href={url} class="flex w-full flex-col gap-2 hover:opacity-75">
+    <!-- Main clickable area wrapped in a single link -->
+    <a href={url} class="flex w-full flex-col gap-4 hover:opacity-75">
+      <!-- Title -->
       {inRow ? <Paragraph bold>{title}</Paragraph> : <Subtitle>{title}</Subtitle>}
+
+      <!-- Description -->
+      <Paragraph>{description}</Paragraph>
+
+      <!-- Time metadata -->
+      <div class="flex items-center gap-3 text-sm text-gray-600">
+        <div class="flex items-center gap-1">
+          <Icon name="mdi:calendar-outline" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
+          <Small>{getDateFormatted(pubDate)}</Small>
+        </div>
+        <div class="flex items-center gap-1">
+          <Icon name="mdi:clock-outline" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
+          <Small>{getReadingTime(body)}</Small>
+        </div>
+      </div>
     </a>
-    <Paragraph>{description}</Paragraph>
+
+    <!-- Tags section kept outside the link for individual tag clicks -->
     <div class="flex flex-wrap items-center gap-2">
       {
         tags?.map((tag: string) => (
@@ -35,16 +53,6 @@ const { title, description, pubDate, url, body, inRow, tags, activeTag } = Astro
           </Badge>
         ))
       }
-    </div>
-    <div class="flex items-center gap-3 text-sm text-gray-600">
-      <div class="flex items-center gap-1">
-        <Icon name="mdi:calendar-outline" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
-        <Small>{getDateFormatted(pubDate)}</Small>
-      </div>
-      <div class="flex items-center gap-1">
-        <Icon name="mdi:clock-outline" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
-        <Small>{getReadingTime(body)}</Small>
-      </div>
     </div>
   </div>
 </article>

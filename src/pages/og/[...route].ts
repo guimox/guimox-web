@@ -4,31 +4,49 @@ import { getCollection } from 'astro:content'
 const staticPagesData = {
   index: {
     frontmatter: {
-      title: 'Your Website Name - Homepage',
-      description: 'Welcome to our awesome website!',
+      title: 'Guilherme Lopes',
+      description: 'Software Developer passionate about building things',
     },
   },
   about: {
     frontmatter: {
-      title: 'About Us',
-      description: 'Learn more about our mission and team.',
+      title: 'About Me | Guilherme Lopes',
+      description: 'Software developer who loves experimenting and learning new things',
     },
   },
   blog: {
     frontmatter: {
-      title: 'Our Blog',
-      description: 'Latest news, articles, and insights.',
+      title: 'Blog | Guilherme Lopes',
+      description: 'Thoughts and tutorials about web development, coding practices and technology',
+    },
+  },
+  projects: {
+    frontmatter: {
+      title: 'Projects | Guilherme Lopes',
+      description: 'Collection of featured and personal projects built with all kind of technologies',
+    },
+  },
+  gallery: {
+    frontmatter: {
+      title: 'Gallery | Guilherme Lopes',
+      description: 'Collection of photos and memories from various moments',
+    },
+  },
+  vault: {
+    frontmatter: {
+      title: 'Vault | Guilherme Lopes',
+      description: 'Curated collection of useful links and resources about development',
     },
   },
   '404': {
     frontmatter: {
-      title: 'Page Not Found (404)',
-      description: "Oops! We couldn't find the page you were looking for.",
+      title: 'Page Not Found | Guilherme Lopes',
+      description: 'Oops! The page you were looking for does not exist',
     },
   },
 }
 
-const collection = 'posts' // Your content collection name
+const collection = 'posts'
 const posts = await getCollection(collection)
 
 const allPages = posts.reduce(

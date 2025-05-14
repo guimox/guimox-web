@@ -13,35 +13,26 @@ const styleActive = 'font-bold text-zinc-700'
   }
 </style>
 
-<nav class="relative flex justify-between pt-5">
-  <ul class="flex gap-4 text-base tracking-tight sm:text-lg">
-    <li class={`hover:opacity-75 ${current == 'home' ? styleActive : ''}`}>
-      <a href="/"> Home</a>
-    </li>
-    <li class={`hover:opacity-75 ${current == 'about' ? styleActive : ''}`}>
-      <a href="/about">About</a>
-    </li>
-    <li class={`hover:opacity-75 ${current == 'blog' ? styleActive : ''}`}>
-      <a href="/blog">Blog</a>
-    </li>
-    <li class={`hover:opacity-75 ${current == 'projects' ? styleActive : ''}`}>
-      <a href="/projects">Projects</a>
-    </li>
-  </ul>
-  <!-- <div class="relative z-20">
-    <button id="dropdownBtn" class="flex items-center justify-center">
-      <Icon
-        id="icon-header"
-        name="mdi:dots-hexagon"
-        class={`rounded-full hover:opacity-75 ${isAltLink ? 'bg-zinc-700 text-white' : 'bg-gray-100 text-zinc-700'} p-1 text-3xl md:text-3xl`}
-      />
-    </button>
-    <div id="dropdownMenu" class="dropdown-content">
-      <a href="/gallery/test1" class="block px-4 py-2 hover:bg-zinc-100">Gallery</a>
-      <a href="/tags" class="block px-4 py-2 hover:bg-zinc-100">Tags</a>
-    </div>
-  </div> -->
-</nav>
+<header class="fixed left-0 right-0 top-0 z-50 bg-white">
+  <div class="mx-auto max-w-[800px] border-b px-4 md:border-0">
+    <nav class="flex justify-between py-5 md:border-b">
+      <ul class="flex gap-4 text-base tracking-tight md:text-lg">
+        <li class={`hover:opacity-75 ${current == 'home' ? styleActive : ''}`}>
+          <a href="/"> Home</a>
+        </li>
+        <li class={`hover:opacity-75 ${current == 'about' ? styleActive : ''}`}>
+          <a href="/about">About</a>
+        </li>
+        <li class={`hover:opacity-75 ${current == 'blog' ? styleActive : ''}`}>
+          <a href="/blog">Blog</a>
+        </li>
+        <li class={`hover:opacity-75 ${current == 'projects' ? styleActive : ''}`}>
+          <a href="/projects">Projects</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
 <script>
   function toggleDropdown(menu: HTMLElement) {
