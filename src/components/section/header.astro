@@ -3,16 +3,6 @@ const { current } = Astro.props
 const styleActive = 'font-bold text-zinc-700'
 ---
 
-<style>
-  .dropdown-content {
-    @apply absolute right-0 mt-2 hidden w-40 rounded bg-[#f2f2f2] shadow-lg;
-  }
-
-  .dropdown-content.show {
-    @apply block;
-  }
-</style>
-
 <header class="fixed left-0 right-0 top-0 z-50 bg-white">
   <div class="mx-auto max-w-[800px] border-b px-4 md:border-0">
     <nav class="flex justify-between py-5 md:border-b">
@@ -33,39 +23,3 @@ const styleActive = 'font-bold text-zinc-700'
     </nav>
   </div>
 </header>
-
-<script>
-  function toggleDropdown(menu: HTMLElement) {
-    menu.classList.toggle('show')
-  }
-
-  function closeDropdown(menu: HTMLElement) {
-    menu.classList.remove('show')
-  }
-
-  function setupDropdown() {
-    const menu = document.getElementById('dropdownMenu')
-    const btn = document.getElementById('dropdownBtn')
-
-    if (!menu || !btn || !btn.parentNode) return
-
-    const newBtn = btn.cloneNode(true)
-    btn.parentNode.replaceChild(newBtn, btn)
-
-    newBtn.addEventListener('click', (e) => {
-      e.stopPropagation()
-      toggleDropdown(menu)
-    })
-
-    menu.addEventListener('click', (e) => {
-      e.stopPropagation()
-    })
-
-    document.addEventListener('click', () => {
-      closeDropdown(menu)
-    })
-  }
-
-  document.addEventListener('DOMContentLoaded', setupDropdown)
-  document.addEventListener('astro:page-load', setupDropdown)
-</script>
