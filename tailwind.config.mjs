@@ -44,5 +44,4 @@ export default {
       addVariant('prose-inline-code', '&.prose :where(:not(pre)>code):not(:where([class~="not-prose"] *))')
     },
   ],
-  darkMode: 'class',
 }

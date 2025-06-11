@@ -73,28 +73,37 @@ const isError = current == '404'
       <slot />
     </main>
     {!isError && <Footer />}
-    <script is:inline>
-      const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme')
-        }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark'
-        }
-        return 'light'
-      })()
 
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
+    <script is:inline>
+      function applyTheme() {
+        const theme = (() => {
+          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme')
+          }
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark'
+          }
+          return 'light'
+        })()
+
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+
+        window.localStorage.setItem('theme', theme)
       }
 
-      window.localStorage.setItem('theme', theme)
+      applyTheme()
 
-      document.addEventListener('astro:after-swap', function () {
-        if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.toggle('dark', true)
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'theme') {
+          applyTheme()
+        }
       })
+
+      document.addEventListener('astro:after-swap', applyTheme)
     </script>
   </body>
 </html>
