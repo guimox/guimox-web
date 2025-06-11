@@ -33,7 +33,7 @@ export async function getStaticPaths() {
   current={current}
   ogImage={post.data.ogImage}
 >
-  <div id="scroll-progress" class="fixed left-0 top-0 z-50 h-1 w-0 bg-zinc-700"></div>
+  <div id="scroll-progress" class="fixed left-0 top-0 z-50 h-1 w-0"></div>
   <article>
     <div class="flex flex-col items-start gap-4 text-base">
       <div class="full flex flex-col gap-4">
@@ -41,11 +41,17 @@ export async function getStaticPaths() {
         <Paragraph>{description}</Paragraph>
         <div class="flex gap-3">
           <time class="flex items-center gap-2 tracking-tight">
-            <Icon name="mdi:calendar-outline" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
+            <Icon
+              name="mdi:calendar-outline"
+              class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700 dark:bg-zinc-700 dark:text-white"
+            />
             <Small>{getDateFormatted(pubDate)}</Small>
           </time>
           <div class="flex items-center gap-2 tracking-tight">
-            <Icon name="mdi:clock-outline" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
+            <Icon
+              name="mdi:clock-outline"
+              class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700 dark:bg-zinc-700 dark:text-white"
+            />
             <Small>{getReadingTime(post.body)}</Small>
           </div>
         </div>

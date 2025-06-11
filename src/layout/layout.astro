@@ -26,11 +26,28 @@ const isError = current == '404'
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0000" media="(prefers-color-scheme: dark)" />
+    <link rel="canonical" href={canonical} />
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="canonical" href={canonical} />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32-dark.png"
+      media="(prefers-color-scheme: dark)"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16-dark.png"
+      media="(prefers-color-scheme: dark)"
+    />
 
     <meta name="description" content={description} />
     <meta property="og:description" content={description} />
@@ -49,12 +66,35 @@ const isError = current == '404'
     <title>{title}</title>
   </head>
   <body
-    class="mx-auto flex min-h-screen max-w-[800px] flex-col px-4 pt-12 text-zinc-700 antialiased transition-all duration-300 sm:pt-14"
+    class="mx-auto flex min-h-screen max-w-[800px] flex-col px-4 pt-12 text-zinc-700 antialiased transition-all duration-300 dark:bg-black dark:text-white sm:pt-14"
   >
     {!isError && <Header current={current} />}
     <main class="mt-4 flex flex-grow flex-col items-start justify-start gap-12 py-6">
       <slot />
     </main>
     {!isError && <Footer />}
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme')
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark'
+        }
+        return 'light'
+      })()
+
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+
+      window.localStorage.setItem('theme', theme)
+
+      document.addEventListener('astro:after-swap', function () {
+        if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.toggle('dark', true)
+      })
+    </script>
   </body>
 </html>

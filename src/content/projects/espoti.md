@@ -2,6 +2,7 @@
 title: 'Espoti'
 description: 'A project created for people to share their favorite songs with each other in random way'
 badges: ['NextJS', 'Supabase', 'TypeScript']
+search: ['Frontend', 'Fullstack']
 github: 'https://github.com/guimox/espoti'
 live: 'https://espoti.com/'
 featured: true

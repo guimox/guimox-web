@@ -25,7 +25,7 @@ const current = 'tags'
         sortedTags.map(([tag, count]) => (
           <a
             href={`/tags/${tag}`}
-            class="flex items-center gap-2 rounded-sm bg-gray-100 px-2 py-1 text-sm hover:opacity-75"
+            class="flex items-center gap-2 rounded-sm bg-gray-100 px-2 py-1 text-sm hover:opacity-75 dark:bg-zinc-700"
           >
             <span>{tag}</span>
             <span class="rounded-full bg-gray-200 px-2 py-0.5 text-xs">{count}</span>

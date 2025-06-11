@@ -7,7 +7,7 @@ import Small from '../typo/small.astro'
 const currentYear = new Date().getFullYear()
 ---
 
-<footer class="mt-10 flex flex-col gap-4 py-8 md:mt-10">
+<footer class="mt-10 flex flex-col gap-4 py-8 dark:text-zinc-100 md:mt-10">
   <div class="flex justify-between">
     <div class="flex flex-col">
       <Paragraph bold>Guilherme Lopes</Paragraph>
@@ -16,10 +16,16 @@ const currentYear = new Date().getFullYear()
     <div class="flex flex-col items-end gap-1">
       <div class="flex gap-1">
         <Link href="https://github.com/guimox" target="_blank" aria-label="link to open my GitHub">
-          <Icon name="mdi:github" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
+          <Icon
+            name="mdi:github"
+            class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700 dark:bg-zinc-700 dark:text-white"
+          />
         </Link>
         <Link href="https://www.linkedin.com/in/guimox" target="_blank" aria-label="link to open my LinkedIn">
-          <Icon name="mdi:linkedin" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
+          <Icon
+            name="mdi:linkedin"
+            class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700 dark:bg-zinc-700 dark:text-white"
+          />
         </Link>
       </div>
       <Small>Fueled by creative thoughts</Small>

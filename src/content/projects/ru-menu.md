@@ -2,6 +2,7 @@
 title: 'RU Menu'
 description: 'A serverless app that sends the formatted menu every day to multiple students at a public university'
 badges: ['DAU 3000', 'AWS', 'TypeScript', 'Java']
+search: ['Backend']
 github: 'https://github.com/guimox/ru-menu'
 featured: true
 ---

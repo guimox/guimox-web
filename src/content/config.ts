@@ -11,8 +11,6 @@ const postsCollection = defineCollection({
   }),
 })
 
-const linksCollection = defineCollection({})
-
 const albumsCollection = defineCollection({
   type: 'data',
   schema: ({ image }) =>
@@ -28,11 +26,14 @@ const projectsCollection = defineCollection({
     title: z.string(),
     description: z.string(),
     badges: z.array(z.string()),
+    search: z.array(z.string()),
     github: z.string().optional(),
     live: z.string().optional(),
     featured: z.boolean().default(false),
   }),
 })
+
+const linksCollection = defineCollection({})
 
 export const collections = {
   posts: postsCollection,

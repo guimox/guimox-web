@@ -1,11 +1,11 @@
 ---
 const { current } = Astro.props
-const styleActive = 'font-bold text-zinc-700'
+const styleActive = 'font-bold text-zinc-700 dark:text-white'
 ---
 
-<header class="fixed left-0 right-0 top-0 z-50 bg-white">
-  <div class="mx-auto max-w-[800px] border-b px-4 md:border-0">
-    <nav class="flex justify-between py-5 md:border-b">
+<header class="fixed left-0 right-0 top-0 z-50 bg-white backdrop-blur-md dark:bg-black">
+  <div class="mx-auto max-w-[800px] border-b px-4 dark:border-zinc-700">
+    <nav class="flex justify-between py-5">
       <ul class="flex gap-4 text-base tracking-tight md:text-lg">
         <li class={`hover:opacity-75 ${current == 'home' ? styleActive : ''}`}>
           <a href="/"> Home</a>

@@ -27,6 +27,14 @@ export default {
             'blockquote p:first-of-type::after': { content: 'none' },
           },
         },
+        dark: {
+          css: {
+            color: theme('colors.zinc.100'),
+            blockquote: {
+              borderLeftColor: theme('colors.zinc.700'),
+            },
+          },
+        },
       }),
     },
   },

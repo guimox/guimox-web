@@ -1,5 +1,5 @@
 <div
-  class="article-prose:m-0 prose-img:max-h-82 prose prose-base prose-quoteless tracking-tight text-zinc-700 md:prose-lg marker:text-zinc-700 prose-headings:my-2 prose-headings:text-zinc-700 prose-h1:font-bold prose-h2:font-bold prose-h3:relative prose-h3:text-zinc-700 prose-p:text-justify prose-blockquote:text-zinc-700 prose-ol:pl-5 prose-li:list-disc prose-img:w-auto prose-img:rounded prose-inline-code:rounded-sm prose-inline-code:bg-gray-100 prose-inline-code:px-2 prose-inline-code:py-1"
+  class="prose prose-base prose-quoteless tracking-tight text-zinc-700 md:prose-lg marker:text-zinc-700 prose-headings:text-zinc-700 prose-h1:font-bold prose-h2:font-bold prose-h3:relative prose-p:text-justify prose-blockquote:text-zinc-700 prose-ol:pl-5 prose-li:list-disc prose-img:w-auto prose-img:rounded prose-inline-code:rounded-sm prose-inline-code:bg-gray-100 prose-inline-code:px-2 prose-inline-code:py-1 dark:text-white dark:marker:text-zinc-100 dark:prose-headings:text-zinc-100 dark:prose-p:text-zinc-100 dark:prose-blockquote:text-zinc-100 dark:prose-strong:text-zinc-100 dark:prose-inline-code:bg-zinc-700 dark:prose-inline-code:text-white"
 >
   <slot />
 </div>
@@ -16,9 +16,13 @@
   :global(.prose h3 .anchor) {
     opacity: 0;
     text-decoration: none;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s ease;
     margin-left: 0.5rem;
     color: #3f3f46;
+  }
+
+  :global(html.dark .prose h3 .anchor) {
+    color: #e4e4e7;
   }
 
   :global(.prose h3:hover .anchor) {
@@ -26,7 +30,7 @@
   }
 
   :global(blockquote) {
-    @apply rounded border px-5 transition-all duration-300 hover:bg-gray-100;
+    @apply rounded border border-zinc-200 px-5 transition-all duration-300 hover:bg-zinc-100/50 dark:border-zinc-700 dark:hover:bg-zinc-700/50;
   }
 </style>
 

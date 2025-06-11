@@ -8,7 +8,7 @@ const { bold = false, white = false } = Astro.props
 ---
 
 <p
-  class={`tracking-tight text-justify text-base md:text-lg ${bold ? 'font-bold' : ''} ${white ? 'text-white' : 'text-zinc-700'}`}
+  class={`tracking-tight text-justify text-base md:text-lg ${bold ? 'font-bold' : ''} ${white ? 'text-white' : 'text-zinc-700 dark:text-white'}`}
 >
   <slot />
 </p>

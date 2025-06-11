@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import BlogPost from '../../components/section/blog-post.astro'
 import Layout from '../../layout/layout.astro'
+import Title from '../../components/typo/title.astro'
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('posts')
@@ -26,25 +27,29 @@ const canonical = Astro.url.toString()
 ---
 
 <Layout title={title} description={description} canonical={canonical} current={'blog'}>
-  <div class="container mx-auto">
+  <section class="flex flex-col gap-8">
     {
       posts.length === 0 ? (
         <p>No posts found with the tag "{currentTag}".</p>
       ) : (
-        <div class="space-y-8">
-          {posts.map((post) => (
-            <BlogPost
-              title={post.data.title}
-              description={post.data.description}
-              pubDate={post.data.pubDate}
-              url={`/blog/${post.slug}/`}
-              body={post.body}
-              tags={post.data.tags || []}
-              activeTag={currentTag}
-            />
-          ))}
-        </div>
+        <>
+          <Title>Sharing content</Title>
+          <div class="space-y-8">
+            {posts.map((post) => (
+              <BlogPost
+                inRow={false}
+                title={post.data.title}
+                description={post.data.description}
+                pubDate={post.data.pubDate}
+                url={`/blog/${post.slug}/`}
+                body={post.body}
+                tags={post.data.tags || []}
+                activeTag={currentTag}
+              />
+            ))}
+          </div>
+        </>
       )
     }
-  </div>
+  </section>
 </Layout>

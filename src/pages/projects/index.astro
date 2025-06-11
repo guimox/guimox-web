@@ -1,11 +1,13 @@
 ---
 import { getCollection } from 'astro:content'
-import Layout from '../../layout/layout.astro'
 import CardProject from '../../components/section/card-project.astro'
 import Title from '../../components/typo/title.astro'
 import Content from '../../components/section/content.astro'
+import Badge from '../../components/ui/badge.astro'
+import Layout from '../../layout/layout.astro'
 
 const projects = await getCollection('projects')
+
 const sortedProjects = projects.sort((a, b) => {
   if (a.data.featured && !b.data.featured) return -1
   if (!a.data.featured && b.data.featured) return 1
@@ -16,12 +18,29 @@ const title = 'Projects | Guilherme Lopes'
 const description = 'Collection of my featured and personal projects'
 const canonical = 'https://guimox.dev/projects'
 const current = 'projects'
+const allSearchTerms = [...new Set(projects.flatMap((project) => project.data.search))].sort()
+
+function createSlug(text: string) {
+  return text.toLowerCase().replace(/\s+/g, '-')
+}
 ---
 
 <Layout title={title} description={description} canonical={canonical} current={current}>
   <Content>
     <div class="flex flex-col gap-8">
       <Title>Always learning</Title>
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-wrap gap-2">
+          <Badge href="/projects" active={true}>All</Badge>
+          {
+            allSearchTerms.map((badge) => (
+              <Badge href={`/projects/${createSlug(badge)}`} active={false}>
+                {badge}
+              </Badge>
+            ))
+          }
+        </div>
+      </div>
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
         {
           sortedProjects.map((project) => (

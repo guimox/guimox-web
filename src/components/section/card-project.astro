@@ -16,17 +16,20 @@ interface Props {
 const { title, description, badges, github, live } = Astro.props
 ---
 
-<div class="grid h-full w-full grid-rows-[auto_1fr_auto_auto] gap-4 rounded border p-4">
+<div class="grid h-full w-full grid-rows-[auto_1fr_auto_auto] gap-4 rounded border p-4 dark:border-zinc-700">
   <Paragraph bold>{title}</Paragraph>
   <Paragraph>{description}</Paragraph>
   <div class="flex flex-wrap gap-2">
-    {badges.map((badge) => <Badge>{badge}</Badge>)}
+    {badges.map((badge) => <Badge href={`/projects/${badge.toLocaleLowerCase()}`}>{badge}</Badge>)}
   </div>
   <div class="flex gap-3">
     {
       github && (
         <Link href={github} target="_blank" aria-label="link to open GitHub repository">
-          <Icon name="mdi:github" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
+          <Icon
+            name="mdi:github"
+            class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700 dark:bg-zinc-700 dark:text-white"
+          />
           <Small>Github</Small>
         </Link>
       )
@@ -34,7 +37,10 @@ const { title, description, badges, github, live } = Astro.props
     {
       live && (
         <Link href={live} target="_blank" aria-label="link to open live website">
-          <Icon name="mdi:web" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
+          <Icon
+            name="mdi:web"
+            class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700 dark:bg-zinc-700 dark:text-white"
+          />
           <Small>Live</Small>
         </Link>
       )

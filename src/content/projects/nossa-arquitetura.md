@@ -2,6 +2,7 @@
 title: 'Nossa Arquitetura'
 description: 'Landing page created for a friend and his architecture office in Brazil'
 badges: ['Astro', 'Tailwind', 'Resend']
+search: ['Frontend']
 github: 'https://github.com/guimox/nossa-arq'
 live: 'https://nossa.arq.br'
 featured: false

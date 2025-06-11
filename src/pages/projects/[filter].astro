@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content'
+import CardProject from '../../components/section/card-project.astro'
+import Title from '../../components/typo/title.astro'
+import Content from '../../components/section/content.astro'
+import Badge from '../../components/ui/badge.astro'
+import Layout from '../../layout/layout.astro'
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects')
+  const allSearchTerms = [...new Set(projects.flatMap((project) => project.data.search))]
+  if (!allSearchTerms) return
+
+  return allSearchTerms.map((term) => ({
+    params: { filter: term.toLowerCase().replace(/\s+/g, '-') },
+    props: { searchTerm: term },
+  }))
+}
+
+const { filter } = Astro.params
+const { searchTerm } = Astro.props
+
+const projects = await getCollection('projects')
+const allSearchTerms = [...new Set(projects.flatMap((project) => project.data.search))].sort()
+
+const filteredProjects = projects
+  .filter((project) => project.data.search.includes(searchTerm))
+  .sort((a, b) => {
+    if (a.data.featured && !b.data.featured) return -1
+    if (!a.data.featured && b.data.featured) return 1
+    return 0
+  })
+
+const title = `${searchTerm} Projects | Guilherme Lopes`
+const description = `Projects using ${searchTerm}`
+const canonical = `https://guimox.dev/projects/${filter}`
+const current = 'projects'
+---
+
+<Layout title={title} description={description} canonical={canonical} current={current}>
+  <Content>
+    <div class="flex flex-col gap-8">
+      <Title>Always learning</Title>
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-wrap gap-2">
+          <Badge href="/projects" active={false}>All</Badge>
+          {
+            allSearchTerms.map((term) => (
+              <Badge href={`/projects/${term.toLowerCase().replace(/\s+/g, '-')}`} active={term === searchTerm}>
+                {term}
+              </Badge>
+            ))
+          }
+        </div>
+      </div>
+      {
+        filteredProjects.length > 0 ? (
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {filteredProjects.map((project) => (
+              <CardProject
+                title={project.data.title}
+                description={project.data.description}
+                badges={project.data.badges}
+                github={project.data.github}
+                live={project.data.live}
+              />
+            ))}
+          </div>
+        ) : (
+          <p class="text-gray-600">No projects found with {searchTerm}.</p>
+        )
+      }
+    </div>
+  </Content>
+</Layout>

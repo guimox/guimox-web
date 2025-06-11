@@ -22,29 +22,27 @@ const { title, description, pubDate, url, body, inRow, tags, activeTag } = Astro
 ---
 
 <article class={`flex gap-4 group`}>
-  <div class="flex w-full flex-col gap-4 rounded border p-4">
-    <!-- Main clickable area wrapped in a single link -->
+  <div class="flex w-full flex-col gap-4 rounded border p-4 dark:border-zinc-700">
     <a href={url} class="flex w-full flex-col gap-4 hover:opacity-75">
-      <!-- Title -->
       {inRow ? <Paragraph bold>{title}</Paragraph> : <Subtitle>{title}</Subtitle>}
-
-      <!-- Description -->
       <Paragraph>{description}</Paragraph>
-
-      <!-- Time metadata -->
       <div class="flex items-center gap-3 text-sm text-gray-600">
         <div class="flex items-center gap-1">
-          <Icon name="mdi:calendar-outline" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
+          <Icon
+            name="mdi:calendar-outline"
+            class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700 dark:bg-zinc-700 dark:text-white"
+          />
           <Small>{getDateFormatted(pubDate)}</Small>
         </div>
         <div class="flex items-center gap-1">
-          <Icon name="mdi:clock-outline" class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700" />
+          <Icon
+            name="mdi:clock-outline"
+            class="rounded-full bg-gray-100 p-1 text-2xl text-zinc-700 dark:bg-zinc-700 dark:text-white"
+          />
           <Small>{getReadingTime(body)}</Small>
         </div>
       </div>
     </a>
-
-    <!-- Tags section kept outside the link for individual tag clicks -->
     <div class="flex flex-wrap items-center gap-2">
       {
         tags?.map((tag: string) => (
