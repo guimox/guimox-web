@@ -9,7 +9,6 @@ export default async () => {
     ...post,
     data: {
       ...post.data,
-      ogImage: `https://guimox.dev/og/posts/${post.slug}.png`,
     },
   }))
 }

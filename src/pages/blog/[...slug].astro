@@ -26,14 +26,13 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout
-  title={title}
-  description={description}
-  canonical={canonical}
-  current={current}
-  ogImage={post.data.ogImage}
->
-  <div id="scroll-progress" class="fixed left-0 top-0 z-50 h-1 w-0"></div>
+<Layout title={title} description={description} canonical={canonical} current={current}>
+  <div
+    id="scroll-progress"
+    class="fixed left-0 top-0 z-50 h-1 w-0 bg-gray-300 transition-all duration-150 ease-out dark:bg-zinc-700"
+  >
+  </div>
+
   <article>
     <div class="flex flex-col items-start gap-4 text-base">
       <div class="full flex flex-col gap-4">
@@ -64,6 +63,45 @@ export async function getStaticPaths() {
     </Prose>
   </article>
 </Layout>
+
+<style>
+  .copy-code {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+  }
+
+  .copy-code:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  pre {
+    position: relative;
+  }
+
+  pre:hover .copy-code {
+    opacity: 1;
+  }
+
+  .dark .copy-code {
+    background: rgba(255, 255, 255, 0.9);
+    color: black;
+  }
+
+  .dark .copy-code:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+</style>
 
 <script>
   let copyButtonLabel = 'Copy'
@@ -105,9 +143,9 @@ export async function getStaticPaths() {
     if (scrollProgress) {
       const scrollTop = window.scrollY
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
-      const scrollPercentage = (scrollTop / scrollHeight) * 100
+      const scrollPercentage = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0
 
-      scrollProgress.style.width = scrollPercentage + '%'
+      scrollProgress.style.width = Math.min(scrollPercentage, 100) + '%'
     }
   })
 </script>

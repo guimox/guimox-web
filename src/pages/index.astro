@@ -25,13 +25,7 @@ const posts = await getCollection('posts')
 const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 ---
 
-<Layout
-  title={title}
-  description={description}
-  canonical={canonical}
-  current={current}
-  ogImage="https://guimox.dev/og/index.png"
->
+<Layout title={title} description={description} canonical={canonical} current={current}>
   <Content>
     <Title>Guilherme Lopes</Title>
     <Paragraph>
