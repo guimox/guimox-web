@@ -1,0 +1,13 @@
+---
+const { href, target, ...props } = Astro.props
+const Tag = href ? 'a' : 'button'
+---
+
+<Tag
+  href={href}
+  target={target}
+  class="flex max-w-fit items-center gap-2 rounded border bg-gray-100 px-3 py-1 text-sm transition-all duration-300 hover:bg-gray-100 dark:border-black dark:bg-zinc-700"
+  {...props}
+>
+  <slot />
+</Tag>

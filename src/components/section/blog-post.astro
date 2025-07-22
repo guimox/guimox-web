@@ -23,7 +23,7 @@ const { title, description, pubDate, url, body, inRow, tags, activeTag } = Astro
 
 <article class={`flex gap-4 group`}>
   <div class="flex w-full flex-col gap-4 rounded border p-4 dark:border-zinc-700">
-    <a href={url} class="flex w-full flex-col gap-4 hover:opacity-75">
+    <a href={url} class="flex w-full flex-col gap-4 outline-offset-8 hover:opacity-75">
       {inRow ? <Paragraph bold>{title}</Paragraph> : <Subtitle>{title}</Subtitle>}
       <Paragraph>{description}</Paragraph>
       <div class="flex items-center gap-3 text-sm text-gray-600">

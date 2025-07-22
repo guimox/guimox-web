@@ -2,16 +2,16 @@
 import { Icon } from 'astro-icon/components'
 import { getCollection } from 'astro:content'
 import BlogPost from '../components/section/blog-post.astro'
+import CardProject from '../components/section/card-project.astro'
+import Content from '../components/section/content.astro'
 import Link from '../components/typo/link.astro'
 import Paragraph from '../components/typo/paragraph.astro'
+import Small from '../components/typo/small.astro'
 import Subtitle from '../components/typo/subtitle.astro'
 import Title from '../components/typo/title.astro'
-import Badge from '../components/ui/badge.astro'
-import Layout from '../layout/layout.astro'
-import Small from '../components/typo/small.astro'
-import Content from '../components/section/content.astro'
 import Button from '../components/ui/button.astro'
-import CardProject from '../components/section/card-project.astro'
+import Layout from '../layout/layout.astro'
+import ButtonLink from '../components/ui/button-link.astro'
 
 const title = 'Guilherme Lopes | Software Developer'
 const description = 'Homepage of my website, feel free to explore'
@@ -34,18 +34,14 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
       aspects.
     </Paragraph>
     <div class="flex gap-4">
-      <Link href="https://github.com/guimox" target="_blank" aria-label="link to open my LinkedIn">
-        <Button>
-          <Icon name="mdi:github" class="text-lg" />
-          <Small>Github</Small>
-        </Button>
-      </Link>
-      <Link href="https://www.linkedin.com/in/guimox" target="_blank" aria-label="link to open my LinkedIn">
-        <Button>
-          <Icon name="mdi:linkedin" class="text-lg" />
-          <Small>LinkedIn</Small>
-        </Button>
-      </Link>
+      <ButtonLink href="https://github.com/guimox" target="_blank" aria-label="link to open my GitHub">
+        <Icon name="mdi:github" class="text-lg" />
+        <Small>Github</Small>
+      </ButtonLink>
+      <ButtonLink href="https://www.linkedin.com/in/guimox" target="_blank" aria-label="link to open my LinkedIn">
+        <Icon name="mdi:linkedin" class="text-lg" />
+        <Small>LinkedIn</Small>
+      </ButtonLink>
     </div>
   </Content>
   <Content>
@@ -69,12 +65,10 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
         })
       }
     </div>
-    <Link href="/blog" aria-label="See all blog posts">
-      <Button>
-        <Icon name="mdi:post-it-note-text-outline" class="text-lg" />
-        <Small>See more posts</Small>
-      </Button>
-    </Link>
+    <ButtonLink href="/blog" aria-label="See all blog posts">
+      <Icon name="mdi:post-it-note-text-outline" class="text-lg" />
+      <Small>See more posts</Small>
+    </ButtonLink>
   </Content>
   <Content>
     <div class="flex items-center justify-between">
@@ -93,11 +87,9 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
         ))
       }
     </div>
-    <Link href="/projects" aria-label="See all projects">
-      <Button>
-        <Icon name="mdi:code" class="text-lg" />
-        <Small>Explore projects</Small>
-      </Button>
-    </Link>
+    <ButtonLink href="/projects" aria-label="See all projects">
+      <Icon name="mdi:code" class="text-lg" />
+      <Small>Explore projects</Small>
+    </ButtonLink>
   </Content>
 </Layout>

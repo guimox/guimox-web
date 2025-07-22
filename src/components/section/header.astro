@@ -1,23 +1,24 @@
 ---
 const { current } = Astro.props
 const styleActive = 'font-bold text-zinc-700 dark:text-white'
+const commonStyle = 'outline-offset-4'
 ---
 
 <header class="fixed left-0 right-0 top-0 z-50 bg-white dark:bg-black">
   <div class="mx-auto max-w-[800px] px-4 dark:border-zinc-700">
     <nav class="flex justify-between border-b py-5 dark:border-zinc-700">
-      <ul class="flex gap-4 text-base tracking-tight md:text-lg">
+      <ul class="flex gap-4 text-base tracking-tight outline-offset-2 md:text-lg">
         <li class={`hover:opacity-75 ${current == 'home' ? styleActive : ''}`}>
-          <a href="/"> Home</a>
+          <a href="/" class={commonStyle}> Home</a>
         </li>
         <li class={`hover:opacity-75 ${current == 'about' ? styleActive : ''}`}>
-          <a href="/about">About</a>
+          <a href="/about" class={commonStyle}>About</a>
         </li>
         <li class={`hover:opacity-75 ${current == 'blog' ? styleActive : ''}`}>
-          <a href="/blog">Blog</a>
+          <a href="/blog" class={commonStyle}>Blog</a>
         </li>
         <li class={`hover:opacity-75 ${current == 'projects' ? styleActive : ''}`}>
-          <a href="/projects">Projects</a>
+          <a href="/projects" class={commonStyle}>Projects</a>
         </li>
       </ul>
     </nav>

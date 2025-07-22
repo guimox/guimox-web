@@ -1,11 +1,10 @@
 ---
 import { Icon } from 'astro-icon/components'
-import Link from '../components/typo/link.astro'
 import Paragraph from '../components/typo/paragraph.astro'
-import Title from '../components/typo/title.astro'
-import Layout from '../layout/layout.astro'
-import Button from '../components/ui/button.astro'
 import Small from '../components/typo/small.astro'
+import Title from '../components/typo/title.astro'
+import ButtonLink from '../components/ui/button-link.astro'
+import Layout from '../layout/layout.astro'
 
 const title = 'Page Not Found | Guilherme Lopes'
 const description = 'Oops! The page you were looking for does not exist.'
@@ -14,25 +13,14 @@ const current = '404'
 ---
 
 <Layout title={title} description={description} canonical={canonical} current={current}>
-  <section class="flex w-full flex-col items-start gap-6 py-12 text-center">
-    <div class="rounded text-3xl font-bold text-zinc-700 dark:text-white md:text-7xl">404</div>
+  <section class="flex w-full flex-col items-start gap-3 py-12 text-center md:gap-4">
+    <div class="rounded text-3xl font-bold text-zinc-700 md:text-7xl dark:text-white">404</div>
     <Title>Page Not Found</Title>
-    <Paragraph>Oops! It seems like you've ventured into uncharted territory.</Paragraph>
     <Paragraph>The page you're looking for doesn't exist or may have been moved.</Paragraph>
-    <div class="mt-4 flex gap-6">
-      <Link href="/">
-        <Button>
-          <Icon name="mdi:home" />
-          <Small>Home</Small>
-        </Button>
-      </Link>
-      <div id="back-button">
-        <Button>
-          <Icon name="mdi:arrow-left" />
-          <Small>Go back</Small>
-        </Button>
-      </div>
-    </div>
+    <ButtonLink href="/">
+      <Icon name="mdi:home" />
+      <Small>Home</Small>
+    </ButtonLink>
   </section>
 </Layout>
 
